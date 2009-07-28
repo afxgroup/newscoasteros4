@@ -1,0 +1,210 @@
+;
+; $VER: Installer Script for NewsCoaster (c) Mark Harman and Pavel Fedin (16 Jun 2003)
+; (full version)
+;
+
+(set #wrongOS  "NewsCoaster needs at least OS3.0 to run\n")
+(set #wrongMUI "NewsCoaster needs at least MUI3.8 to run\n")
+(set #wrongCPU "NewsCoaster needs at least a 68020 CPU to run\n")
+(set #icons_prompt "Which icons do you wish to install?\n")
+(set #toolbar_prompt (cat "Do you wish to install the Graphical Toolbar?\n"
+    "(If you're updating an installation, selecting Yes will overwrite any\n"
+    "existing toolbar set you have installed in the Icons folder.)\n"
+    ))
+(set #rexx_prompt (cat "Do you wish to install supplied ARexx scripts?"))
+(set #charset_prompt (cat "Do you wish to install character set\n"
+    "translation tables?\n"))
+(set #languages-prompt "Please select which additional languages of NewsCoaster you want to install\n(Built-in language is english)")
+
+(set #NewsCoaster_dir (cat "Choose a folder to install NewsCoaster in - an\n"
+                           "extra drawer will be created. (If you wish to\n"
+                           "update NewsCoaster, please select the folder\n"
+                           "which contains the NewsCoaster folder.)\n"))
+
+(set #done (cat "\nNewsCoaster has been succesfully installed.\n\n"))
+
+(procedure p_copy-catalog
+  (set #dest-lang (tackon "Locale:catalogs/" #language) )
+  (if (not (exists #dest-lang))
+    (makedir #dest-lang) )
+  (copyfiles
+    (source (cat (tackon "Catalogs" #language) "/NewsCoaster.catalog") )
+    (dest #dest-lang) ) )
+
+(set OS_ver (getversion "exec.library" (resident)))
+(if (< OS_ver (* 39 65536)) (abort #wrongOS))
+
+(set MUI_ver (getversion "MUI:libs/muimaster.library"))
+(if (AND (< MUI_ver (* 19 65536)) (<> MUI_ver 0)) (abort #wrongMUI))
+
+(set cpu_type (database "cpu"))
+(if (< cpu_type "68020") (abort #wrongCPU))
+
+(complete 0)
+
+; NewsCoaster icon type
+(set Icon_set
+        (askchoice
+                (prompt #icons_prompt)
+                (help @askoptions-help)
+                (choices "Amiga 4 Colour" "NewIcons")
+                (default 1)
+        )
+)
+
+; copy toolbar?
+(set Copy_toolbar
+        (askchoice
+                (prompt #toolbar_prompt)
+                (help @askoptions-help)
+                (choices "Yes" "No")
+                (default 0)
+        )
+)
+
+(complete 5)
+
+;install rexx scripts?
+(set rexx_yes
+    (askchoice
+        (prompt #rexx_prompt)
+        (help @askoptions-help)
+        (choices "Yes" "No")
+        (default 0)
+    )
+)
+
+; install charsets?
+(set charset_yes
+    (askchoice
+        (prompt #charset_prompt)
+        (help @askoptions-help)
+        (choices "Yes" "No")
+        (default 0)
+    )
+)
+
+; which language catalogs to install?
+(set #languages
+    (askoptions
+        (choices "Russian" "Español")
+            (prompt #languages-prompt)
+            (help @askoptions-help)
+            (default 0)
+    )
+)
+
+(complete 10)
+
+(set NewsCoaster_def_dir @default-dest)
+
+; NewsCoaster location
+(set NewsCoaster_dir
+        (askdir
+                (default NewsCoaster_def_dir)
+                (prompt  #NewsCoaster_dir)
+                (help    @askdir-help)
+        )
+)
+
+(set NewsCoaster_dir (tackon NewsCoaster_dir "NewsCoaster"))
+
+(complete 20)
+
+; make the drawer if it doesn't exist
+(if (not (exists NewsCoaster_dir))
+        (makedir NewsCoaster_dir (infos))
+)
+
+; copy stuff in the root folder
+(copyfiles (source "NewsCoaster") (dest NewsCoaster_dir) (infos) (help @copyfiles-help))
+(copyfiles (source "NewsCoaster.guide") (dest NewsCoaster_dir) (infos) (help @copyfiles-help))
+(copyfiles (source "NewsCoaster.readme") (dest NewsCoaster_dir) (infos) (help @copyfiles-help))
+    ; default.index is no longer required
+;(copyfiles (source "default.index") (dest NewsCoaster_dir) (infos) (help @copyfiles-help))
+(copyfiles (source "gotoURL.rx") (dest NewsCoaster_dir) (infos) (help @copyfiles-help))
+
+; copy the selected NewsCoaster icon
+(if (= Icon_set 0)
+        (copyfiles (source "Icons/NewsCoaster.info") (dest NewsCoaster_dir) (help @copyfiles-help))
+)
+(if (= Icon_set 1)
+        (copyfiles (source "NewsCoaster.info") (dest NewsCoaster_dir) (help @copyfiles-help))
+)
+
+; make the Rexx folder, and copy files
+(set Rexx_dir (tackon NewsCoaster_dir "Rexx"))
+(if (= rexx_yes 0)
+    (if (not (exists Rexx_dir))
+        (makedir Rexx_dir (infos))
+    )
+)
+(if (= rexx_yes 0)
+    (copyfiles (source "Rexx/Bulk_Decoder.rexx") (dest Rexx_dir) (help
+@copyfiles-help))
+)
+
+
+; make the Charsets folder, and copy files
+
+(set Charsets_dir (tackon NewsCoaster_dir "Charsets"))
+(if (= charset_yes 0) (
+    (if (not (exists Charsets_dir))
+        (makedir Charsets_dir (infos))
+    )
+    (copyfiles (source "Charsets/koi8-r.charset") (dest Charsets_dir) (help @copyfiles-help))
+    (copyfiles (source "Charsets/iso-8859-2.charset") (dest Charsets_dir) (help @copyfiles-help))
+))
+
+; install language catalogs
+(if (bitand #languages 1)
+    ( (set #language "russian")
+          (p_copy-catalog) 
+    )
+)
+(if (bitand #languages 2)
+    ( (set #language "español")
+          (p_copy-catalog) 
+    )
+)
+
+; make the icons folder and copy files
+(set icons_dir (tackon NewsCoaster_dir "icons"))
+(if (not (exists icons_dir))
+    (makedir icons_dir (infos))
+)
+
+(if (= Copy_toolbar 0)
+    (copyfiles (source "Icons/Main.toolbar") (dest icons_dir) (help @copyfiles-help))
+)
+(if (= Copy_toolbar 0)
+    (copyfiles (source "Icons/Main_G.toolbar") (dest icons_dir) (help @copyfiles-help))
+)
+
+; make the spare folder and copy files
+;(set spare_dir (tackon NewsCoaster_dir "spare"))
+;(if (not (exists spare_dir))
+;    (makedir spare_dir (infos))
+;)
+
+(complete 60)
+
+(copylib (prompt "MUI - BetterString.mcc") (source "MUI/BetterString.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - BetterString.mcp") (source "MUI/BetterString.mcp") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - NFloattext.mcc")   (source "MUI/NFloattext.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - NList.mcc")        (source "MUI/NList.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - NListview.mcc")    (source "MUI/NListview.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - NListviews.mcp")   (source "MUI/NListviews.mcp") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - TextEditor.mcc")   (source "MUI/TextEditor.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - TextEditor.mcp")   (source "MUI/TextEditor.mcp") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - NListtree.mcc")   (source "MUI/NListtree.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - NListtree.mcp")   (source "MUI/NListtree.mcp") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - Toolbar.mcc")   (source "MUI/Toolbar.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - Toolbar.mcp")   (source "MUI/Toolbar.mcp") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+(copylib (prompt "MUI - InfoText.mcc")   (source "MUI/InfoText.mcc") (dest "MUI:Libs/MUI/") (confirm 2) (help @copylib-help))
+
+(complete 100)
+
+(message #done "\"" NewsCoaster_dir "\"")
+
+(exit (QUIET))

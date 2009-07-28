@@ -1,0 +1,2062 @@
+@DATABASE NewsCoaster.Guide
+@MASTER NewsCoaster.Guide
+@WORDWRAP
+
+@NODE MAIN
+@TITLE "NewsCoaster Guide"
+
+                           NewsCoaster Version 1.61
+                   (c)1999-2003 NewsCoaster development team
+
+
+      Contents...
+
+   @{"Requirements               " link REQ}     What you need!
+   @{"Installation               " link INSTALL}     Getting started
+
+   @{"Introduction               " link INTRO}     What are newsgroups?
+   @{"Configuration              " link CONFIG}     Getting Started
+   @{"Fetching and Reading News  " link READ}
+   @{"Writing and Posting News   " link POST}
+   @{"Killfiles                  " link KILLFILES}     Ignoring people you don't like..
+   @{"Charsets                   " link CHARSETS}     Using national character sets.
+   @{"Users                      " link USERS}
+   @{"Exporting and Viewing Files" link EXPORT}     MIME types, etc.
+
+   @{"Netiquette                 " link NETIQUETTE}     Important!
+   @{"Acronyms                   " link ACRONYMS}     What they mean
+   @{"Public Newsservers         " link PUBLICNEWS}     A list of some freely available NNTP
+                                    servers
+
+   @{"Menus                      " link MENUS}     Reference
+   @{"Windows                    " link WINDOWS}
+   @{"ARexx Commands             " link AREXX}     NewsCoaster's ARexx port
+   @{"Frequently Asked Questions " link FAQ}     Please read before asking questions
+
+   @{"Copyright                  " link COPYRIGHT}     How NewsCoaster may be distributed
+   @{"Credits                    " link CREDITS}     Who's responsible for this program?
+   @{"History                    " link HISTORY}     What's new in this version
+   @{"Future                     " link FUTURE}     And what's to come!
+   @{"MUI                        " link MUI}     MUI and additional custom classes were used
+                                    for this program
+
+Check out the NewsCoaster website! http://newscoaster.sourceforge.net/
+
+I have now set up a mailing list for NewsCoaster announcements - please visit http://groups.yahoo.com/group/newscoaster-announce if you wish to hear about new versions.
+
+@endnode
+
+@node REQ "Requirements"
+
+NewsCoaster requires:
+    68020 CPU or better
+    MUI
+    Hard Disk Space - approximately half a megabyte for install, lots more for storing news items
+    OS3.0 or above
+    Probably about 4 MB Free RAM (Recommended minimum)
+    An Internet connection with TCP/IP stack
+
+Also the following MUI external custom classes are required:
+    BetterString (BetterString.mcc, BetterString.mcp),
+    NList (NFloattext.mcc, NList.mcc, NListview.mcc, NListviews.mcp)
+    NListtree (NListtree.mcc, NListtree.mcp)
+    TextEditor (TextEditor.mcc, TextEditor.mcp)
+    Toolbar (InfoText.mcc, Toolbar.mcc, Toolbar.mcp)
+But these are included in the archive and installed automatically. If NewsCoaster isn't working, check to make sure that these files are installed correctly in MUI:libs/mui/. Note that TextEditor.mcc must be at least version 15.7 if you wish to use the rot13 decode feature. NListtree should be optional, and is required if you wish to use the tree views (either for groups, or threaded messages display).
+
+NewsCoaster also works fine with UAE (just enable BSDSockets emulation). Versions previous to 1.38 had a problem with extremely slow network access, but this has now been fixed.
+
+@endnode
+
+@node INSTALL "Installation"
+
+Please run the installer script to install NewsCoaster onto your system.
+
+Run NewsCoaster by doubleclicking on the 'NewsCoaster' icon in the folder also called 'NewsCoaster'. You may also run NewsCoaster from a Shell (you don't have to worry about setting the 'stack' size, since NewsCoaster will allocate some more if necessary).
+
+No assigns are necessary to get NewsCoaster working, but note that NewsCoaster automatically sets up the assign NewsCoaster: pointing to its home directory, and NewsCoasterData: pointing to the current user directory - you shouldn't need to worry about this.
+
+Manual Installation:
+
+Copy the NewsCoaster folder to wherever you like on your hard disk.
+
+If you do not have any of the MUI custom classes on your system, then copy the relevant files from the MUI/ drawer into MUI:Libs/MUI/ on your system.
+
+Note that calling NewsCoaster with the 'DATA' option from the command line no longer works - you can choose to store news messages whereever you like now, with the new @{"users" link USERS} options.
+
+@endnode
+
+@node INTRO "Introduction"
+
+Newsgroups (or Usenet - the collective name for newsgroups) are basically discussion groups conducted on the Internet. There are groups for just about every interest (examples include comp.sys.amiga.misc, alt.dreams.lucid, alt.books.poppy-z-brite, and so on). A newsserver is a server which contains the data for these newsgroups, and you connect to one of these in order to download messages for newsgroups that you have specified (you are said to be 'subscribed' to these newsgroups). Newsservers exchange data, so if you post a message to a newsgroup (more on that later), it will be copied to all other newsservers that host that newsgroup. Note that not all newsservers carry information of all newsgroups, but a typical newsserver will have at least 30,000 groups, some are in the region of 60,000. It is possible to download a list of available newsgroups on your newsserver (but you don't have to do this if you know the newsgroup name, and are willing to assume it is on your newsserver).
+
+NewsCoaster can either read offline or online. Offline means it connects to your newsserver and downloads news to your machine, for you to read later at your leisure. Online reading lets you browse through the articles whilst online, which is generally more costly for those paying 'phone bills, but means your hard disk is filled with only the messages you choose to read, and is generally better for those with free connections. You can specifiy online or offline reading for each newsgroup individually.
+
+When NewsCoaster downloads news from a newsgroup for a first time, it will download a certain number of the most recent ones. From then on, it will either download all the messages since you last downloaded, or alternatively you can set a maximum number of messages to download. As well as reading messages, you may write some yourself - this is referred to as 'posting' to that newsgroup. It is possible to post to more than one newsgroup (known as 'crossposting') - although this is generally discouraged.
+
+For every newsgroup you wish to read, you create a 'new newsgroup' for it in NewsCoaster - this means a folder on your hard disk is created for storing news items locally, and an entry appears for it in the window. You don't have to download news for a particular newsgroup everytime you go online - you can temporarily 'unsubscribe', which means the messages you have already downloaded are not deleted and can still be read, but new news won't be downloaded when you 'fetch news'.
+
+Lastly, if you are new to usenet, you should at some point look at the @{"netiquette" link NETIQUETTE} section, which describes what is considered 'acceptable' behaviour on usenet. Read it if you don't want to upset people!
+
+@endnode
+
+@node CONFIG "Configuration"
+
+Once you have @{"installed" link INSTALL} NewsCoaster, run it by doubleclicking on its icon.
+
+Firstly, virtually every gadget has a 'help bubble'. If you want to find out what something does, move the mouse over it, leave it still, and after a few seconds a bubble will pop up, telling you what it does. This is sometimes easier than continually consulting this documentation.
+
+When loading NewsCoaster for the first time, you will be asked to set up a new user. Users are covered in more detail @{"here" link USERS}, but for now, enter in a user name for yourself (eg, your name or initials - must be at least 3 characters long), and click 'Okay'. If you are going to be the only person using this program, you need never worry about users again, but it is possible set up NewsCoaster for multiple users, each with their own news messages, settings, and optional password protection.
+
+(Note 1 - you may decide to set up a password for yourself. If so, simply tick the 'Use Password?' box, and then enter a password (at least 4 characters). Everytime you run NewsCoaster in future, you will be required to enter your login and password. Your password (and whether the password protection is on or off) can be changed by selecting the 'Change Password' option from the 'Preferences' menu.)
+
+(Note 2 - NewsCoaster as a default stores its news messages in the NewsCoaster directory (designated as 'PROGDIR:'). You can change the directory by selecting any folder for 'News Directory'.)
+
+(Note 3 - If you are upgrading from a version previous to 1.23, then you will already have new messages being stored in 'PROGDIR:', so do *not* change this if you still want to access your old news items and settings. If you wish to store news items elsewhere, then see @{"later" link USERS}.)
+
+After this, the NewsCoaster main window will open.
+
+You now need to set up your account details so the NewsCoaster can operate properly. To do this, select Program Settings from the Preferences menu, and enter the following information:
+
+@{b}Accounts page@{ub}
+
+Your Name: Your name which will appear in the 'From' field of outgoing messages.
+
+Email for Posting: Your email address; again this will appear in the 'From' field. This doesn't have to be a correct one, in particular, you may wish to apply a 'spam block'. Eg, my address is mdwh2@cheerful.com, but I might enter mdwh2@NOSPAM.cheerful.com - the reason for this is that readers of the newsgroup can realise that you have to edit the 'NOSPAM.' out (and it is wise to put instructions to do this in my .sig - see later), but I avoid automatic spamming. If you are unsure, just put your real email address. Whatever you do, you must specify an email address of the form user@domain (ie, it must have the '@' character).
+
+Real Email for Emailing: If you wish to send email with NewsCoaster, enter your email address (ie, without any 'spam blocks').
+
+Select your time zone, and tick the DST ('Daylight Summer Time') if relevant (if you are currently one hour ahead of your normal time zone, then this box should be ticked).
+
+Now go to the @{b}Servers page@{ub}.
+
+NewsCoaster can cope with multiple servers, but for now you need to enter at least one for it to connect to. Click on the text 'news' in the list, then click 'Edit Server'. In the window that appears, enter in the newsserver - you should have been given one to use by your ISP. If you don't know the address ask your ISP. Alternatively, there are @{"public ones" link PUBLICNEWS} available.
+
+If your newsserver requires authentication (most don't!), the tick the 'NNTP-Auth?' box, and enter your user name and password into the relevant boxes.
+
+Click okay - a requester will appear just click either for now (it doesn't matter since you haven't downloaded any news yet).
+
+Now go to the @{b}Write page@{ub}.
+
+If you wish, you may specify some signatures ('.sigs'), you can have up to eight. Signatures are automatically appended at the end of every message you write, and you can specify a default one for each individual newsgroup. This might include your name, address, URLs, quotes or whatever. You should avoid making .sigs too big, in particular, it should be smaller than 80 characters wide, and 4 characters deep - people don't want to have to download you .sig everytime you post a message!
+
+You don't have to specify .sigs if you don't want to - you can always add/edit them later. The other options in this window aren't essential for now, but you can read about them @{"here" link WIN_ACC} if you wish.
+
+Also you may need to set up a character set used in your country. Russian
+users should select koi-8r charset. All english-speaking countries should
+probably leave this set to iso-8859-1. You can read more about this in
+@{"Charsets" link CHARSETS} chapter of the manual.
+
+When you are done, select 'Okay' - the changes are automatically saved to disk (under the file '.prefs' in the NewsCoaster folder).
+
+You now need to subscribe to some newsgroups. Either you will know the name of the newsgroup you want to subscribe to (eg, comp.sys.amiga.misc), or you can download an entire group listing for your newsserver. Note that newsservers don't carry every newsgroup, but if it is a common (as in comp.sys.amiga.misc), you can be reasonably sure of it existing on your server.
+
+Read @{"Downloading a group list" link GETGROUPS} before continuing, if you wish to do so.
+
+To subscribe to a newsgroup, you must set up a folder in the NewsCoaster settings (and on your hard drive, to store messages). Select @{"New Newsgroup" link WIN_NNG}, and enter the newsgroup name in the 'Newsgroup Name' field. If you want to limit the number of messages downloaded each time, then change the cycle gadget which says 'Unlimited Messages per Download' to say 'Maximum # of Messages to Download', and then enter the number in the text box below this gadget. If I'm not interested much in a newsgroup, I will usually choose this option with a value of 50 to 100. Choose whether you want online or offline reading (offline will fetch the entire messages, which you can then read when offline; online will only download the headers, telling you the message subject, who sent it etc, and you must be online to read the message).
+
+Make sure the 'Subscribe' checkbox is ticked (it is by default), and click 'Okay'. An entry for your group will appear in the groups listing on the left hand side of the main window. An 'S' in the right-most column means you are currently subscribed to that group, ie, news items will be downloaded when you select 'Fetch News'. To change the newsgroup settings, doubleclick on its entry, or select it and then select 'Edit Newsgroup' from the Newsgroups menu, and 
+the @{"Edit Newsgroup" link WIN_ENG} window will appear. If you decide later you want to stop downloading news messages for this group, but don't want to delete the messages you have already, you simply untick the 'Subscribe' box. If you wish to delete the newsgroup entry, along with all the news messages it contains, then select 'Delete Newsgroups' from the Newsgroups menu.
+
+Lastly, you should not turn off your computer without quitting NewsCoaster properly first. It won't be a disaster if you do, but some settings may be lost. Always select 'Quit' from the Project menu (or click the close button of the main window).
+
+@endnode
+
+@node GETGROUPS "Downloading a Group List"
+
+Go online, and then select 'Fetch Group List' from the Project menu. NewsCoaster will then download the entire list of newsgroups carried on your newsserver. If you set up more than one newsserver, then it will do this for the default newsserver - to download groups for other newsservers, go to the Servers page of @{"'Program Settings'" link WIN_ACC}, select the newsserver, and click 'Get Groups'. Please note that this takes time, depending on the number of newsgroups and the speed of your connection.
+
+The file is saved in text format under the name *.gl, where * is the name of your newsserver, in the NewsCoaster folder.
+
+To view the lists, go to the Servers page under @{"'Program Settings'" link WIN_ACC}, select the newsserver (if you have more than one), and click @{"Groups Manager" link WIN_GMAN} (or of course you can always view the file in a text editor yourself).
+
+@endnode
+
+@node READ "Fetching and Reading News"
+
+Once you have set up your account and newsgroup settings, you are ready to fetch some news. Go online, and then select 'Fetch News' from the Project menu. A status window appears giving you information on the progress. You may choose to abort at any time. If this is the first time you have downloaded for one or more newsgroups, you may be asked how many messages you wish to download. In particular, if you set the group to 'Unlimited messages per Download', then you will be asked whether to download all available messages, or just the 100 most recent ones. In this situation, you are strongly recommended to choose the latter, since there are be hundreds or even thousands of messages on some newsgroups at any one time.
+
+From then on, each time you fetch news, NewsCoaster will download the ones which have appeared since you last downloaded (for that newsgroup). Either all of these messages will be downloaded, or if you set a maximum which is less than the number of new messages, then only the most recent of those new messages will be downloaded.
+
+When you select a newsgroup in the left hand list of the main window, the messages inside appear in the right hand list. A 'N' indicates the message is new, ie, you haven't read it yet. By default, messages are sorted by date; most recent are at the bottom. By clicking on the column headings, you can change the sorting, eg, click on 'Subject' to sort by subject.
+
+To view a message, simply doubleclick on it (or select it, and select 'Read Message' from the Messages menu). The View window appears displaying the message, see @{"here" link WIN_VIEW} for a description of the various buttons.
+
+At the top is the message header, which contains information about the message. The message itself (the 'body') is given below that. A '>' at the left of the message indicates that what follows is quoted text, ie, it was written not by the author of this message, but by whoever she replied to. For example:
+
+Hello, what is written here is written by the author of the message you are reading.
+> But this was written by the person the author
+> was replying to
+> > And this is text quoted for the message before that
+
+and back to the author of this message again.
+
+Sometimes in can be difficult to work out who said what when there is lots of different levels of quoting, especially when text has over spilled. For example:
+
+blah... blah
+> Written by the person being replied to
+> > The person before that. But this line is a very long line, so when
+> quoted it spilled over. So
+> > all of this is still the 'person before that'!
+
+So be careful you don't accuse someone of writing something that they didn't!
+
+NewsCoaster (well, TextEditor.mcc actually) attempts to colour in the quoted text in different colours, but of course it will get confused in examples such as those above, so don't assume the colouring to be correct either - it's only going by the number of '>'s on each line.
+
+Note that some messages will use characters other than '>' just to be confusing - common examples are '|', ':' and '!'. Some people use annoying newsreaders which post messages using an entirely different system to indicate who wrote what.
+
+@endnode
+
+@node POST "Writing and Posting News"
+
+There are two ways to create a message. You will either want to create an entirely new message, or you will want to reply - or 'follow up' as it is called - to a message already posted. (To be accurate, 'following up' refers to sending a message to the newsgroup, where as 'Reply' means to reply via email to that person only).
+
+To create a new message, select the newsgroup you wish to post to, then select 'Post New Message' from the Messages menu (if you wish to crosspost to several newsgroups, then select one of the newsgroups, and you can add the rest when writing the message). To follow up to a message, either select the message and select 'Followup Message' from the Messages window, or select the 'Followup' button on the View window.
+
+The Write window now appears. If following up a message, the message is automatically inserted and quoted (ie, the '> 's are inserted), and an attribution line inserted ('On some-date, so-and-so wrote:'.
+
+See the @{"Write window page" link WIN_WRITE} for a detailed explanation of all the options here (including how to send attachments), but the general idea is you type your message, and then hit 'Send to Queue' when you are finished to place the message in your 'outgoing' folder. Postpone means the message is placed in 'outgoing', but it won't be sent when you select 'Send News' (postponed messages are denoted with a 'H' next to the in the message list - 'H' for 'Held':) And Cancel cancels the message entirely.
+
+To send the (non-postponed) messages that are in outgoing, go online and select 'Send News' from the Project menu. The messages are then moved across to your 'sent' folder.
+
+You can also edit messages, simply select a message in your outgoing or sent folder, and select 'Edit Message' from the Messages menu. A few things to note: If you select Cancel here, only the changes you made are lost, the original message remains intact. If you edit a message in outgoing, when selecting 'Send to Queue' or 'Postpone', the original message is overwritten with the edited version. When editing a message in sent, the original message is not overwritten (after all, it has already been sent!) and the edited version is placed in outgoing (so in fact, here it can be used to resend a message).
+
+@endnode
+
+@node USERS "Users"
+
+As of version 1.23, NewsCoaster comes with support for multiple users. Even as a single user, you can now choose where you want to store news messages on your hard disk, and have password protection to protect from prying eyes! Note that this is not a secure system - the messages are still sitting on your hard disk for anyone to have a look. But it does help protect against a casual browser.
+
+If you followed the instructions under @{"Configuration" link CONFIG}, you will have set yourself up as a single user, with news items being stored in 'PROGDIR:' (the NewsCoaster directory) - unless you specified elsewhere - and optional password protection. As the first user, you also have 'Supervisor' priveliges. This means you can view the users that have been set up, and add and delete more users. To do this, select 'Users' from the 'Preferences' menu. You will see the users that have been set up, along with where their news messages are being stored, whether their login is password protected (but you don't see the password!) and whether they are a supervisor. At the moment, only you will be listed here.
+
+To add a user, select 'Add New User' and enter in a username, password if required, and location to store news, just like before. Things to note:
+ - The user name must be unique
+ - The location to store news must be unique
+You will be notified if this isn't so. For location of news, it would be suggested you create a news directory somewhere, eg, 'DH0:work/news', and then have a directory for each user, eg, 'DH0:work/news/mark'. (Note that if you specify a folder which doesn't exists, then the folder will be created, if possible). If you tick the 'Copy Prefs' box, then your preference settings (Account settings, but not .sigs, killfiles or newsgroups setup) will be copied across to the new user. If you wish the new user to be a superviser also, then tick the box. Supervisors can add and delete users, and view users on the system.
+
+To delete a user, simply select the users, and press 'Delete User'. You will be asked for confirmation, and also whether you wish the preference data to be deleted. Note that you cannot delete yourself (that is, the current login cannot be deleted, you must login as someone else first).
+
+Any user can change his password. Select 'Change Password' from the 'Preferences' menu. You can turn the password protection on or off, and if on, specify your new password, then click 'Okay'. If you decide you want to keep your old one after all, click 'Cancel'.
+
+If you forget your password and are unable to log into NewsCoaster, note that deleting the '.users' file in the NewsCoaster folder will clear details about the users (but not any preference settings), so when you start NewsCoaster you will be asked to enter in user details as if this was the first time you are running it. You will then have to reset up the user information (selecting the directories where each user has stored his news).
+
+@endnode
+
+@node KILLFILES "Killfiles"
+
+Killfiles are a way of not having to download messages that you know you don't want to read. Supposing you were on a newsgroup, and there was someone you didn't like, and didn't want to read his messages. Then you can set up a killfile so that his messages won't be downloaded, thus saving you download time (and money, for those paying 'phone bills). Let's suppose the newsgroup is comp.sys.amiga.misc, and the person is 'Mr Annoying <person@annoying.com>'. 
+
+Select 'KillFile' from the Preferences menu.  Type 'From:' (don't type the quotes!) in the 'If the Header' box, type 'Mr Annoying <person@annoying.com>' in the box next to the cycle gadget which defaults to 'Contains', and in the 'in the Newsgroups' box, type 'comp.sys.amiga.misc'. Now select the 'Add/Replace' button. The details should appear in the list. Click on the close gadget of this window, and the killfile will be automatically saved.
+
+If you ever want to delete a killfile, simply select it in the list, and click on 'Delete'.
+
+Click @{"here" link WIN_KILLFILE} for a detailed explanation of this window, and how to do other types of killfiles.
+
+There is also an easier way to set up killfiles if you have an example message. Select the message, and click on 'Kill' (or 'Add to Killfile' from the Messages menu), then choose what you wish to kill. You can then either choose 'Kill in all Newsgroups' or 'Kill in this Newsgroup' (for crossposts, only the former option will be available).
+
+@endnode
+
+@node CHARSETS "Charsets"
+
+This is a new fearure which allows to use NewsCoaster in countries which use
+different than iso-8859-1 character set to send mail and news over the
+Internet. A good example of it is Russia, there exists several different text
+encodings. And the Internet standard is koi8-r encoding (UNIX standard), while
+Amiga uses windows-1251 encoding.
+
+To set up character conversion you should go to the "Write" page of program
+settings window. There you will see a "Charset" field with a pop-up button.
+Pressing it will bring a list of all available character sets. You should
+select a character set which is used as a default in your country. After this
+all outgoing messages will be translated to this encoding before sending.
+
+Incoming messages can be in any encoding, not only in standard one. To specify
+character set a special field ("charset") in a message header is used. If this
+field is found, NewsCoaster will take a character set name from it, and use
+this encoding to convert the message to Amiga's encoding. If "charset" field
+is absent in a message header, the default character set will be used, which
+will be the same as character set for writing.
+
+The default character set depends on your country. For Russia it is koi-8r.
+But some providers (for Example RopNet it Russia) may set up their news server
+so that it will use another encoding as a default and convert all messages to
+it itself. In this case you should specify server's encoding as a default.
+
+There can be problems with messages written by old software, which may not put 
+"charset" field into headers and send messages in a wrong encoding (or just
+put a wrong value into "charset" field). Currently NewsCoaster does not have
+intelligent automatic character set recognition (like in YAM), so it can be
+unable to display such a messages correctly. Fortunately, all modern software
+seems to have this problem fixed.
+
+Technical information about character set tables.
+
+NewsCoaster can handle an unlimited number of character sets. Conversion
+tables are stored in "Charsets/" drawer in a NewsCoaster directory. They are
+files 512 byte long. They consist of two sections by 256 bytes each. The first
+section is used to convert a message when reading it (to Amiga's encoding),
+the second one - when writing (from Amiga's to specified encoding). The file
+name is %s.charset, where %s is a character set name.
+
+iso-8859-1 and windows-1251 tables are not represented by files, they are
+built-in. Built-in tables do not translate any character to another one,
+everything is left as-is (because these encodings are native for Amiga). But
+you can override them by putting tables into "Charsets/" drawer. This can be
+useful if your Amiga uses different encoding as native (for example for
+russian users who still use DM encoding).
+
+@endnode
+
+@node EXPORT "Exporting and Viewing Files"
+
+There are times when you may wish to save a file to disk, or view it with an external program. In particular, when people send attachments, you need to save or view to see them, as they won't appear automatically in the View window. To do this, either select 'Export Message' from the Messages menu when the message is selected, or select the 'Export' button on the View window of a message.
+
+A window appears displaying the various parts. There will always be 'Entire Message' and 'Headers', and then all the parts. Usually there will just be one, but multipart MIME messages will contain several parts. Select the part you wish to save or display, and then click the appropriate button. You should configure the external programs in the @{"'Program Settings' window" link WIN_ACC} (under MIME).
+
+You can also view the parts more easily from the @{"View Window" link WIN_VIEW} by  doubleclicking on a section in attachments list, selecting a section and clicking "View" button or select from the Attachments menu. For more information about the Attachments menu, see the 'Attachments Menu' section under the @{"View Window" link WIN_VIEW} page.
+
+@endnode
+
+@node NETIQUETTE "Netiquette
+
+Here are some general 'rules' regarding posting messages.
+
+@{b}Keep to the topic of the newsgroup@{ub}. There are newsgroups for just about every conceivable interest, so at least make sure you post to the correct ones. If you feel an off topic post is necessary, then at least mark it as 'OT' in the subject. You don't want to be one of those annoying people that ask 'Where can I get Amiga ROMs?' on comp.sys.amiga.emulations...
+
+@{b}Read the FAQ@{ub}. Many newsgroups have a FAQ (Frequently Asked Questions) which is posted periodically (usually every two weeks or so) which includes information such as what it on-topic for the newsgroup, and answers to commonly asked questions on that group - so it is a good idea to read it before asking a generalised question. Note that FAQs are often considered "unofficial" and some newsgroups may have more than one FAQ. If you want to know exactly what is and what isn't allowed in the group, you should seek out the Charter (try searching on http://groups.google.com ).
+
+@{b}Only quote those parts which are relevant@{ub} to what you are saying when replying or following-up a message. Don't write your message and then leave the entire message quoted below! This is just a waste of bandwidth.
+
+@{b}Limit signatures to a maximum of four lines of eighty characters@{ub}. Again, longer .sigs just take up space and waste bandwidth.
+
+@{b}Do not send binaries to text-only newsgroups@{ub} This is a complete waste for the many people who will not wish to receive whatever you are sending. Many people have to pay by the minute for their 'phone calls, and will not appreciate spam. If people want to receive a binary, either email it to them individually, or place it on a website and post the URL to the newsgroup.
+
+@{b}Stick to the correct language of the newsgroup@{ub}. In many cases, this will be English, but not always.
+
+@{b}Do not crosspost to a large number of newsgroups@{ub}. If you feel that your message is appropriate in several newsgroups, then set a 'Followup-To' so that the replies only go to one newsgroup.
+
+@{b}In general, don't ask for private replies@{ub}.. Don't ask for private replies simply because you can't be bothered to read the newsgroup. There may be other people with a similar question who would like to read the replies, and it defeats the whole point of a general discussion group. If you expect people to take the time to answer your message, you should take the time to read the newsgroup. There are exceptions to this (in particular, buying/selling newsgroups), and in this case, you should type 'poster' into the 'Followup-To' gadget when typing your message. When following up a message that has 'Followup-To: poster' in the header, you will be warned that the poster intending email replies, but you may decide to post to the newsgroup if you feel that it is appropriate (for the reasons I have given). A possible compromise is to use the 'Reply & Followup' menu option so that it goes to the newsgroup, and to the poster via email.
+
+@{b}Don't generally use capitals@{ub}. Capitals are taken to mean shouting, so only use them unless you need to. Emphasis can be created by putting words in asterisks (*) which is taken to mean bold. Similarly, use slashes (/) for italics, underscores (_) for underlining, and hashes (#) for coloured. NewsCoaster interprets all of these when displaying messages (unless in Plain Text mode).
+
+@{b}It is difficult to convey meaning across emails and news postings@{ub}, in particular sarcasm could unnoticed. Use smileys such as ':)' to help avoid this - or maybe ';)' to convey irony.
+
+@endnode
+
+@node ACRONYMS "Acronyms"
+
+It is common to use acronyms on usenet and email. Here is what some of them mean:
+
+AFAICR  As Far As I Can Remember
+AFAICS  As Far As I Can See
+AFAICT  As Far As I Can Tell
+AFAIK  As Far As I Know
+AIUI  As I Understand It
+ASL  Age, Sex, Location?
+B4  Before
+BBL  Be Back Later
+BCNU  Be seeing you
+BRB  Be Right Back
+BSF  But Seriously Folks
+BST  But Seriously Though
+BTDT  Been There Done That
+BTW  By the Way
+CLM  Career Limiting Move
+CU  See You
+CUL  See You Later
+DWIM  Do What I Mean
+DWISNWID  Do What I Say Not What I Do
+F2F  Face To Face
+FAQ  Frequently Asked Question
+FOAF  Friend Of A Friend
+FOC  Free Of Charge
+FSVO  For Some Values Of
+FWIW  For What It's Worth
+FYA  For Your Amusement
+FYE  For Your Entertainment
+FYI  For Your Information
+<g>  Grin
+HAND  Have A Nice Day
+HTH  Help That Helps
+IAE  In Any Event
+IIRC  If I Remember Correctly
+IME  In My Experience
+IMHO  In My Humble Opinion
+IMO  In My Opinion
+IOW  In Other Words
+IRL  In Real Life
+ISTM  It Seems to Me
+ISTR  I Seem to Remember
+ITRO  In The Region Of
+ITRW  In The Real World
+ITWSBT  I Think We Should Be Told
+IYSWIM  If You See What I Mean
+JAM  Just A Minute
+KISS  Keep It Simple, Stupid
+L8R  Later
+LOL  Laughs Out Loud
+MFTL  My Favourite Toy Language
+MORF  Male Or Female?
+MOS  Member Of Opposite Sex
+MUD  Multi User Dungeon
+NALOPKT  Not A Lot Of People Know That
+NRN  No Reply Necessary
+OAO  Over And Out
+OBTW  Oh, By The Way
+OIC  Oh, I See
+OTOH  On The Other Hand
+OTT  Over The Top
+RFD  Request For Discussion
+ROTFL  Rolls On The Floor Laughing
+ROTFLMAO  Rolls On The Floor Laughing My Arse Off
+RL  Real Life
+RSN  Real Soon Now
+RT  Real Time
+RTFAQ  Read The FAQ
+RTBM Read The Bloody Manual
+RTFM  Read The Fucking Manual
+RUOK  Are You OK
+SITD  Still In The Dark
+SO  Significant Other
+TIA  Thanks In Advance
+TIC  Tongue In Cheek
+TLA  Three Letter Acronym
+TNX  Thanks
+TPTB  The Powers That Be
+TTFN  Ta Ta For Now
+TTYL  Talk To You Later
+TVM  Thanks Very Much
+VC  Virtual Community
+WIBNI  Would It Be Nice If
+WRT  With Respect To
+YHBM  You Have Bin Mail
+YHM  You Have Mail
+YMMV  Your Mileage May Vary
+
+@endnode
+
+@node PUBLICNEWS "Public Newsservers"
+
+Here are some public newsservers (ie, ones which anyone can use). You should only need these if your ISP doesn't have its own newsserver.
+
+gate.or-computers.de
+news.ausmail.com
+news.okidata.com
+news.spar.ca
+news.tin.it
+news.uov.net
+news-reader.wcg.net
+nnrp.news.uk.psi.net
+piggy.rz.tu-ilmenau.de
+pub.news.uk.psi.net
+sion1.bathspa.ac.uk
+
+Note that not all newsservers allow posting - some are read only. You will be informed if this is the case when trying to post to such a newsserver.
+
+Also, try these websites for information on public newsservers:
+
+http://www.newzbot.com
+
+http://www-stud.uni-essen.de/~se0067/news.html
+
+@endnode
+
+@node MENUS "Menus"
+
+@{b}@{"u"}Project Menu@{"uu"}@{ub}
+
+@{b}Fetch News@{ub}: You must be online to use this option. NewsCoaster will log on to the newsserver specified in the @{"'Program Settings' window" link WIN_ACC}, and download the newsgroups you are currently subscribed to (those listed in the Groups list, with an 'S' next to them).
+
+@{b}Fetch News For This Group@{ub}: Download news, but only for the currently selected group (whether or not your are subscribed to it).
+
+@{b}Send News@{ub}: This makes NewsCoaster post any messages in your 'outgoing' folder, that are not 'Held' (ie, have a 'H' next to them in the messages list).
+
+@{b}Fetch Group List@{ub}: This downloads all the available newsgroups on your newsserver into a file. If you have more than one newsserver, it will do this for the 'default' newsserver only (see @{"Program Settings" link WIN_ACC}). Once you have done this, you can view, find and subscribe to groups by selecting the 'Groups Manager'. The groups list is saved as a text file under the name 'x.gl' (where 'x' is the name of the newsserver) in the NewsCoaster program directory, so you may examine it separately if you wish. Also, you don't have to download the group list to subscribe to groups, eg, you may already know the name of the newsgroup and assume it exists on your newsserver. Note that downloading the newsgroup may take some time.
+
+@{b}Fetch New Groups@{ub}: This downloads all the newsgroups which have appeared since you last selected this option, or the 'Fetch Group List' option. If you have more than one newsserver, it will do this for the 'default' newsserver only (see @{"Program Settings" link WIN_ACC}). Note that if you were using a version of NewsCoaster before this option was introduced, then you won't be able to use it until you redo a 'Fetch Group List' - even if you've already downloaded the group list.
+
+@{b}Disconnect From Newsserver@{ub}: When in online mode, NewsCoaster will keep open the connection to the newsserver for speed. This connection will be automatically closed when you quit NewsCoaster, but this option will force a disconnection (NewsCoaster will automatically reconnect whenever it needs to next do so).
+
+@{b}User Info@{ub}: Registration details (NewsCoaster used to be shareware).
+
+@{b}About NewsCoaster@{ub}: Some boring information:)
+
+@{b}About MUI@{ub}: Information about Magic User Interface, which NewsCoaster uses.
+
+@{b}System Information@{ub}: Puts some general information about your system into the file 'RAM:sysinfo.txt'. If you are reporting a bug to me, please use this option and send me the resultant file.
+
+@{b}Iconify@{ub}: Makes NewsCoaster 'disappear', and an icon appears on your Workbench screen. Doubleclick on this icon to make NewsCoaster reappear.
+
+@{b}Quit@{ub}: Quit NewsCoaster. You should always use this option rather than merely switching your computer off, to make sure that settings are correctly saved!
+
+@{b}@{"u"}Newsgroups Menu@{"uu"}@{ub}
+
+@{b}New Newsgroup@{ub}: Opens the @{"New Newsgroup window" link WIN_NNG} for you to enter in details for a new newsgroup for you to subscribe to. As default, you are automatically subscribed to newly created newsgroups.
+
+@{b}Edit Newsgroup@{ub}: Opens the @{"Edit Newsgroup window" link WIN_ENG} for you to edit the currently selected newsgroup.
+
+@{b}Advanced Settings@{ub}: Opens the @{"Advanced Newsgroup Settings window" link WIN_ADV} for the currently selected newsgroup.
+
+@{b}Delete Newsgroup@{ub}: Deletes the currently selected newsgroup. Warning! This will delete all the messages contained in that group. If you wish to keep the messages, and just want to unsubscribe, select 'Edit Newsgroup', and untick the 'Subscribe?' checkmark box.
+
+@{b}Archive Newsgroup@{ub}: Writes out all the articles into a single text file, complete with all headers. If you have an email or news client which stores/reads in such a format, then this will allow you to export to those programs easily.
+
+@{b}Groups Manager@{ub}: Opens the @{"Groups Manager" link WIN_GMAN} window, for the default newsserver. If you have more than one newsserver set up and you wish to access the groups for a newsserver other than your default, you should go to the Servers page of @{"Program Settings" link WIN_ACC}.
+
+@{b}View - List@{ub}: Views the folders as a simple list.
+
+@{b}View - Tree@{ub}: Views the folders in a tree structure. This is fairly basic at the moment and I would recommend you keep to the List view. There are no resizable columns or horizontal scrollbars (and until someone produces an MUI tree class that subclasses NList, you won't see them), no doubleclicking or drag-sorting (these may be unimplemented in the Listtree class, so again a big problem.. for now select the 'Edit Newsgroup' menu instead of doubleclicking). In future it will hopefully be possible to define your own hierarchy structure, at least, so you can group similar newsgroups into a parent 'folder' for example. NListtree.mcc is required for this option.
+
+@{b}Sort Groups@{ub}: Sorts the newsgroups list alphabetically.
+
+@{b}Search Groups@{ub}: This allows you to search for particular messages. See @{"'Search' window" link WIN_SEARCH} for more details.
+
+@{b}Reset Group Article Pointer@{ub}: This resets the article pointer that NewsCoaster maintains for the currently selected newsgroup - so next time you download it will be as if you are downloading for the first time. Note that duplicate articles will not be downloaded, since NewsCoaster checks the message IDs of downloaded messages against those you already have. This option is useful if you change newsservers, since different newsservers will have articles stored with different ID numbers - in fact, you change the newsserver, you will be asked if you wish to reset the article pointers of all groups - see @{"Program Settings" link WIN_ACC}.
+
+@{b}Reset All Groups' Pointers@{ub}: As above, but for all newsgroups.
+
+@{b}Update Groups@{ub}: This option should only be used in dire circumstances if your preferences file ('.prefs' in the NewsCoaster root folder) as got corrupted or deleted (possible if a crash happens at a bad time). In this case, no groups will be listed, but the data will still be available on your hard disk. This option scans for all folders and messages, and corrects the situation. Note that various settings (the group name, and basically all settings you can enter in the @{"'Edit Newsgroup' window" link WIN_ENG}) are lost, so only use this option if you have to (and then re-edit all the groups).
+
+@{b}Update Index@{ub}: This option is also used for correcting mistakes for the messages contained in a particular group (as stored in '.index' files). You should only use this option if something has gone wrong. This option scans the folder of the currently selected newsgroup, and recorrects the '.index' file to keep information on the messages that are actually in that group. Note the message flags such as Unread/Important are lost.
+
+@{b}Update All Indices@{ub}: As above, but for all groups.
+
+@{b}Import Messages@{ub}: This should be used to import messages from elsewhere, particularly of use if you are switching from another newsreader. To use, firstly set up all the groups that you wish to read in (eg, so if you were subscribed to 'comp.sys.amiga.misc' and 'alt.tarot' in your old newsreader, you should open up groups for these in NewsCoaster too before using this option). Then select this option, and select the drawer containing the messages. Alternatively, if messages are stored in multiple sub-directories, you can just select the folder containing the sub-directories, as this option scans all sub-directories. There is a known bug concerning crossposted messages in that if you are subscribed to more than one group that the message was posted to, it will only be copied to one group.
+
+@{b}@{"u"}Messages Menu@{"uu"}@{ub}
+
+@{b}View - Flat@{ub}: Views the messages as a simple list.
+
+@{b}View - Threaded@{ub}: Views the messages as a threaded tree - messages are positioned according to who replied to who. Note that this option is currently rather slow. NListtree.mcc is required for this option.
+
+@{b}Read Message@{ub}: Displays the currently selected message in the @{"View window" link WIN_VIEW}.
+
+@{b}Edit Message@{ub}: This is used when you have already created a message (ie, it must be in your .outgoing or .sent folders). The @{"Write window" link WIN_WRITE} is opened for you to enter the message. Clicking cancel will not lose the original message. If you keep the changes, and are editing a message in .outgoing, the original message will be overwritten. If you are editing a message in .sent, the original message will not be overwritten, instead a new message will be copied to .outgoing (ie, it acts as a resend).
+
+@{b}Supersede Message@{ub}: This is like editing a message, but you can only do this to messages you have sent (ie, in your sent folder). This is special in that when you send a superseded message, it tells the newsserver that this new message is to replace the old one. Note that it takes time for this to propagate to other newsservers, so other people may still download your original message in the meantime - and of course, they may have already done so.
+
+@{b}Cancel Message@{ub}: If you wish to cancel a message, select the message in your sent folder, and choose this option. A special message will be placed in your outgoing folder which when sent, will tell your newsserver to cancel the message. This means that nobody will be able to download it. Like supersede, this takes time to effect other newsservers, and of course doesn't effect those who have already downloaded your message.
+
+@{b}Delete Message@{ub}: The currently selected messages are (after confirmation) moved to the Deleted folder. If you select this option on messages in the Deleted folder, then they are deleted permanently (or alternatively, the contents of the Deleted folder are cleared when you exit NewsCoaster).
+
+@{ub}Undelete Message@{ub}: For messages in the 'deleted' folder only. The selected messages will be moved back to their original folder (note that any messages downloaded with a version of NewsCoaster prior to v1.24 will not function properly with this option, and will be moved to an incorrect newsgroup).
+
+@{b}Export Message@{ub}: Use this to save a message to an external file, or view with an external program. See @{"here" link EXPORT} for details.
+
+@{b}View Header@{ub}: Displays the headers for this messages (using whatever program is set up to display text/plain attachments). Note in particular that if you downloaded this message in online mode, and you haven't yet downloaded the body, this option allows you to view the headers without NewsCoaster trying to go online to fetch the message body (which would happen if you tried to read or export the message).
+
+@{b}Move@{ub}: Moves the selected messages to a folder of your choice.
+
+@{b}Copy@{ub}: Moves the selected messages to a folder of your choice.
+
+@{b}Add to Killfile@{ub}: Creates a killfile based on the selected message.
+
+@{b}Export to YAM's address book@{ub}: Exports the name and email of the author of the selected message to YAM's address book (this uses the 'YAM:' assign to find the location of YAM's address book).
+
+@{b}Post New Message@{ub}: This opens the @{"Write window" link WIN_WRITE} for you to create a new message. As a default, it will be posted to the newsgroup that you have currently selected (and you must select one - this option won't work if the Sent or Outgoing folders are selected), but you may change them (or crosspost to more than one).
+
+@{b}Followup Message@{ub}: Followup to this message - ie, you want to post a response to the newsgroup. This again opens up the @{"Write window" link WIN_WRITE}, but is a followup to the currently selected message. The original message is quoted with '> ' put before every line, and your .sig (if a default one is selected) is placed at the end. Note that NewsCoaster will attempt to rewrap the text before quoting, to avoid unsightly line overspilling.
+
+@{b}Reply via Email@{ub}: Reply to the author of this message via email. Otherwise, the same as above.
+
+@{b}Followup and Reply@{ub}: Followup to the newsgroup, and reply to the author via email.
+
+@{b}Permanently Delete - Selected Messages@{ub}: 'Permanently delete' means that messages are deleted straight away, and are NOT copied to the 'deleted' folder. Although you can't change your mind, there is the advantage that this method is much faster. This option deletes currently selected messages.
+
+@{b}Permanently Delete - All Read Messages@{ub}: Permanently delete all the messages that you have read in the current folder.
+
+@{b}Permanently Delete - All Online Headers@{ub}: Permanently delete all the messages in the current folder that you haven't yet downloaded the bodies for (for use in Online mode).
+
+@{b}Permanently Delete - All Duplicates@{ub}: If for whatever you have duplicates of messages in the group (ie, with the same messageID), then this option will delete so that you only have one of each message. This situation sometimes happens because duplicate messages appear on the newsserver.
+
+@{b}Permanently Delete - All in this Group@{ub}: Permanently delete all the messages in the current folder.
+
+@{b}Permanently Delete - ALL Messages@{ub}: Permanently delete all the messages in every newsgroup (messages in 'outgoing' or 'sent' will not be deleted by this option). Be careful with this option!
+
+@{b}Select - All@{ub}: Select all of the messages in the current folder.
+
+@{b}Select - None@{ub}: Deselect all of the messages in the current folder.
+
+@{b}Select - Toggle@{ub}: Toggle the selection of all the messages in the
+current folder.
+
+@{b}Select - All From This Poster@{ub}: Select all of the messages in the current folder that are from the same person as the currently selected message.
+
+@{b}Select - All With This Subject@{ub}: Select all of the messages in the current folder that have the same subject as the currently selected message.
+
+@{b}Select - All Read Messages@{ub}: Select all of the read messages in the current folder.
+
+@{b}Select - All Unread Messages@{ub}: Select all of the unread messages in the current folder.
+
+@{b}Mark As - Unread@{ub}: Mark this message as being unread.
+
+@{b}Mark As - Read@{ub}: Mark this message as being read.
+
+@{b}Mark As - Held@{ub}: Mark this message as being held (outgoing only).
+
+@{b}Mark As - Queued@{ub}: Mark this message as being queued (outgoing
+only).
+
+@{b}Mark As - Normal@{ub}: Message will be displayed as normal (ie,
+default).
+
+@{b}Mark As - Important@{ub}: Message will have the subject line highlighted in the messages view list.
+
+@{b}Change Date To Current@{ub}: This can only be applied to messages in 'outgoing' - it updates the 'Date' of the selected messages to the current date and time. Normally, the Date of the messages you send will be that of the last time you edited them, and not when you choose 'Send News', so this is a quicker way to set the date to the current time if you wish.
+
+@{b}Download Body@{ub}: Downloads the bodies of all the currently selected messages, if they haven't already been downloaded (online mode only).
+
+@{b}Join Messages@{ub}: This option allows decoding of binary messages which have been split into several messages. Select the messages, then choose this option, and a window will appear. Make sure the items are in the correct order (you can rearrange the order by dragging and dropping the items in the list), change the subject line if you wish, and then press Join. The new message will appear in the currently displayed group, and you can then go to view the attachment(s).
+
+@{b}@{"u"}Preferences Menu@{"uu"}@{ub}
+
+@{b}Program Settings@{ub}: This opens the @{"Program Settings window" link WIN_ACC}.
+
+@{b}KillFile@{ub}: This opens the @{"Killfiles window" link WIN_KILLFILE}.
+
+@{b}Users@{ub}: See the @{"users section" link USERS}. Only available if you are set up as a Supervisor.
+
+@{b}Change Password@{ub}: See the @{"users section" link USERS}.
+
+@{b}MUI Settings@{ub}: This opens the MUI Settings window, where you can change the MUI preferences specifically for NewsCoaster.
+
+@endnode
+
+@node WINDOWS "Windows"
+
+Windows in NewsCoaster are:
+
+@{"Main                        " link WIN_MAIN}
+@{"New Newsgroup               " link WIN_NNG}
+@{"Edit Newsgroup              " link WIN_ENG}
+@{"Advanced Newsgroup Settings " link WIN_ADV}
+@{"Groups Manager              " link WIN_GMAN}
+@{"View Message                " link WIN_VIEW}
+@{"Write Message               " link WIN_WRITE}
+@{"Program Settings            " link WIN_ACC}
+@{"KillFile Settings           " link WIN_KILLFILE}
+@{"Search Window               " link WIN_SEARCH}
+@{"Statistics Window           " link WIN_STATS}
+
+@endnode
+
+@node WIN_MAIN "Main Window"
+
+This window is split into two sections - on the left is a list displaying the newsgroups you have opened, and on the right are the messages inside the currently selected folder (either a group, 'sent' or 'outgoing'. The columns in each list may be resized, and their order rearranged. Also a toolbar at the top allows quick access to common options.
+
+[ Note that the toolbar can be made graphical if relevant images (they should be located in the 'icons' folder, under the names "main.toolbar" and "main_G.toolbar" ) are created. The options are: Read, Export, Move, Copy, Delete, Kill, Post, Followup, Edit, Fetch, Send, Search, Settings, Killfile. See the documentation for the Toolbar MUI custom class for more details. Please send me any toolbar graphics you create so I can include them in future releases:) ]
+
+@{b}Groups list:@{ub}
+
+This has three columns. Name (either the Description entry, or the actual newsgroup name if you left Description empty); Messages is the number of messages in that folder; the third column shows an 'S' if you are currently subscribed, and is blank if not. You can change the selected group by clicking on an entry (the messages list will update automatically).
+
+Doubleclicking on an entry opens the @{"Edit Newsgroup window" link WIN_ENG} for that group (you cannot edit 'sent' or 'outgoing'; you can only doubleclick on newsgroups).
+
+@{b}Messages list:@{ub}
+
+This has four columns. The first one is a status column - it displays 'N' in newsgroups if the message has not been read yet, messages in 'outgoing' display 'H' if they are Held (ie, will not be sent upon selecting 'Send News') - a '*' indicateds that the message was downloaded in online mode, and the body has not yet been downloaded; the second column is the Subject of the message; the third is the Date; the fourth is the From field of the message if you are currently viewing a newsgroup, or if in 'outgoing' or 'sent', it shows the Newsgroup(s) that the message will be posted to.
+
+You can choose how messages are sorted by clicking on columns (not the first, 'Status' column, though); the messages will then be sorted by that column. By default, messages are sorted by date.
+
+@endnode
+
+@node WIN_NNG "New Newsgroup Window"
+
+@{b}Newsgroup Name:@{ub} The actual name of the newsgroup, eg, 'comp.sys.amiga.misc'.
+
+@{b}Description:@{ub} A field for your own use, eg, 'c.s.a.misc' or 'Amiga misc'. If this entry is blank, the newsgroup list shows the Newsgroup Name; if the description is not blank, then it will be shown instead.
+
+@{b}Default .sig:@{ub} The .sig (as defined in @{"Program Settings" link WIN_ACC}) that you wish to be placed in messages that you post to this newsgroup. You can always change it when actually @{"writing" link WIN_WRITE} a message, this is just the default choice.
+
+@{b}Message Limit Cycle Gadget:@{ub} 'Unlimited Messages per Download' means that NewsCoaster will download all the messages that have been posted since the last time you downloaded news. When you download for the first time, you will be asked if you wish to download all available messages, or just the last 100 messages (the latter is recommended, as at any time there could be anything from tens to hundreds or thousands of messages is each newsgroup). 'Maximum # of Messages to Download' means that NewsCoaster will not download more messages than the number you enter in the box below this cycle gadget; if there are more messages, only the most recent ones will be downloaded. If the number you enter is greater than 100, then upon downloading for the first time, NewsCoaster will prompt you whether you wish to download this maximum number, or just the most recent 100.
+
+@{b}Lines KillFile:@{ub} This is a special type of killfile based on the number of lines in the message. 'Download messages of any length' turns off the killfile for this newsgroup. 'Skip messages longer than this # of lines' means that messages will not be downloaded if they have more lines than the number given in the string gadget below this gadget. This is useful for avoiding huge messages.
+
+@{b}Discard Messages Cycle Gadget:@{ub} By default this is set to 'Don't Discard Messages', which means that messages will never be automatically discarded - they will only be deleted if you delete them. If you select 'Discard after x Days', you can then select the number of days you wish to keep messages for in the string gadget below. So if you entered '30', then messages would automatically be deleted 30 days after the date given in the 'Date' header. Note that deletion here is permanant (ie, messages are *not* copied to the 'Deleted' folder first, they are deleted straight away). Also note that if you enter a value of '0', then auto-deletion won't happen (as a safety-feature - better than all messages immediately being discared!)
+
+@{b}Online/Offline Reading:@{ub} Offline reading means you downloaded all the messages online, and then can read them later offline. This is generally cheaper since you spend less time online, and can read them at your leisure. Of course, not everyone has to pay for their online time, and so reading online can be preferable. If you select 'Online Reading' for a newsgroup, then when you download messages for that group, only the headers will be downloaded - which will be much quicker than downloading the entire messages. When you open a message to read, NewsCoaster will then download the message body automatically - thus you need to be online all the time you are reading messages. This method means that your hard drive is filled up less quickly, since only messages which you choose to read are downloaded.
+
+@{b}Subscribe:@{ub} If you are subscribed to a group, then messages will be downloaded for that group when you select 'Fetch News'. This is set as default. You may wish to turn it off if you don't wish to download news, but you don't want to delete the newsgroup (this way you still keep and can read the messages already downloaded, without having to download more continually).
+
+@{b}Okay:@{ub} Create the newsgroup folder.
+
+@{b}Cancel:@{ub} Close this window without creating it.
+
+@endnode
+
+@node WIN_ENG "Edit Newsgroup Window"
+
+This window allows you to edit the settings for this newsgroup folder. See the @{"New Newsgroup window" link WIN_NNG} for details, since the interface is the same.
+
+There is an additional 'Last Download Date' label, which just gives the date and time when you last downloaded news for this newsgroup, and the 'Folder Location' label, which is where the messages for this group are stored (the folder given is in the folder pointed to by the NewsCoasterData: assign).
+
+@endnode
+
+@node WIN_ADV "Advanced Newsgroup Settings Window"
+
+Contains additional settings for the newsgroup.
+
+@{b}'Approved' Header:@{ub} If you are a moderator for a newsgroup, it is necessary to post messages with an 'Approved' header. Tick this box, and enter in the necessary text if you wish this to be done. eg, if you ticked the box and entered 'myemailaddress', the following line would be entered in all messages that you post (or crosspose) to this newsgroup:
+
+Approved: myemailaddress
+
+@{b}Alternative Name@{ub}: If you set an alternative name, then this will be used as the default for your name if you post or followup to this newsgroup.
+
+@{b}Alternative Email@{ub}: As above, but for your email address.
+
+@{b}Newsserver@{ub}: Which newsserver to use to download messages from this newsgroup. 'Default' means that your default newsserver will be used (as specified in @{"Program Settings" link WIN_ACC} on the Servers page). Otherwise, you can specify the newsserver directly, out of the ones you have entered into Program Settings.
+
+@{b}Post with this server?@{ub}: This option is enabled if you have selected a non-default newsserver for this group. Normally, messages will be posted using the server specified for posting (see @{"Program Settings" link WIN_ACC}), but if this box is ticked, it'll use the non-default newsserver selected for this group. Note that if you crosspost a message that features newsgroups that match with more than one server, it is undefined which one will be used to post the message - this option should really be used for newsgroups on private servers where you won't be crossposting to groups on other servers.
+
+@endnode
+
+@node WIN_GMAN "Group Manager window"
+
+This window displays all the available newsgroups for your newsserver. It may take quite a while to read in all the entries into the window.
+
+To find a group, enter in some text into the string gadget, and press enter, and the next group with that text in the name will be displayed. Download Group List downloads the group list from the newsserver again. 
+
+To subscribe to a group, either doubleclick on an entry, or select it and press 'Subscribe'. The @{"New Newsgroup window" link WIN_NNG} will then open for you to set the settings for that group.
+
+@endnode
+
+@node WIN_VIEW "View window"
+
+The top left area shows the important headers, to the right is the attachments list, below that is the message body. You can change the size of these three areas by clicking on the lines dividing them, and dragging up or down (left or right).
+
+@{b}Followup/Reply:@{ub} Post a followup to the newsgroup and/or reply via email to this message. You will be asked which you wish to do, and then the @{"Write window" link WIN_WRITE} is opened.
+
+@{b}Add to Killfile@{ub}: Creates an entry in your killfile based on this message.
+
+@{b}Email/Plain Cycle Gadget:@{ub} In 'Email Format', the characters *, /, _, # and > are taken to represent bold, italics, underline, colour and quoted respectively. Sometimes, these characters may be used to mean different things (in particular, if someone posts source code). Selecting 'Plain Text' displays the raw text of the message without converting.
+
+@{b}Previous Message:@{ub} Go to the previous message in this newsgroup (in terms of the current sorting, as displayed in the @{"Main window" link WIN_MAIN}.
+
+@{b}Previous in Thread@{ub} Moves to the previous message in this thread, ie, the message which the current message is replying to. If this button is disabled (or disables when you select it), it means either it is a new message, or the previous message was not downloaded, was deleted, or was downloaded with a version of NewsCoaster prior to version 1.24.
+
+@{b}Delete/Next:@{ub} Deletes this message (ie, moves to the Deleted folder) and then moves to the next message in this newsgroup.
+
+@{b}Next Message:@{ub} Go to the next message in this newsgroup (in terms of the current sorting, as displayed in the @{"Main window" link WIN_MAIN}.
+
+Buttons under attachments list..
+
+@{b}View:@{ub} (or doubleclick on an entry): Views the selected attachment, using a program according to your preferences (see the MIME page under @{"Program Settings" link WIN_ACC}).
+
+@{b}Save:@{ub} Saves the selected attachment to a file.
+
+Some additional options are available via the menu:
+
+@{b}Message Menu@{ub}
+
+@{b}Export:@{ub} Export this message. See @{"here" link EXPORT} for details.
+
+@{b}Export Address to YAM@{ub}: Export the author's name and email address to YAM's address book, if you have it installed.
+
+@{b}Mark As Normal / Important@{ub}: Sets the importance flag for this message. 'Important' messages are highlighted in the messages list, and are not automatically deleted by the auto-expire function.
+
+@{b}Toggle All/Standard Headers@{ub}: Toggles between displaying All of the Headers, or those designated as 'Standard', for this message only.
+
+@{b}Edit Menu@{ub}
+
+@{b}Find in Message@{ub}: Opens up the Find Text sub-window, which allows you to search through the body of the current message for text, with or without case sensitivity. Note that only the text as displayed in the window is searched, as opposed to the 'raw' form of the message, or any headers or non-displayed attachments.
+
+@{b}Find Next@{ub}: Finds the next occurance of the text you entered into the Find Text window.
+
+@{b}Copy@{ub}: Copies the selected text to the clip board.
+
+@{b}Rot13 Decode@{ub}: Rot13s the selected text - this means each letter is cycled through the alphabet by 13 letters. This is sometimes used on newsgroups as a way of hiding information - for example, the answer to a puzzle or joke. That way, you only see the answer when you want to. Note that this requires TextEditor.mcc version 15.7 or greater, since otherwise you cannot select any text.
+
+@{b}Attachments Menu@{ub}
+
+And then some menu options for use with the attachments list..
+
+@{b}View Attachment@{ub}: The same as "View" button under the list.
+
+@{b}Save Attachment@{ub}: The same as "Save" button under the list.
+
+@{b}View UUEncoded Attachment@{ub}: UUEncoded attachments should be detected automatically by NewsCoaster - in this case, there'll be a separate entry for it in the list, and you shouldn't need to use this option. If however there is a uuencoded file and for some reason NewsCoaster doesn't list this file, then select the attachment (that is, the attachment that when viewed displays the unencoded file), and use this menu option to force it to recognise as a uuencoded file.
+
+@{b}Save UUEncoded Attachment@{ub}: As View UUEncoded Attachment, but saves it to a file instead.
+
+@endnode
+
+@node WIN_WRITE "Write window"
+
+@{b}Message Page@{ub}
+
+@{b}To:@{ub} If you wish to email this message to someone (either instead of, or as well as posting to the newsgroup) then enter their email address in this field. Multiple email addresses should be separated by a comma. Note that when you select to 'Reply' to a message, the author's email address is inserted here automatically. Leaving this field blank means that the message is posted only to newsgroups (and this is what you would normally do).
+
+@{b}Newsgroups:@{ub} The newsgroup or groups you wish to post to. The currently selected newsgroup is entered here as standard, but you may change it. Multiple newsgroups should be separated by a comma, eg: 'comp.sys.amiga.misc,comp.sys.amiga.hardware'. If this field is blank, then the message won't be posted to any newsgroups (so you can send a message by email only). Click on the '+/-' button to bring up a menu to easily add or remove newsgroups.
+
+@{b}Subject:@{ub} The subject for your message. This will already be set if replying to a message, and in this case you should only change it if the topic of your message is no longer related to the subject already there.
+
+@{b}Main Text Area@{ub} Here you type your message.
+
+@{b}Attachments Page@{ub}
+
+Here you can attach files to your messages, eg, text files, pictures, sound files and applications. Note you should *never* post binaries (ie, anything accept text) to a newsgroup unless it is a newsgroup which allows them (signified by having 'binaries' in its name). If you want to send binaries to people on the newsgroup, then either place it on a webpage and post the URL, or ask who wants it, and email it to them individually.
+
+NewsCoaster supports the MIME Version 1.0 standard for attaching files, and uses base64 encoding to attach files.
+
+To add an attachment, select 'Add Attachment', and choose the file using the file requester. NewsCoaster will attempt to 'guess' the file type from the extension, and set the popup box on the right accordingly. You should make sure that it is set correctly; if not, click the popup gadget, and choose the correct file type ('MIME Type').
+
+'Delete Attachment' removes the attachment from the list (it doesn't delete the 
+original file!)
+
+If you are editing a message that had attachments, NewsCoaster will do its best to reconstruct the attachment list from the message. It should get it right, but it might be worth quickly checking this page to make sure!
+
+@{b}Options Page@{ub}
+
+@{b}From:@{ub} This is what will appear in the From header field (it also appears in the Message-Id header). As a default it is set up with what you entered in the @{"Program Settings window" link WIN_ACC}.
+
+@{b}Followup-To:@{ub} If you are crossposting to lots of newsgroups, you should specify one of the here for the discussion to continue on. When people follow up to a message, if this field is blank then the new message goes to the newsgroups that the original message was posted to. If the Followup-To field is not empty, it will be sent to the newsgroup listed there. Also, you can type 'poster' here to indicate you would prefer replies via email. Click on the '+/-' button to bring up a menu to easily add or remove newsgroups.
+
+@{b}Bottom Panel@{ub}
+
+@{b}Post:@{ub} This posts the message immediately.
+
+@{b}Send to Queue:@{ub} When you have finished the message, this button sends it to outgoing, ready to be sent next time you click 'Send News'.
+
+@{b}Postpone:@{ub} Use if you wish to finish the message later. It is still copied to outgoing, but marked with an 'H'. Such messages won't be sent when you select 'Send News'. Select 'Edit Message' from the Messages menu to continue a postponed message (and then click 'Send to Queue' or 'Postpone' again when you are done).
+
+@{b}Rot13@{ub}: This rot13s the selected text - this means each letter is cycled through the alphabet by 13 letters. This is sometimes used on newsgroups as a way of hiding information - for example, the answer to a puzzle or joke. That way, people will only see the answer when they want to.
+
+@{b}Cancel:@{ub} Either cancel the message entirely if this is a newly created message, or cancel the changes if you are editing a message (ie, the original will not be lost).
+
+@{b}Signature Cycle Gadget:@{ub} Select which signature you wish to be added at the bottom of your message (as defined in @{"Program Settings" link WIN_ACC}. The signature will automatically be inserted into the text window (of the Message page), and the signature that was there (if any) removed.
+
+@endnode
+
+@node WIN_ACC "Program Settings window"
+
+@{b}Accounts Page@{ub}
+
+@{b}Your Name:@{ub} Your name which will appear in the 'From' field of outgoing messages.
+
+@{b}Email for Posting:@{ub} Your email address; again this will appear in the 'From' field. This doesn't have to be a correct one, in particular, you may wish to apply a 'spam block'. Eg, my address is mdwh2@cheerful.com but I might enter mdwh2@NOSPAM.cheerful.com - the reason for this is that readers of the newsgroup can realise that you have to edit the 'NOSPAM.' out (and it is wise to put instructions to do this in my .sig - see later), but I avoid automatic spamming. If you are unsure, just put your real email address. Whatever you do, you must specify an email address of the form user@domain (ie, it must have the '@' character).
+
+@{b}Real Email for Emailing:@{ub} This is for email sending - some email servers allow you to put anything in the 'From:' header, in which case leave this blank and the above email address will be used. So servers require a correct address however, in which case, enter your correct email address here (note that which address actually appears in the 'From:' address of your emails depends on the server). If in doubt, simply stick your correct email address here.
+
+@{b}Organisation:@{ub} Optional header for information to be added into the headers of messages that you post. Leave it blank if you aren't sure (your newsserver will probably fill something in).
+
+@{b}Time Zone:@{ub} Select the time zone you are living in. This is necessary so that your messages appear in the correct order when people view messages by date.
+
+@{b}Date Display Format:@{ub} How dates are displayed in the messages list.
+
+@{b}Add Adjustment for DST?:@{ub} This should be ticked if you live in the UK and it is during British Summer Time. Alternatively, other countries may have some sort of Daylight Saving Time where you are one hour ahead of normal. If so, then this box should be ticked. Remember to change this when you enter/exit the period of DST!
+
+Note that the NewsCoaster assumes the your machine's clock is set to the local time, in accordance with the settings you make here.
+
+@{b}Use Locale Prefs?:@{ub} Instead of using what Time Zone you selected, NewsCoaster will attempt to read your time zone from you Locale Preferences.
+
+@{b}Always Check for Duplicates?:@{ub} Normally NewsCoaster will only check to see if a message is a duplicate (ie, you already have a copy downloaded) if it thinks it needs to (eg, if you've just reset the article pointer for a group). However, some newsservers seem to have duplicate messages in their lists; this option will ensure you'll never download duplicate messages, but it means slower downloading however.
+
+@{b}Delete Header if Body Not Available?:@{ub} When in online mode, if you try to read a message sometime after downloading the header, the message may no longer be available. If this option is ticked, the header will be automatically deleted in such cases.
+
+@{b}Don't Confirm When Deleting?:@{ub} As it says.
+
+@{b}Always Confirm on Quit?:@{ub} As it says.
+
+@{b}Don't Show From/Subject When Downloading?:@{ub} If this is ticked, the Subject line and Author won't be displayed in the status window as you download messages - may might things a little bit faster.
+
+@{b}Switch Groups When d/l?:@{ub} If this is ticked, then when downloading news, NewsCoaster will change the currently displayed group to whatever group it is downloading for.
+
+@{b}Logging Enabled?:@{ub} If ticked, NewsCoaster will log details to the file newscoaster.log in the NewsCaoster folder. This should normally be turned off, but if you find a bug, it is useful if you can send me a logfile, so turn this on, make the bug occur, then turn it off. Note that the newscoaster.log files get big very quickly; you can always delete them when NewsCoaster isn't running.
+
+@{b}Delete Log on Startup?@{ub}: This deletes the logfile everytime NewsCoaster starts. Useful in that logfiles get large very quickly - but remember to take a copy of any important logs before restarting!
+
+@{b}Don't Confirm When Deleting?:@{ub} If ticked, NewsCoaster will no longer displayed confirmation requesters when deleting (doesn't apply to Permantently Deleting messages, this will alwatys require confirmation).
+
+@{b}Servers Page@{ub}
+
+NewsCoaster supports multiple newsservers, which appear in the list. The information displayed is:
+
+@{b}Server:@{ub}: The address of the newsserver.
+
+@{b}Port@{ub}: The port to connect to. This will usually be 119.
+
+@{b}Username@{ub}: Your username, if authentication is required.
+
+@{b}Authentication@{ub}: Whether authentication is required.
+
+@{b}Default@{ub}: Whether this is the default newsservers. All newsgroups you set up will initially use the default newsserver, unless you choose otherwise (from @{"'Advanced Settings'" link WIN_ADV}). Only one newsgroup may be the default.
+
+@{b}Posting@{ub}: Whether to use this newsgroup for posting your messages. Note that some newsservers will not allow posting. Only one newsgroup may be used for posting.
+
+You will probably have been given aa newsserver use by your ISP. Alternatively, there are @{"public ones" link PUBLICNEWS} available.
+
+Use 'New Server' to make a new entry, or 'Edit Server' to edit an existing entry (there will be a 'dummy' entry created the first time you run NewsCoaster, which you should edit). 'Make Default' makes the currently selected newsserver the default. 'Use for Posting' does the same for posting. 'Delete Server' removes the server from your list.
+
+When you add a server, you usually just need to enter in the address. If it requires authentication (only some will), tick the box and enter in your username and password. The port should usually be 119.
+
+If you change newsserver settings, you will be asked if you wish to reset the article pointers to newsgroups using that server. You should do this if you are changing newsservers, since different newsservers store their messages with different article IDs - please see the 'Reset Group Article Pointer' and 'Reset All Groups' Pointers' (@{"menu options" link MENUS}).
+
+Other options:
+
+@{b}Get Groups@{ub}: This downloads all the available newsgroups on the currently selected newsserver into a file. Once you have done this, you can view, find and subscribe to groups by selecting the 'Groups Manager'. The groups list is saved as a text file under the name 'x.gl' (where 'x' is the name of the newsserver) in the NewsCoaster program directory, so you may examine it separately if you wish. Also, you don't have to download the group list to subscribe to groups, eg, you may already know the name of the newsgroup and assume it exists on your newsserver. Note that downloading the newsgroup will take some time (around 56000 newsgroups took about 20 minutes on my 33.6k modem).
+
+@{b}Get New Groups@{ub}: This downloads all the newsgroups from the currently selected newsserver which have appeared since you last selected this option, or the 'Fetch Group List' option. Note that if you were using a version of NewsCoaster before this option was introduced, then you won't be able to use it until you redo a 'Fetch Group List' - even if you've already downloaded the group list.
+
+@{b}Groups Manager@{ub}: You must have selected 'Get Groups' for the currently selected newserver for this to work. This option opens the @{"Group Manager window" link WIN_GMAN} for the currently selected newsserver.
+
+@{b}SMTP (Mail) Server:@{ub} If you wish to reply to messages via email, then you must enter in the name of you SMTP (ie, mail) server here.
+
+@{b}Write Page@{ub}
+
+@{b}Followup Attributation Line:@{ub} The text to be displayed when following up. You enter codes to insert various things:
+    %d - Date of the message you are replying to,
+    %n - Name of person you are following up to,
+    %g - Newsgroup the message you are replying to was posted to,
+    %m - MessageID of the message you are replying to,
+    %% - Insert a '%' character.
+
+@{b}Charset@{ub}: specifies character set used to send messages. Read @{"here" link CHARSETS} more about this.
+
+@{b}Signatures:@{ub} The cycle gadget and text area allow you to choose your signatures. You can have up to eight. Select the signature you wish to edit with the cycle gadget, and then enter the signature in the text area. You should make sure your signature is no bigger than 80 characters wide, and 4 lines deep. If the cursor reaches the end of the text area, the line will spill over to the next line, but note that this text is wrapped, ie, a line break is not inserted. You should specifically press Return to start a new line. Also note that you don't have to enter the '-- ' signature break; NewsCoaster does this for you (similarly, you shouldn't start your signature off with a line created with hypens '---------etc', since you should inserted make use of the '-- ' signature break which NewsCoaster inserts for you).
+
+@{b}Line Length:@{ub} When you finish writing a message, NewsCoaster will insert the line breaks at an appropriate line length. Here you can specify the line length - it should really be between 60 and 80 (preferably, 70 to 76).
+
+@{b}Auto. Rewrap:@{ub} If this is ticked, when following up to messages, NewsCoaster will attempt to rewrap the lines before quoting, to make everything look nicer. Note that it doesn't always work, since it's difficult to know whether a line break is a result of the text spilling over, or whether the author wanted a new line (ie, he explicitly pressed Return).
+
+@{b}Use 'x-no-archive' Header?:@{ub} If the line 'x-no-archive: yes' is included into the header, then your message will not be included in news archives (eg, www.deja.com). You can set NewsCoaster to never do this, to always do this, or to only do this if following up to a message which had 'x-no-archive: yes'  in its header (if an author didn't want his message to appear in news archives, then he probably won't want replies to it to appear either, since some or all of his original text might be quoted in the new message).
+
+@{b}Use Shortened X-Newsreader header:@{ub} As a default, NewsCoaster places an X-Newsreader header which says something like 'NewsCoaster [Amiga, 020] by Mark Harman'. Ticking this box shortens it to 'NewsCoaster'.
+
+@{b}Snip .sig?:@{ub} Removes .sig of message you are replying to (only works if the '-- ' .sig separator is used).
+
+@{b}Read Page@{ub}
+
+@{b}Header:@{ub} You can choose which headers are to be displayed when you are viewing a message. 'None' means no messages are displayed. 'Full' means all headers are displayed. 'Selected' means that the headers listed in the Text gadget to the right are displayed. You should enter in the headers, without the ':', with different headers separated by a '|'. It is set by default to:
+    From|To|Newsgroups|Date|Subject|Followup-To|Reply-To
+(actually it is case-insensitive, but I put capital letters for neatness).
+
+@{b}Multiple View Windows@{ub}: If this is ticked, a new window will be opened when you read a new message. If you untick this, there will only be one message view window, which gets updated when you read a new message.
+
+The next options set colours used by the view window. Note they only take effect if you are viewing a message in 'Email Format' mode; in 'Plain Text' mode, everything appears in the default text colour. To change a colour, simply click on the colour and select a new one with the MUI colour chooser which appears.
+
+@{b}2nd Level Quoting:@{ub} This is the colour used for alternate levels of quoting, ie, 2nd, 4th, 6th etc.
+
+@{b}Coloured:@{ub} Any text in a message that is surrounded by '#' characters (eg, '#coloured#' will appear in colour. This is the colour to use.
+
+@{b}Lists Page@{ub}
+
+This page allows you to choose which columns you wish to be displayed in the message list window. Note that '# of Lines' refers to the number of lines in the complete message - ie, even if you've only downloaded the header (in online mode), it's the number of lines including the body.
+
+@{b}MIME Page@{ub}
+
+Here you can choose the external programs used to display attachments (see @{"here" link EXPORT} for details on displaying attachments).
+
+To add support for a new viewer, click on 'New' - a default entry will be added to the list, which you can now change. 'MIME Type' is the attachment type (eg, image/jpeg). Select a viewer for it - you should make sure the viewer you specify is in the command path, or you should specify a full path. You should use "%s" to indicate the filename. So suppose you had specified image/jpeg, and wanted to use the program 'vt' to display jpeg attachments. In the 'Viewer' box, you would enter:
+    vt "%s"
+Hit return, and the list will be updated. To remove a viewer from the list, select it, and select 'Delete'.
+
+Default Viewer will be used to view all MIME Types that you have not specified in the list.
+
+Finally, 'Okay' will save your changes to disk, and 'Cancel' will abort any changes you have made, reverting to the previous settings.
+
+@endnode
+
+@node WIN_KILLFILE "KillFile window"
+
+@{b}To enter a new killfile:@{ub} Click 'New', enter the text into the three boxes, and then hit 'Add/Replace'.
+
+@{b}To edit an existing killfile:@{ub} Select the killfile from the list, and it's details will appear in the text boxes. Edit them, and then select 'Add/Replace' to confirm the changes. If you wish to cancel the changes, then instead either select 'New' (ready to enter a new killfile), select another killfile entry (to edit it instead), or simply close the window.
+
+@{b}To delete an existing killfile:@{ub} Select the killfile from the list, and click 'Delete'.
+
+@{b}To duplicate an existing killfile:@{ub} Select the killfile from the list, and click 'Duplicate'.
+
+@{b}Killfile Details@{ub}
+
+@{b}If the Header:@{ub} This is the header you wish to kill on, eg, 'From:'. It should be an exact match (ie, this is not a substring search), but it is not case-sensitive. Alternatively, leave blank to kill on any header. The colon will automatically be added if you forget to.
+
+The next line specifies how to match; eg, whether to search for text being contained, or not being contained. The appropriate text goes into the text box to the right of the cycle gadget. Currently, text matching is case-insensitive.
+
+@{b}In the Newsgroups:@{ub} The newsgroups you wish to set this killfile for. This is a substring search, so you can do 'comp.sys.amiga.' for all the newsgroups that start off with that name, and leave blank to kill on all newsgroups. This is case-insensitive (but all newsgroups have lower-case names, anyway).
+
+@{b}then..:@{ub} The action to perform if the killfile is matched. The 'Skip Rest' checkbox determines whether to no longer check this message against later killfiles in the list (they are performed in order - you can reorder them by dragging and dropping the items in the list), or to do so, if this killfile entry is matched.
+
+@{b}Expiration@{ub}: You can choose to either have the killfile never expire (it stays until you delete it), expire a certain number of days since it was created, or expire since a certain number of days since it was last used. If one of the latter two, enter the number of days into the adjacent text box.
+
+@{b}Performance Note regarding online downloading of messages:@{ub} NewsCoaster can quickly check the following headers when downloading in online mode: Subject, From, Date, Message-ID and References. If for a particular newsgroup you have a killfile entry for a header other than these, NewsCoaster will revert to a slower method for that group.
+
+@{b}'Advert' Killfile@{ub}
+
+This is a special type of killfile. Often, you will see people posting adverts or other off-topic spam to a newsgroup, but sometimes they will put a number as the last word in the subject, eg, 'Make lots of money 774'. If you enable this killfile, then Newscoaster will check the last word of the subject of each message; if it is a pure number, with three or more digits, then that message will be killed (the reasoning being that a one or two digit number is more likely to be an on topic message). Of course, if there is an on-topic message with the last word on the subject being such a number, then this message will still be killed, so it's up to you whether to use this feature or not!
+
+When you are done, close the window and the changes will automatically be saved to disk.
+
+Also, remember that there is a special additional killfile on the number of lines in a message - see the @{"Edit Newsgroup window" link WIN_ENG} for details.
+
+@endnode
+
+@node WIN_SEARCH "Search Window"
+
+Here you can quickly search through all folders for messages. Simply select the newsgroup(s) you wish to search from the list (select more than one by holding down Shift), then use the Cycle gadget to select where you wish to search in, and enter the text you wish to search for below that (the search is a substring one). Select whether you want a case-sensitive search or not. Click on 'Start Search', and the results will be displayed in the list at the bottom. Doubleclick on an entry to highlight it on the main window.
+
+If you select a header to search in (ie, anything other than 'Header', 'Message Body' and 'Entire Message'), then NewsCoaster will make use of the internal indices. Note that this means that headers will be truncuated at some length (128 chars for MessageID, 64 chars for subject, and 32 chars for the other headers), so anything beyond this length will not be search.
+
+If you select 'Header', then the entire header will be searched (including the header field names, eg, searching for 'From' in the header will return all messages searched!) 'Message Body' searches after the header (including attachments), and 'Entire Message' searches the entire raw text of the message. Note that these last three options are much slower than searching in specific headers, since NewsCoaster needs to scan each message individually.
+
+@endnode
+
+@node WIN_STATS "Statistics Window"
+
+This allows some simple analysis of newsgroup messages. Select the newsgroups you wish to analyse, then select one of the options:
+
+@{b}By Person@{ub}: How many messages each person has posted (as indicated by the From: header).
+
+@{b}By Subject@{ub}: How many messages of each subject.
+
+@{b}By X-Newsreader@{ub}: By the X-Newsreader header - find out which news clients are most popular.
+
+@endnode
+
+@node AREXX "ARexx Commands"
+
+NewsCoaster now has an ARexx port (called 'NEWSCOASTER'). It's very simple at the moment, so hopefully more commands will appear here soon. Please let me know if you want particular commands to be added. If you write any ARexx scripts for NewsCoaster, you are of course free to distribute as you wish. I'd also like to hear if you write anything particularly useful (hmm, not very likely with the current set of commands I know, but anyway) - I may include them in the NewsCoaster archive, or at least put them on the NewsCoaster homepage.
+
+Please check the 'Rexx' folder in the NewsCoaster folder for any useful ARexx scripts that may be included with the archive.
+
+@{b}Things to Note:@{ub}
+
+- For commands which require a position, the counting starts from 0, not 1.
+
+@{b}Command Summary:@{ub}
+
+(See the end for explanations of terms)
+
+@{b}BUSY@{ub} Forces NewsCoaster to go into 'busy' mode, and not accept any user input. You must call NOBUSY to allow user input again.
+
+@{b}FETCHNEWS [QUIET]@{ub} Fetches news. If the argument 'QUIET' is supplied, then the status window will not be activated when it appears (useful if you don't want it to steal input focus when your script runs).
+
+@{b}FETCHNEWSBYID groupID [QUIET]@{ub} Fetches news only from the newsgroup of that groupID. If the argument 'QUIET' is supplied, then the status window will not be activated when it appears (useful if you don't want it to steal input focus when your script runs).
+
+@{b}FETCHNEWSBYNAME name [QUIET]@{ub} Fetches news only from the newsgroup of that name. If the argument 'QUIET' is supplied, then the status window will not be activated when it appears (useful if you don't want it to steal input focus when your script runs).
+
+@{b}FOLDERINFO@{ub} Returns a string giving information about the currently selected folder, in the format 'groupID name description number_of_messages_in_folder messageID_of_nextMessage subscribed max_download_limit' (subscribed is 1 if you are subscribed to that group, 0 if you are not).
+
+@{b}GETNUMMESSAGES@{ub} Returns (in RESULT) the number of messages in the currently displayed group.
+
+@{b}HIDE@{ub} Hide or Iconify NewsCoaster
+
+@{b}IMPORTFOLDER folder@{ub} Scans a folder for messages, and imports them into the groups appropriate for the newsgroups specified by their 'Newsgroups:' header.
+
+@{b}IMPORTMESSAGE message@{ub} Imports a message into the group appropriate for the newsgroup specified in the 'Newsgroup:' header.
+
+@{b}ISMSGSELECTED pos@{ub} If the message at position pos is selected, RC is set to 1, if not it is set to 0. Note that when in treeview/threaded mode, the position counting includes messages which are "hidden" (in fact, a hidden message will always be treated as not being selected, but the general convention is to include all the messages in the group, independant of how the tree is displayed).
+
+@{b}ISONLNE@{ub} Sets RC to 1 if NewsCoaster is currently doing online activity (eg, fetching or sending news), but sets RC to 0 if not.
+
+@{b}MESSAGECOPY destination@{ub} Copies the selected messages to the folder named 'destination'.
+
+@{b}MESSAGEDELETE [FORCE]@{ub} Deletes the currently selected messages (which means they are copied to deleted, unless they are already in deleted, in which case they ar permanently deleted). If you specify 'FORCE', then the confirmation requester is not displayed.
+
+@{b}MESSAGEEDIT@{ub} Edit the currently selected message (must be in outgoing or sent).
+
+@{b}MESSAGEEXPORT@{ub} Export (Save or Display) the currently selected message.
+
+@{b}MESSAGEFETCH [QUIET]@{ub} Fetch the body for the currently selected message. A return code (RC) of: 0 means the body was downloaded; 1 means that the body wasn't downloaded because it doesn't need to be; 2 means that the body needs to be downloaded, but an error occurred. If the argument 'QUIET' is supplied, then the status window will not be activated when it appears (useful if you don't want it to steal input focus when your script runs).
+
+@{b}MESSAGEFOLLOWUP@{ub} Followup the currently selected message.
+
+@{b}MESSAGEFUANDR@{ub} Followup and reply to the currently selected message.
+
+@{b}MESSAGEGETHEADER header@{ub} Returns the data in a particular header ('header' should include the colon, but is case-insensitive, eg, 'from:' or 'subject:').
+
+@{b}MESSAGEGETPATH@{ub} Gets the filename with path (NB, will make use of the NewsCoasterData: assign).
+
+@{b}MESSAGEINFO@{ub} Returns information about the selected message in the form 'messageID From Newsgroups Subject Date Content-Type'.
+
+@{b}MESSAGEKILL [type [THISGROUP]]@{ub} Sets up a killfile on the currently selected message. If you give no parameters, the user will be asked, otherwise, type can be 0 for 'Kill this author', 1 for 'Kill responses to this message', and 2 for 'Kill messages with the same subject'. By default the killfile will be for all newsgroups, but specifying THISGROUP makes it the current newsgroup only.
+
+@{b}MESSAGEMOVE destination@{ub} Moves the currently selected messages to the folder named 'destination'.
+
+@{b}MESSAGEPOST@{ub} Open a window to compose a new message.
+
+@{b}MESSAGEREPLY@{ub} Reply to the currently selected message.
+
+@{b}MESSAGESUPERSEDE@{ub} Supersede the currently selected message.
+
+@{b}NOBUSY@{ub} Cancel the effect of BUSY.
+
+@{b}SELECTMESSAGE type [ALL]@{ub} Controls selection of messages in the current folder. Set type to: 1 to select, 0 to toggle, -1 to deselect. This sets the selection of the currently active message, unless you specify ALL, in which case all messages in the folder are set.
+
+@{b}SENDNEWS@{ub} Sends any queued news (or email) items.
+
+@{b}SETFOLDER pos@{ub} Selects are folder, where pos is the position in the folder listing.
+
+@{b}SETFOLDERBYID id@{ub} Selects the folder whose folderID is id.
+
+@{b}SETFOLDERBYNAME name@{ub} Selects the folder whose name is name.
+
+@{b}SETMESSAGE pos@{ub} Sets the active message to be the one at position pos in the message listing. Note that when in treeview/threaded mode, the position counting includes messages which are "hidden" (so you can still access them in the script, whether or not the user has opened a particular branch).
+
+@{b}SHOW@{ub} Show or un-iconify NewsCoaster.
+
+@{b}Explanations@{ub}
+
+@{b}Folder Names@{ub} When you specify a folder by name, it should be 'outgoing', 'sent', 'deleted', or if it is a newsgroup, the full newsgroup name (eg, 'comp.sys.amiga.misc').
+
+@{b}groupID@{ub} Every folder has an internal ID number. This is -1 for outgoing, -2 for sent, -3 for deleted, and a number equal or greater to 0 for newsgroup folders. The messages are kept in the folders outgoing/, sent/ or deleted/, or folder_x/ for newsgroups, where x is the groupID. These folders will be in the folder pointed to by the NewsCoasterData: assign (which, by default, is the NewsCoaster folder).
+
+@{b}messageID@{ub} Every message has an ID, which is unique for the folder it is in. The filename of the message will be news_x where x is the messageID.
+
+@{b}messageID_of_nextMessage@{ub} A term for the next message which might be created in this folder. eg, if messageID_of_nextMessage is 14, then the next message created in that folder will have a messageID of 14.
+
+@endnode
+
+@node FAQ "Frequently Asked Questions"
+
+(Well, more of questions-that-people-might-ask than Frequently Asked Questions;)
+
+1. Introduction, Updates, System Requirements, etc
+
+1.1 What are the system requirements of NewsCoaster?
+
+NewsCoaster requires at least a 68020 CPU, 4MB RAM, OS3.0, MUI installed and a TCP/IP stack. More RAM is recommended for newsgroups with lots of messages, and plenty of hard disk space is useful for keeping messages. NewsCoaster also runs fine under WinUAE. 
+
+1.2 Help! NewsCoaster doesn't run on my machine!
+
+I have tested NewsCoaster on an A1200 with Blizzard A1230-IV and OS3.0 using Miami, and a PC running WinUAE (OS3.1 and OS3.9). I have had no reports of it crashing on any specific setup (apart from general bugs;) so it should work with all Amigas.. but I cannot be sure. If it doesn't run, then please email me, giving details of your system, and the problem which occurs. Make sure you have MUI, and the required custom classes, installed on your machine. 
+
+1.3 What MUI Custom Classes are Required?
+
+These are all provided in the main archive so you don't have to worry. They are:
+    BetterString (BetterString.mcc, BetterString.mcp),
+    NList (NFloattext.mcc, NList.mcc, NListview.mcc, NListviews.mcp)
+    NListtree (NListtree.mcc, NListtree.mcp)
+    TextEditor (TextEditor.mcc, TextEditor.mcp)
+    Toolbar (InfoText.mcc, Toolbar.mcc, Toolbar.mcp)
+TextEditor.mcc must be at least version 15.7 if you wish to use the rot13 decode feature. NListtree should be optional, and is required if you wish to use the tree views (either for groups, or threaded messages display).
+
+1.4 Does NewsCoaster work with UAE?
+
+NewsCoaster has been tested with WinUAE, and works fine. This should be the case with UAE for other platforms, too. Make sure you have 'BSD socket library emulation' ticked under Misc. 
+
+1.5 Does NewsCoaster work with Amithlon/AmigaXL?
+
+I have been told NewsCoaster works fine with AmigaXL. I have no idea about Amithlon, but I hope it would (NewsCoaster has no special custom chip requirements, and MUI/Internet type applications seem to run fine with it). If you have tried it on Amithlon, please let me know if it does or doesn't work.
+
+1.6 NewsCoaster no longer works on my machine. It used to work.
+
+It sometimes happens that bugs get introduced into new versions. Firstly, please try to work out whether it stopped working (or became unstable or whatever) with a new version of NewsCoaster, or whether it was something that changed with your system (new hardware, new patch installed or whatever) and let me know accordingly. If it comes to it, I keep several old versions of NewsCoaster on the download page, so you can revert back to an older version. 
+
+2. General Usage
+
+2.1 Help! NewsCoaster crashed/whatever, and now the message list window just displays gibberish, or if I click on a message, the message cannot be found, or the wrong message appears! What do I do?
+
+Ideally such an event will never happen, but should it happen (and this is more likely if NewsCoaster or AmigaOS crashes at a critical moment), then select 'Update Index' from the 'Newsgroups' menu for the corrupted newsgroup. This will scan the folder, and rebuild the index from the messages found there. This may take some time for large newsgroups. Please note that you shouldn't use the 'Update Index' unless there is a problem - using it means that flags such as 'Unread', 'Replied to' and 'Held' (for outgoing) are lost. 
+
+3. Future
+
+3.1 How long are you going to update/support NewsCoaster for?
+
+I'll update it as long as there is it interests me to develop it.
+
+3.2 Do you intend to make NewsCoaster an email client too?
+
+No, never. There is still quite a bit of extra work for this - and YAM is a perfectly good mail reader that I couldn't hope to beat. You can still send emails from NewsCoaster if you wish to reply to news items via email. 
+
+3.3 Will you release a PowerPC version (be it PowerUp/MorphOS/AmigaOne/whatever)?
+
+I'll be doing no such thing since I don't have the required hardware. If Amiga ever release a standalone PPC machine then it's something I will consider, and if I were to buy such a machine, I'd certainly want to develop it, including hopefully a port of NewsCoaster. In the meantime, the most likely way to see a NewsCoaster port if is someone else wants to do it (the source is available, after all!)
+
+3.5 Will you release a version optimised for x86 code under Amithlon?
+
+I would love to, but unless the legal problems ever get resolved, and/or the new version gets released, this won't be happening. Of course, that doesn't stop anyone else doing this, since the source is available.
+
+4. Miscellaneous
+
+4.1 What do you use to develop NewsCoaster?
+
+For the first few months, I wrote NewsCoaster on an A1200T with Blizzard A1230 accelerator, 18MB RAM, AGA and 33.6k modem. Then for various reasons I bought a PC - at first I thought it would be no more NewsCoaster, but WinUAE proved to be good enough to continue development. 
+
+4.2 You use WinUAE to program NewsCoaster?
+
+Yes, and in many ways it's better than my old setup, since I now have graphics card resolutions. Another useful ability was being able to use cheap PC ethernet cards, meaning I can test NewsCoaster over high speed networks rather than remaining with slow dialup modems, or having to purchase an expensive ethernet card. For a long while compiling was slow, about half the speed of my 50MHz machine, but the JIT version is much faster (not to mention upgrading from a K6-2 to an AthlonXP;). Also for a long while, the biggest downside was lack on an MMU, which made hunting down illegal memory access difficult. Whilst WinUAE still doesn't emulate an MMU, it now comes with WinUAEEnforcer, which detects illegal memory access.
+
+@endnode
+
+@node COPYRIGHT "Copyright etc"
+
+NewsCoaster is copyright 1999-2003 NewsCoaster development team.
+
+NewsCoaster is released under the GPL.
+
+@endnode
+
+@node CREDITS "Credits..."
+
+NewsCoaster was started by Mark Harman but was later released as open source. Currently the NewsCoaster development team consists of:
+
+Mark Harman:
+
+E-Mail               : mark.harman@ntlworld.com.
+NewsCoaster homepage : http://newscoaster.sourceforge.net/ 
+Personal homepage    : http://homepage.ntlworld.com/mark.harman/
+
+Pavel Fedin:
+
+E-Mail: sonic_amiga@rambler.ru.
+
+Sallin Nicolas 
+
+E-Mail: henes@users.sourceforge.net 
+
+Stephen Burgoyne Coulson 
+
+E-Mail: scoulson at users.sourceforge.net 
+
+Thanks go to:
+
+Alan Graham for suggesting the name NewsCoaster;
+Luca Longone for the NewIcons, bug reports and suggestions;
+Grzegorz Kraszewski for supplying ARexx scripts to make use of Polish charsets;
+Stephen Graham for supplying most of the acronyms list;
+Thomas Csadek, Olivier Fabre, Dave Fisher, Markus Goettler, Pam Jones, Jari 
+Karjalainen, Piotr Kompa, Michael Luense, Jim Maciorowski, Bernd Rakel, Javier
+de las Rivas, Richard Tapp, Stephen Burgoyne Coulson for bug reports,
+suggestions, etc.
+(and others - apologies to anyone I haven't mentioned, I've had a lot of people 
+write to me, let me know if I've forgotten you!)
+
+NewsCoaster project page:
+
+http://sourceforge.net/projects/newscoaster
+
+Development Info:
+
+Development began on an A1200/030 with OS3.0, but later versions carried out entirely on WinUAE, now running OS3.9.
+Version 1.59 was created by Pavel Fedin running Amiga 1240+PPC 603e with OS3.9.
+
+@endnode
+
+@node HISTORY "History"
+
+New for version 1.61:
+UPDATED: New AREXX command "MESSAGEFETCH" added [Mark]
+UPDATED: Updated copyright information [Pavel]
+UPDATED: Removed the rest of registration stuff [Pavel]
+FIXED:   Improved localisation [Pavel]
+
+New for version 1.60:
+FIXED:   "Select newsgroup" window was broken in v1.59 [Pavel]
+UPDATED: Updated spanish language catalog by Javier De Las Rivas [Pavel]
+FIXED:   Some attachments still were not recognised [Stephen]
+
+New for version 1.59:
+FIXED:   Sometimes uuencoded attachments were not recognised (original fix by
+         Stephen Burgoyne Coulson) [Pavel]
+UPDATED: Updated spanish language catalog by Javier de las Rivas [Pavel]
+FIXED:   Special folder names (".incoming", ".outgoing", ".deleted" and
+         "poster" in group selection window (when copying/moving messages) and
+         when adding groups to send a message were not localized. [Pavel]
+FIXED:   Special folder names in a help bubble in a groups list in main window
+         and in screen title were not localised. [Pavel]
+UPDATED: Improved "Return" key handling in user login window. Pressing "Return"
+         in login gadget now moves cursor to password gadget instead of
+         accepting username and password. [Pavel]
+FIXED:   Enforcer hit when doubleclicking on a message in the search results
+         listing, if the currently displayed folder was empty. [Mark]
+FIXED:   Don't complain about being unable to determine attachment MIME type
+         when editing a message. [Mark]
+FIXED:   Another case of a system requester being used instead of MUI's one.
+         [Mark]
+FIXED:   Message View windows should close if the message is deleted from the
+         deleted folder, or 'permanently deleted' (as currently happens when a
+         message is moved to another folder). [Mark]
+FIXED:   If a message was deleted from the deleted folder using the View
+         window, when the deleted folder wasn't the currently displayed folder,
+         then it would no longer be possible to change/select folders. [Mark]
+UPDATED: Allow the user to specify any MIME Type for attachments. [Mark]
+UPDATED: Added some more extensions for automatically recognising MIME Types
+         from extensions. [Mark]
+
+New for version 1.58:
+UPDATED: Added Bulk_Decoder.rexx script by Jules and spanish language catalog
+         by Javier de las Rivas to a distribution archive. [Pavel]
+FIXED:   Signature cycle gadget in write window was not localized. [Pavel]
+FIXED:   A system requester was used instead of MUI's one for displaying some
+         error messages (like 'Clipboard is empty') in read and write modes.
+         [Pavel]
+FIXED:   Enforcer hit when parsing some multipart messages (related to
+         incorrectly parsing the charset). [Mark]
+FIXED:   Don't complain about message being entirely quoted text when it
+         isn't. [Mark]
+FIXED:   Didn't decode uuencoded messages correctly if the "end" line
+         followed the data without a preceding "`" line. [Mark]
+UPDATED: Autodecode uuencoded sections of a multipart message when
+         displaying it inline (this also fixes the bug where the uuencoded
+	 section got added twice to the attachments list). [Mark]
+UPDATED: Recognise "x-uue" as meaning a uuencoded attachment. [Mark]
+FIXED:   Enforcer hit when downloading messages, if unable to connect to a
+         newsserver. [Mark]
+FIXED:   If 'Update Index' was called on the 'outgoing' folder, queued
+         messages wouldn't be sent until you edited those messages. [Mark]
+UPDATED: When calling 'Update Index', be more careful about which files are
+         valid NewsCoaster news files (it now additionally checks that the
+         file is the form 'news_x' where 'x' is a number, rather than just
+         requiring it to start 'news_'. [Mark]
+
+New for version 1.57 (by Pavel Fedin):
+UPDATED: Added language catalogs support. Russian catalog is written.
+UPDATED: Removed no more needed ARexx scripts for AmigaPL character set
+         conversion from the installation package
+FIXED:   NNTP server port number could contain only 3 digits, so ports greater
+         than 999 (some private servers, for example) could not be used.
+FIXED:   In v1.56 russian character set had a wrong name ("koi-8r" instead of
+         "koi8-r")
+FIXED:   Pasting text into editor field when writing/editing/replying a
+         message was slow.
+
+New for version 1.56 (by Pavel Fedin):
+UPDATED: Added charsets support. Currently default charset for reading and
+         writing is the same, i see no real sense to have them different. But
+         this is easy to implement now, so this can be done on request. Note
+         that charset selection gadget in program settings window is changed
+         completely. Also conversion table format is changed to make handling
+         them easier. Old AmigaPL charset is converted to a new form, and its
+         name changed to iso-8859-2, but it is not tested.
+UPDATED: Reorganized message view window: attachments list now resides to the
+         right from headers, like in Microdot-II. Also two buttons for viewing
+         and saving attachments are added.
+
+
+New for version 1.55:
+UPDATED: Warn against editing messages that have already been sent.
+UPDATED: FETCHNEWSBYPOS ARexx command removed (not that it was ever documented!)
+UPDATED: Warn against sending messages with no message body, or only quoted text.
+FIXED:   Enforcer hits when viewing, composing or editing a message (WinUAEEnforcer
+         hits to be precise, since I can't run Enforcer on WinUAE;)
+FIXED:   'Fetch news for this Group' option didn't recognise download a group for the
+         first time, if group list was in tree view mode.
+FIXED:   Don't allow 'newline' characters to be saved into message headers when writing
+         a message (eg, Subject).
+FIXED:   'Forcing' a quit shouldn't show requesters for unsaved messages; now they are
+         automatically saved.
+FIXED:   Slow performance when drag selecting messages.
+
+New for version 1.54: (17.10.2002)
+- Much faster downloading of headers in online mode. Note that to take advantage of
+  this, any killfile entries for a particular newsgroup should only kill on the
+  headers: Subject, From, Date, Message-ID and References; if this is not the case,
+  then the old (slower) method will be used for that group. Also, your newsserver must
+  support the 'XOVER' command - otherwise, it should revert back to the slow method.
+- Handle ISO Encoding (Quoted-Printable and Base64) in message headers (for
+  header text displayed in the message lists, this will only take effect for
+  messages downloaded from now on).
+- If subscribing to a group from the Group Manager window, set the server for the group
+  to that of the group list which was being viewed.
+- Reduce occasions where NewsCoaster needs to switch the currently displayed group.
+- Offer Save/Discard/Cancel choice if messages are being editing when quitting, rather
+  than just Save/Discard.
+- "Join Messages" option made much faster.
+- When joining a message, it will be placed in the currently displayed group.
+- Improvements to Delete Duplicates option.
+- Automatically increase stack size if too small on startup (currently sets it at
+  200000 bytes).
+- Skip 'online' headers (ie, messages with no body downloaded) when archiving a group.
+- Make 'popup help bubble' for groups list state which newsserver is being used for
+  each group.
+- Bug fix; enforcer hit upon startup
+- Bug fix; possible crash when downloading, if Groups list was in 'Tree' mode.
+- Bug fix; crash if you did 'Change Date to Current' that was on a message being
+  displayed in a search results listing, and then went to read the message by
+  doubleclicking in the search list.
+- Bug fix; if permanently deleting all messages (either in a group, or all groups),
+  any of those messages being viewed weren't closed, and any in the list of search
+  results weren't removed from the list.
+- Bug fix; better handling of online connections when reading messages from different
+  newsservers (was still trying to fetch the body from the wrong server under some
+  circumstances).
+- Bug fix; problems when parsing messages with 'empty' headers.
+- Bug fix; didn't recognise MIME encoding type x-uuencode in non-text portion of
+  message.
+- Bug fix; not recognising uuencoded file in some cases.
+- Bug fix; make Join Messages window cope/update if messages are moved/deleted.
+- Bug fix; 'Change Date To Current' option filled in the date in GMT rather than the
+  local time zone.
+- Bug fix; when 'updating index', remember which messages have not had their bodies
+  downloaded yet.
+- Bug fix; memory leaks.
+- Various improvements and fixes for dealing with indices, and messages in search
+  results.
+
+New for version 1.53: (13.7.2)
+- New option to allow using multiple newsservers for posting; if you've set up a
+  non-default newsserver for a group (under Newsgroups / Advanced Settings), you can
+  tick 'Post with this server', and then any messages posted to that group will be
+  posted to the newsserver for that group.
+- In threaded view, opening a thread causes the entire thread to expand.
+- Clicking on column headings to change sorting now works in threaded mode too.
+- Faster threading.
+- Download from groups in a more sensible order to avoid repeatedly connecting to a
+  newsserver.
+- New option to delete all duplicated messages in a group (under Messages / Permanently
+  Delete).
+- Bug fix; in v1.52, messages wouldn't get deleted from the deleted folder (they'd
+  still be on the hard disk).
+- Bug fix; bugs in base64 encoding and decoding.
+- Bug fix; in threaded mode, not all messages were getting displayed.
+- Bug fix; various other problems related to threaded mode.
+- Bug fix; 'Groups Manager' under Program Settings was always displaying groups for the
+  default newsserver.
+- Bug fix; if you switched between two groups on two newsserver in online mode, it
+  would fetch from the wrong newsserver.
+- Bug fix; was leaving a space at end of lines when quoting messages.
+
+New for version 1.52: (8.6.2)
+- Cope with yenc v1.3 attachments.
+- Option to always check for duplicates when downloading (some newsservers seem to
+  have duplicate messages in their lists; this option means slower downloading, but
+  guaruntees no duplicates).
+- Increased width storage of 'subject' (in messages list, etc).
+- Remove dependance on 'default.index' file.
+- Bug fix; some uuencoded attachments were no longer getting spotted.
+- Bug fix; sometimes checking for duplicate messages unnecessarily.
+
+New for version 1.51: (17.4.2)
+- Bodies for messages are downloaded when you select 'Join Messages', if not already
+  downloaded.
+- Ignore directory information in filename for the default filename when saving an
+  attachment.
+- Don't put in a sigbreak ('-- ') when the user doesn't have a signature, when writing
+  messages.
+- Bug fix; crash or message corruption when either writing a message either when the
+  Outgoing folder was displayed, or the message was a followup/reply/edit of a message
+  already in Outgoing!
+- Bug fix; if editing a message that had a text/plain or text/html attachment, the
+  it wouldn't get put in the Attachments list, and instead you just got the encoded
+  base64 text in the main edit window.
+
+New for version 1.50: (16.3.2)
+- New 'Join Messages' option (under 'Messages' menu) which joins the selected messages
+  together - can be used for multiple-message binaries.
+- Support for yencoded attachments (see http://www.yenc.org ) (CRC checking isn't done
+  yet, and multipart messages is rather basic atm).
+- New Killfile options - can choose to match on messages that don't contain the text
+  in a header; can choose to mark as Important instead of deleting the message.
+- New 'Kill' options to set up a killfile for messages from a particular server
+  (based on the Message-ID), and from the NNTP-Posting-Host.
+- Newsgroup folders will have their AmigaDOS comment set to what you enter the
+  description field as.
+- Option to Quit without being asked for confimation.
+- Icons supplied for the toolbar (in newscoaster_b.lha only - thanks to Jules for the
+  currently supplied set; more will be supplied in future versions, meanwhile visit
+  http://newscoaster.tripod.com/download.html to find some more).
+- Bug fix; problems when the message 'View' window is viewing messages from a group
+  different to the currently selected one (messages weren't getting marked as Read
+  etc).
+
+New for version 1.49: (27.1.2 - *BETA*)
+- Toolbar is now provided with 'Toolbar' MUI class. No graphical icons are currently
+  provided however - please send me some:) (they should be located in the 'icons'
+  folder, under the names "main.toolbar" and "main_G.toolbar" - see toolbar.mcc docs
+  for more details).
+- Improved performance on 'threaded view'.
+- Post immediately option finally returns for writing messages.
+- Bug fix; disposing MUI objects from a hook called with such an object is not a good
+  idea.. (also before some objects weren't getting freed at all).
+- Bug fix; couldn't abort on moving/copying/undeleting messages.
+
+New for version 1.48: (12.12.1 - *BETA*)
+- When downloading a message body (online mode), if the server claims the body is not
+  available, try again using the article number instead of the messageID (this fixes
+  the curious behaviour where NewsCoaster says a message is no longer available, even
+  though you only just downloaded the header).
+- New option to not display From/Subject of messages when downloading news.
+- Don't display message about groups being downloaded into a file if checking for new
+  newsgroups, and none are found.
+- Minor improvements to index reading/writing.
+- Bug fix; enforcer hit when opening the View Message window.
+- Bug fix; if messages that you hadn't downloaded bodies for appeared in a search
+  result, and then you fetched the body, clicking to read the message in the search
+  window would result in NewsCoaster fetching the body again.
+- Bug fix; couldn't cope with messages that didn't have spaces between messageIDs on
+  the References header line.
+- Bug fix; ARexx command SETFOLDERBYNAME was rereading index when that folder was
+  already being displayed.
+- Bug fix; adding/deleting or changing the order of newsgroups whilst downloading could
+  cause silly problems like checking one group twice, or not checking a group at all.
+
+New for version 1.47: (5.12.1 - *BETA*)
+- Find Text option for the View window (at long last!)
+- Choose which columns to display for the message list and search window ('Lists' under
+  Program Settings).
+- Sorting of messages in search window results (click on a column, as with the main
+  messages window).
+- Search window updates better to reflect changes to displayed messages (eg, if a
+  message is deleted it will be removed, or if moved to another folder you can still
+  display it).
+- Popup "help bubble" for message list displays info. on the currently selected
+  message.
+- Popup "help bubble" for group list displays info. on the currently displayed group.
+- Various minor MIME and message parsing improvements/fixes.
+- More sensible sorting on statistics list for "By Person" (ignores quotes, etc).
+- Bug fix; leaving stray ascii '0's in message text when saving/viewing the raw text of
+  the entire message, that weren't in the original message.
+- Bug fix; downloading body of messages in 'deleted' (or outgoing/sent if you decided
+  to copy them there..) didn't work.
+- Bug fix; sizes of some attachments in list were one byte too big.
+- Bug fix; was marking all uuencoded files as "text/plain" - should work out MIMEType
+  from filename extension.
+- Bug fix; new killfiles entered wouldn't work until NewsCoaster was restarted.
+- Bug fix; clicking sort messages by size resulted in sorting by number of lines in
+  v1.46.
+
+New for version 1.46: (27.11.1 - *BETA*)
+- Groups Manager menu option - displays the groups manager for the default newsserver.
+- Switch back to storing temporary files on disk, so as to not waste RAM; will make the
+  location an option in future.
+- New 'Lines' column.
+- Bug fix; if the user aborts whilst downloading the message body, should not delete
+  the message header!
+
+New for version 1.45: (21.11.1 - *BETA*)
+- Option (on by default) to delete message header automatically if you try to download
+  the body and it's no longer available (ie, in online mode).
+- New 'View Header' menu option under 'Messages' which will display the header; if
+  you haven't yet downloaded the body for the message, it won't attempt to do so.
+- If mime type is multipart/alternative, still list all parts on the attachments page.
+- Fix some problems when/when not to append .sig; also the first .sig is used as the
+  default when creating a new message that isn't initially to any specified group.
+- Store temporary files in RAM: instead of the newscoaster folder.
+- Bug fix; if name of uuencoded file had a space in it, only the first word would be
+  used as the default filename when you saved it.
+- Bug fix; possible illegal overwriting of memory when some parts of code dealt with
+  messages with long lines.
+- Bug fix; if the system crashes/resets whilst downloading, we should make sure that
+  next time we download for the group, we switch to checking for message duplicates
+  again (and do so until we're up to date with the group again).
+- Bug fix; illegal memory accessing when viewing messages with attachments!
+- Bug fix; quoted-printable decoding wasn't working properly.
+- Bug fix; if appearance type was set to 'Plain Text', newly opened messages were still
+  displayed in 'Email Format'.
+
+New for version 1.44: (11.11.1 - *BETA*)
+- Improved speed of reading in the newsgroups list to the Groups Manager.
+- Got rid of 'Write List' and 'Sort List' options from Groups Manager; groups are now
+  sorted by default before being displayed.
+- New 'System Information' menu option which outputs a text file containing some
+  information about your system - useful to send to me when reporting a bug.
+- Bug fix; Security Hole - escape characters are now stripped from downloaded text (see
+  http://www.abraxis.com/SA-2001-11-08.html for more details).
+- Bug fix; 'Previous in Thread' option didn't work in threaded view mode.
+- Bug fix; the 'Export' menu option on the View Message window was opening the old
+  version of the export message code.
+- Bug fix; When downloading bodies of messages (online mode) that were very small, part
+  of the "X-NewsCoaster-Flag-Online: yes" text would appear in the message.
+- Bug fix; using 'View/Save UUEncoded Attachment' then meant using 'View/Save
+  Attachment' on the message would stop working, until you reopened the window.
+- Bug fix; Groups Manager wasn't displaying 'y' or 'n' flag to indicate moderation
+  status of group.
+
+New for version 1.43: (10.11.1 - *BETA*)
+- When downloading, only read in indices of a group if we actually need to check
+  messages for duplicates.
+- Improved performance when checking messages against killfile whilst downloading.
+- Bug fix; possible stupid infinite loop when downloading message bodies (online mode)
+  in v1.42.
+- Bug fix; menu option 'Mark as Normal/Important' didn't write changes to disk!
+
+New for version 1.42: (6.11.1 - *BETA*)
+- Possible minor speed improvements.
+- Uninlined a function since it seemed to be confusing compiler.
+- Bug fix; killfile was working incorrectly in v1.41!
+
+New for version 1.41: (4.11.1 - *BETA*)
+- New menu option to delete all read messages in a group.
+- New menu option to select all read or unread messages in a group.
+- Menu option when viewing messages to toggle between some/all headers.
+- Group name shown in bold if it contains unread messages.
+- 'Archive Group' now exports in a standard mailbox format.
+- Faster copying/moving/deleting.
+- Slight speed improvement for 'Statistics'.
+- Minor speed improvement when logging is not enabled.
+- Bug fix; didn't jump to first unread message in 'threaded' view.
+- Bug fix; underestimated cps readout (particularly in 'online' mode).
+- Bug fix; various problems when downloading in online mode.
+
+New for version 1.40: (16.7.1 - *BETA*)
+- Display author/subject of messages when downloading.
+- Bug fixes to do with MIME type popups.
+- Bug fix; hang when downloading some (rare) messages.
+
+New for version 1.39: (29.6.1 - *BETA*)
+- Rewritten message parsing routines - now should cope with some rare MIME messages
+  properly, that before did not display.
+- Bug fix; when displaying messages found in a search.
+
+New for version 1.38: (23.4.1 - *BETA*)
+- Changing of message flags (if you read an unread message, or mark/unmark as
+  important) gets written to the index straight away (and much more quickly).
+- Bug fix; up/downloading no longer goes slow in WinUAE v0.8.8r8 onwards (and possible
+  minor speed improvements for older versions and real Amigas too).
+
+New for version 1.37 (19.4.1 - *BETA*)
+- New menu option "Change Date To Current" - changes dates of selected outgoing
+  messages to the current date.
+- 'User Info' no longer nags you to register:)
+- NewsCoaster now warns if you reply to an old message (>90 days old).
+- Bug fix; messages sometimes didn't thread properly
+- Bug fix; 'standard' icon had stack set only to 40000 bytes (and wasn't even a
+  standard icon..)
+- Bug fix; 'threaded' messages view displayed random characters in the list.
+
+New for version 1.36 (21.1.1 - *BETA*)
+- Total number of messages, and number of unread messages displayed in titlebar.
+- Bug fix; enforcer hit when messages with long subject lines were marked as
+  'Important'
+- Bug fix; messages didn't thread if the references line spilled over to the next line.
+- Bug fix; timezone ignored when sorting messages in v1.35.
+- Bug fix; hang if downloading message with ASCII 0 char (rare).
+- Bug fix; various minor memory leaks.
+- Gone back to pre-v1.33 method of reading indices (slower, but hopefully more stable)
+
+New for version 1.35 (3.12.00 - *BETA*)
+- Current directory is remembered on ASL requesters.
+- 'Save' menu option when writing messages to save the message without closing the
+  window.
+- If you are writing messages and quit the program, you will be asked if you wish to
+  save those messages.
+- Rest of application goes 'to sleep' when showing certain windows (eg, asking to
+  select a newsgroup to move/copy to).
+- Bug fix; it was possible to edit the same message twice in v1.34.
+- Bug fix; trying to send a message without subject caused message to cancel in v1.34.
+- Bug fix; signatures cycle gadget didn't work in v1.34.
+- Bug fix; references got lost in v1.34 after saving an edited message.
+- Bug fix; possible illegal memory access when reading/writing indices
+
+New for version 1.34: (14.11.00 - *BETA*)
+- Multiple 'Write' Windows.
+- Things don't get so 'sluggish' when downloading.
+- 'Get Groups' and 'Get New Groups' menu items return (they download for the default
+  newsserver).
+- Group Manager behaves more sensibly; writing and redownloading group list refers to
+  the newsserver whose groups you are currently viewing.
+- Bug fix; 'Abort' didn't work when importing messages.
+- Bug fix; 'permanently deleting' all messages in a group sometimes would take ages or
+  wouldn't work.
+- Bug fix; if you aborted when downloading a message body (online viewing), downloading
+  any more gave 'No Longer Available' errors, until you reconnected to the newsserver.
+- Bug fix; memory leak and possible illegal memory access when cancelling a message.
+- Possible bug fixes for crashes on some systems?
+
+New for version 1.33: (8.10.00 - *BETA*)
+- Multiple newsservers.
+- Significantly faster index reading (*much* faster reading when downloading, searching
+  etc).
+- Faster writing of indices.
+- Doesn't delay for so long when you finish writing a message.
+- Marking messages as Important/Normal in the 'View' window is much quicker.
+- NListtree.mcc used for 'tree' views instead of Listtree.mcc (still a bit buggy
+  though).
+- HTML only messages are converted to text.
+- Deleting all online messages is quicker.
+- 'Sv: ' recognised as meaning 'Re: '.
+- Recognises messages with repeated 'Re :' or 'Sv: ' at start, and treats them as
+  having the same subject where relevant (eg, sorting, searching).
+- Remembers setting for message viewing ('Email Format' or 'Plain Text').
+- If a folder doesn't contain an index file for whatever reason, a new (empty) one is
+  created.
+- Toolbar buttons no longer 'flicker' between enabled/disabled.
+- Other minor speed improvements.
+- Bug fix; 'Permanently Delete' submenu disabled when it shouldn't have been.
+- Bug fix; permanently deleting all messages in all newsgroups didn't work.
+- Bug fix; can abort downloading whilst halfway downloading a message (before
+  NewsCoaster would only abort between messages, oops).
+- Bug fix; NewsCoaster hanged when downloading message with empty body.
+- Bug fix; crashed when replying to messages with subject line > 1024 chars.
+- Bug fix; downloading online message bodies had stopped working
+- Bug fix; if the last message on a newsgroup was killed/duplicate/not available, then
+  NewsCoaster would try to download it each time you went to fetch news (whilst it was
+  still the last).
+- Bug fix; related to composing messages with attachments.
+- Bug fix; on rare occasions, part of header would appear in the body section.
+
+New for version 1.32: (18.6.00)
+- Can now specify alternative name and/or email address for each newsgroup
+  individually.
+- Option to delete all 'online' messages that you haven't yet downloaded the body for.
+- Can mark message as Important/Normal from the View window menus.
+- Option to 'Cancel' messages
+- Can connect to newsserver on any port (not just 119).
+- When choosing to edit a message, you don't see the text formatting taking place
+- Sender as well as Subject displayed on message window titles.
+- Bug fix; on very rare posts, downloading would hang.
+- Bug fix; downloading message bodies (online mode) failed on rare occasions.
+- Fixed various (minor) stupid bugs.
+- Please note my new email address mdwh2@cheerful.com; mdwh2@cam.ac.uk will not work
+  after 17 July!
+
+New for version 1.31: (27.05.00)
+- Bug fix; killfile wasn't working in v1.30!
+
+New for version 1.30: (8.5.00)
+- Customised attributation line
+- When exporting, ascii 13 characters no longer appear in header like they did in v1.29
+- If folders have somehow been deleted on hard disk, but not in NewsCoaster, they are
+  now automatically recreated on startup
+- Article ID displayed in status when messages are killed/duplicates
+- Patch introduced for prefs bug (see known bugs, above)
+- Bug fix; signatures were getting lost!
+- Bug fix; possible small problem when downloading messages online
+- Bug fix; bugs in 'Update Groups'
+- Bug fix; if you deleted messages with 'Del/Next' on a View window, and another View
+  window was open displaying the same message, it didn't get closed.
+- Bug fix; multi-line subjects were trunctuated if they contained a ':'
+
+New for version 1.29: (18.4.00)
+- Faster downloading!
+- Bug fix; the text on the View window 'Previous' button had disappeared!
+
+New for version 1.28: (16.4.00)
+- Option to disable confirmation requester when deleting messages
+- 'Write grouplist' on the groups manager is now disabled if viewing new newsgroups!
+- Downloading new groups doesn't display list if no new groups are found
+- Bug fix; newlines were being placed into the logfile when logging was disabled
+
+New for version 1.27: (17.02.2000)
+- View windows now have their own menu
+- Rot13 decoding menu option when viewing messages (req. TextEditor.mcc v15.7)
+- Can export an author's name/email address to YAM's addressbook
+- Can optionally specify an 'Organization'
+- Options are now 'disabled' a lot more when they aren't available (as opposed to
+  displaying a 'you can't do this' requester
+- Downloading message bodies whilst downloading/uploading other messages is now allowed
+- You can now edit and create folders whilst downloading/uploading
+- You can now read messages, etc, when downloading news in 'online' mode
+- 'Fetch New Groups' now displays a list of the new groups
+- ARexx commands added for fetching and sending news
+- New 'Advanced Settings' option for newsgroups; provides option to automatically add
+  an 'Approved:' header, for newsgroup moderators
+- Bug fix; 'Previous in Thread' didn't always work
+- Bug fix; incorrect charset / encoding specified when using ascii characters > 127
+- Bug fix; message not quoted when followingup in rare cases
+- Bug fix; changing the ordering of the folder list whilst downloading messages caused
+  problems
+- Bug fix regarding MIME viewer preferences
+- Bug fix; copying messages to the same folder now works properly (ie, duplicates them)
+
+New for version 1.26: (6.2.00)
+- Faster downloading (possibly up to 35% or more, though this is on a fast connection -
+  I suspect modems will experience smaller increases)
+- Downloading group list is much faster (about 25 times faster on my very fast
+  connection - modems will experience smaller increases)
+- Multiple view windows! (must be enabled from Prefs if upgrading from older version)
+  (they also behave more sensibly, eg if you switch to a different folder, you can
+  read from the old folder by doing Prev/Next on the view window)
+- Doubleclick on a message in the search window immediately opens the message without
+  need to change the current folder
+- Option to read timezone from Locale preferences
+- 'Shortcuts' removed on the requesters for Permenant Deleting of all messages (either
+  in one or all groups) - just to be safe!
+- Folder list displays whether the newsgroup is online or offline reading
+- Priority is set to -2 when downloading to try to avoid slowdown of any other programs
+  that are running (if not already lower)
+- Bug fix; the 'x-no-archive : yes, only if following up to a message with that header'
+  didn't work (it never put the header in)
+- Bug fix; some SMTP servers require a correct email address to send from - you can now
+  specify this in the Preferences
+
+New for version 1.25: (23.1.00)
+- When downloading news, searching, performing statistics, etc, the currently viewed
+  folder no longer changes (this also makes things faster)
+- Messages can now be viewed as 'threads' in a tree - note this is experimental and
+  doesn't work too well atm.. ('View' menu under 'Messages')
+- Doubleclicking works on the 'tree' view for the grouplist. Drag 'n' drop sorting also
+  works (but not too well atm)
+- Messages marked as 'important' aren't deleted by the 'auto delete after x days'
+  option
+- Included an updated version of TextEditor.mcc in the archive (though this updated
+  isn't required, v15.5 works fine still)
+- 'Cancel' buttons have shortcut changed from 'c' to 'a', since Amiga-c is copy in
+  string gadgets of course
+- Bug fix; aborting 'Update Index' / 'Update All Indices' now works again
+- Bug fix; 'Update All Indices' read from each group in turn, but each time overwrote
+  the index file of the first group
+- Bug fix; v1.24 would truncuate messageIDs at 64 chars when sticking in the
+  'References' line on a followup.
+- Bug fix; group list was sorted alphabetically automatically upon loading
+- Bug fix; message count wasn't updated immediately when downloading news, or after
+  composing a message
+- Bug fix; 'permenant delete' displayed errors (when there weren't any)
+- Bug fix; index wasn't updated properly if followingup a message in 'outgoing' (not
+  that you would, but..)
+- Bug fix relating to headers which took more than one line
+
+New for version 1.24: (16.1.00)
+- Groups list can now be viewed either as a list or a tree (the latter is fairly simple 
+atm, though - doubleclicks and dragsorting don't work), go to 'View' menu under 
+'Newsgroups'
+- Sorting type of messages is now saved
+- Option to trace back through the thread (will not function on messages 
+downloaded with a version previous to v1.24)
+- Undelete option (will not function correctly on messages downloaded with a 
+version previous to v1.24)
+- Deleting messages is quicker
+- Option to 'permanently delete' messages (messages are deleted straight away 
+rather than copied to 'deleted', but this method is much quicker) - either selected 
+messages, all messages in a group, or all messages in all groups
+- Option to mark messages as 'Important' - these messages are highlighted
+- Messages that have been downloaded in online mode, and the body has not yet 
+been downloaded, are marked with a '*'.
+- When downloading, status window displays newsgroup currently being 
+downloaded
+- Bug fix; if the body of a message wasn't found, the file opened for message was 
+not deleted, and left 'Open'
+- Reports that some other newsreaders interpret 2 digit dates as being in the 1900s 
+- NewsCoaster now outputs 4 digit years (NewsCoaster has itself always assumed 
+two digit dates of less that 78 to be in the 2000s).
+
+New for version 1.23:
+- Multiple users allowed, each with their own location for storing news, and 
+optional password protection
+- Specify different newsservers for posting and reading
+- Last used settings for expire type/time on killfiles are remembered and used as 
+defaults
+- Toolbar buttons are disabled when appropriate (and some menuitems too)
+- Bug fix; hang whilst parsing dates
+
+New for version 1.22:
+- Index reading *much* faster (about 2.5-3.0 times:)
+- Sizes of messages displayed (only for messages downloaded from now on)
+- New Logging Option - virtually all function calls logged to 'newscoaster.log' if you 
+wish (shouldn't be used in general, but if you are experiencing bugs/crashes, 
+sending a log will make things a lot easier for me:)
+- Bug fix; dates were parsed incorrectly in rare circumstances
+- Bug fix; enforcer hit when an empty message is composed
+
+New for version 1.21:
+- Bug fix; random characters sometimes appeared at end of messages written by the 
+user
+
+New for version 1.20:
+- Wordwrapping on quoted text is set to a longer line length than on new text
+- A Killfile can be set to expire a certain number of days either since being created, 
+or since it was last used
+- Killfiles editor now works a bit more intuitively
+- Killfiles editor displays creation and last used dates of each killfile
+- Option to archive newsgroup messages into a single text file
+- More resistance to crashes (before if there was a crash between having 
+downloaded, and before quitting, vital information would not get saved meaning 
+next time you downloaded, the old messages would be overwritten! There were 
+other similar problems.
+  Now this information is saved immediately after downloading, and other vital 
+places.
+  Additionally, even if something still messes up, messages should now never 
+overwrite existing files.
+- Slight improvement in speed when downloading bodies of articles in online mode
+- Repeated clicking on column headings switches order of sorting
+- Bug fix; crashes related to online viewing
+- Bug fix; autorewrap sometimes didn't work correctly
+- Bug fix; the line below 'References:' in the header was ignored in some 
+circumstances
+- Bug fix; headers which have line breaks in are now parsed correctly
+- Bug fix; enforcer hit when downloading news
+- Other minor improvements
+
+New for version 1.19:
+- Faster downloading! (Possibly up to 2x speed on a fast connection)
+- Online viewing - NB This is *EXPERIMENTAL* and may have a few bugs in it..
+- Option to discard messages after a certain number of days
+- Select All/None/Toggle/With From/With Subject option
+- Rot13 encoding option (decoding to follow..)
+- Other minor improvements and  bug fixes
+
+New for version 1.18:
+- Bug fixes; under some circumstances, NewsCoaster would crash upon downloading
+  certain messages
+- Other minor improvements and bug fixes
+
+New for version 1.17:
+- New 'supersede message' item, to overwrite your old posts on a newsserver
+- New statistics feature!
+- Better multithreading when download news; items appear as soon as they are
+  downloaded; you can delete messages whilst downloading too
+- Option to download news for the currently selected newsgroup
+- Very simple ARexx port (more commands to come!)
+- Doubleclick on URLs to launch in a browser (via external ARexx script)
+- Can now locate news messages elsewhere (ie, doesn't have to be in
+  NewsCoaster folder)
+- Copying to the same folder (ie, to duplicate message) is now allowed
+- Slightly faster moving/copying/deleting routines
+- Hopefully a bug fix in moving/deleting for some systems
+- Other minor improvements
+
+New for version 1.16:
+ - Configurable colours for Message View window :)
+ - Can configure which headers are to be displayed
+ - Toolbar on main window
+
+New for version 1.15:
+ - Bug fix - corrupted messages downloaded when a killfile was used, or messages 
+with
+   duplicate messageIDs found
+ - Bug fix - dates may have been written incorrectly when posting messages using a
+   machine with non-English language
+
+New for version 1.14:
+ - Faster downloading.
+ - Improved searching - in headers, body or entire message.
+ - New option to add to the killfile based on a message (eg, kill on author, 
+responses,
+   etc), to make creating new killfiles much easier and quicker.
+ - Option to reset article pointers in newsgroups.
+ - Option to read in text from a file into the message you are writing.
+ - Option to read in signature from file.
+ - Bug fix - duplicate messageIDs weren't always being ignored.
+ - Bug fix for dates on machines with non-English languages (you must select 
+'Update
+   Index' on you newsgroups for this to take effect on old messages).
+ - Aborting during move/copy/delete messages now works.
+ - Option to update all indices. You can also abort updating an index, too.
+ - Faster moving/deleting routines.
+ - Other minor bug fixes and improvements.
+
+New for version 1.13 (7.8.99):
+ - Bug fix - when downloading from groups, in rare cases the article ID information 
+was parsed incorrectly.
+ - Group list is now not automatically sorted, allowing you to rearrange them as 
+you wish (though you can do a sort if you wish)
+ - Bug fix - now when you change the ordering of the groups list, NewsCoaster 
+doesn't reread in the messages for groups unnecessarily.
+ - Faster copying/moving/deleting routines.
+
+Version 1.12 (2.8.99):
+ - New killfile - will detect a number given as the last word in Subject, eg, 'Make 
+lots of money 1206' Such numbers usually indicate an advert or other off-topic 
+announcement. You can now tell NewsCoaster to avoid these (when the number is 
+100 or greater).
+ - Recognises '|' as a quoting character (before was just '>', ':' and '!')
+ - Bug fix when copying from a view window and pasting into a write window
+
+New for Version 1.11 (29.7.99):
+ - Added 'Deleted' folder
+ - Added button on View window to delete current message and move onto next 
+message
+ - When a new message is created, the folder no longer changes to 'Outgoing' (thus
+   speeding things up, too)
+ - Move/Copy doesn't require a folder change to the destination folder (speeding up
+   things again)
+
+Version 1.1 (23.7.99):
+ - Email SMTP support! You can now reply to authors by email aswell as or instead 
+of
+   following up messages
+ - Search facilities
+ - 'Pop up' window on Write window to easily add/remove newsgroups to post and 
+followup to
+ - Recognition of 'Followup-To: poster'
+ - Move and Copy messages to any folder
+ - Colours for quoted text have been set to something more sensible (no pink! -
+   configurable colours will hopefully follow shortly..)
+ - Fixed Authentification bug
+ - Fixed Move bugs when sending messages
+ - Changed shortcut of 'Close Window' on View window from 'c' to 'w', so you can 
+copy
+   text! (oops..)
+ - Left and right cursor keys now move between messages on View window
+
+Version 1.01 (14.7.99) - Fixed fatal MIME Prefs bug, faster index reading times, 
+removed 'welcome' requester for registered users
+
+Version 1.0 (6.7.99) - First public non-beta release
+
+Beta History
+
+ 4.7.99: Fixed problems with MIME Types preferences, added Amigaguide 
+documentation,
+         fixed fatal bug in View window, made other minor changes
+ 2.7.99: Fixed date problems on machines using non-English languages, improved
+         attachment features, removed fatal bug (doubleclicking on view message 
+window)
+12.6.99: Stack increased to fix crashing bug (whoops)
+11.6.99: Rewritten 'Fetch News' routine - should now work with all newsservers,
+         Killfile on any header, fixed multithreading when fetching news, base64
+         encoded attachments (experimental! - may contain bugs), x-no-archive 
+option
+31.5.99: NewIcons (thanks to Luca Longone) added, clearer error messages given,
+30.5.99: Too-long Header bug fixed, Number of messages displayed in groups list,
+         messages in group count
+29.5.99: Export/Followup bug removed, new 'Lines' killfile added, other bugs fixed,
+         Iconify option
+28.5.99: All Known Enforcer hits fixed, References bug fixed, .sigs bug fixed
+27.5.99: First beta release
+
+@endnode
+
+@node FUTURE "Future"
+
+To-do list for me (Pavel Fedin):
+ - Full external mailer support.
+ - Source code adaptation for SAS/C compiler (STORM C is @{u}terribly@{uu} slow).
+
+Unfortunately i'm short of time so i don't know if i will be able to implement
+those possibilities in a near future.
+
+The following is original to-do from Mark:
+
+A version in the near future will break compatibility with preference files, and the 'index' format. This means you'll have to setup all your configuration again, and if you want to access news messages from a previous version, they'll have to be 'imported' in. The advantage of this however is it lets me get rid of a load of legacy rubbish. In particular:
+ - Preference files will be easily expandable in future, and have forwards and backwards compatibility.
+ - Preference files will be text files, making it feasible for me or an advanced user to edit or debug a file.
+ - Redesigned index files, to avoid the current problems where certain header fields of a message get truncuated if they are too long, in some places.
+
+Other things that I would like to appear in future versions:
+ - Multithreaded networking code. Unfortunately I have no idea about threading/tasks/processes on the Amiga, and any attempts to copy example code just results in lots of crashes :(
+ - Improved handling for binaries, in particular large binaries, multipart binaries, better yEnc support and PAR files.
+ - Improved killfiles; eg, requiring several conditions to be met, allowing the 'advert' killfile to be set per group or with other conditions, and killing if a message is posted to more than a certain number of newsgroups.
+
+And lots more...
+
+@endnode
+
+@node MUI "Additional Programs Used and MUI Readme"
+
+This application uses the following software:
+    Magical User Interface (Stefan Stuntz)
+    BetterString (Allan Odgaard)
+    NList (Gilles Masson)
+    NListtree (Carsten Scholling)
+    TextEditorc (Allan Odgaard)
+    Toolbar (Benny Nielsen)
+
+MUI Readme follows:
+
+                          This application uses
+
+
+                        MUI - MagicUserInterface
+
+                (c) Copyright 1992-97 by Stefan Stuntz
+
+
+MUI is a system to generate and maintain graphical user interfaces. With
+the  aid  of  a  preferences program, the user of an application has the
+ability to customize the outfit according to his personal taste.
+
+MUI is distributed as shareware. To obtain a complete package containing
+lots of examples and more information about registration please look for
+a  file  called  "muiXXusr.lha"  (XX means the latest version number) on
+your local bulletin boards or on public domain disks.
+
+          If you want to register directly, feel free to send
+
+
+                         DM 30.-  or  US$ 20.-
+
+                                  to
+
+                             Stefan Stuntz
+                        Eduard-Spranger-Straße 7
+                             80935 München
+                                GERMANY
+
+
+
+             Support and online registration is available at
+
+                          http://www.sasg.com/
+
+@endnode

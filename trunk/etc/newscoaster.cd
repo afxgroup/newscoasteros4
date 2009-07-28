@@ -1,0 +1,1811 @@
+; $VER: newscoaster.cd 2.0
+; Written by Pavel Fedin <sonic_amiga@rambler.ru>
+;
+; WARNING!!! This file changed so old catalogs will
+; not work with this version of NewsCoaster. New
+; catalogs are included with this version.
+;
+; If you are going to create your own catalog you must
+; set its version number to 2.
+;
+;---------------------------------------------------
+; Strings for netstuff.c:
+;
+MSG_AUTHENTICATING (//)
+Authenticating..\n
+MSG_ERROR (//)
+Error!
+MSG_OKAY (//)
+_Okay
+MSG_UNKNOWN_USER (//)
+\033cAuthentication Failed - Unknown User
+MSG_INCORRECT_PASSWORD (//)
+\033cAuthentication Failed - Incorrect Password
+MSG_IN (//)
+In!\n
+MSG_NO_TCP_STACK (//)
+\033cPlease start a\nTCP stack!
+MSG_DOWNLOADING_GROUP_LIST (//)
+Downloading Group List
+MSG_CONNECTING_WITH_SERVER (//)
+Connecting with '%s'...\n
+MSG_CANNOT_CONNECT_WITH_SERVER (//)
+\033cCannot connect with Newsserver!
+MSG_CONNECTED (//)
+Connected!\n
+MSG_CANNOT_USE_SERVER (//)
+\033cCannot use this Newsserver!\nError: %s
+MSG_CANNOT_OBTAIN_GROUPLIST (//)
+\033cCannot Obtain GroupList!\nError: %s
+MSG_FOUND_GROUPS (//)
+Found %d Groups...\n
+MSG_DATE_OF_LAST_GROUPLIST_DOWNLOAD_NOT_AVAILABLE (//)
+\033cDate of last newsgroupslist download not available!\nPlease try 'Fetch Group List' first.\n
+MSG_DOWNLOADING_NEW_GROUPS (//)
+Downloading New Newsgroups..
+MSG_CANNOT_OBTAIN_NEW_GROUPS_LIST (//)
+\033cCannot Obtain New NewsGroups List!\nError: %s
+MSG_FOUND_NEW_GROUPS (//)
+Found %d New Groups...\n
+MSG_FOUND_NEW_GROUPS_2 (//)
+\033cFound %d New Groups!\n
+MSG_GET_NEW_GROUPS (//)
+Get New Groups
+MSG_SENDING_NEWS (//)
+Sending News..
+MSG_SENDING (//)
+Sending: %s\n
+MSG_CANNOT_POST_TO_SERVER (//)
+\033cCannot post to this Newsserver!
+MSG_ERROR_2 (//)
+Error: %s
+MSG_POST_FAILED (//)
+Error - Post Failed!
+MSG_DONE (//)
+Done\n
+MSG_ABORTED (//)
+Aborted!\n
+MSG_CANNOT_OPEN_FILE (//)
+Cannot open file:\n  %s
+MSG_SENDING_EMAIL (//)
+Sending Email..
+MSG_CANNOT_CONNECT_WITH_SMTP (//)
+\033cCannot connect with SMTP server!
+MSG_CANNOT_USE_SMTP (//)
+\033cCannot use this SMTP server!\nError: %s
+MSG_CANNOT_SEND_TO_SMTP (//)
+\033cCannot send to this SMTP server!\nError: %s
+MSG_ERROR_FOR_RECIPIENT (//)
+\033cError for recipient %s:\n%s
+MSG_EMAIL_FAILED (//)
+Email Failed:\n%s
+MSG_MOVING_TO_SENT (//)
+Moving to sent..
+MSG_MOVING_TO_SENT_2 (//)
+Moving %d to sent..\n
+MSG_MESSAGE_KILLED (//)
+Message %d Killed! (%s match)\n
+MSG_MESSAGE_KILLED_ADVERT (//)
+Message %d Killed! ('Advert')\n
+MSG_MESSAGE_KILLED_DUPLICATE (//)
+Message %d Killed! (Duplicate Message)\n
+MSG_MESSAGE_KILLED_TOO_MANY_LINES (//)
+Message %d Killed! (Too Many Lines)\n
+MSG_PRESCANNING_KILLFILE (//)
+Pre-Scanning Killfile ( %d / %d )\n
+MSG_FETCH_NEWS (//)
+Fetch News
+MSG_CREATE_SOME_NEWSGROUPS (//)
+\033cPlease create some newsgroups first.\n(Select \"New Newsgroup\" from the Newsgroups menu.)
+MSG_NO_NEWS_FOR_GROUP (//)
+\033cYou have not yet downloaded news for\n%s\nDo you wish to fetch all available messages,\nor only the last 100 messages?
+MSG_DOWNLOAD (//)
+Download
+MSG_LAST_100_OR_ALL (//)
+_Last 100 Messages|_All Messages
+MSG_OLD_NEWS_IN_GROUP (//)
+\033cYou have not yet downloaded news for\n%s\nDo you wish to fetch the last %d messages,\nor only the last 100 messages?
+MSG_HOW_MANY_MESSAGES (//)
+_Last 100 Messages|L_ast %d Messages
+MSG_DOWNLOADING (//)
+Downloading..
+MSG_CONNECTING_FOR (//)
+Connecting for %s...
+MSG_DOWNLOADING_FROM (//)
+Downloading %s from %s
+MSG_SCANNING (//)
+Scanning: %s\n
+MSG_CANNOT_GET_GROUP_INFO (//)
+\033cCannot get Group information from this Newsserver\nError: %s
+MSG_NO_NEW_NEWS_FOR (//)
+No new news for %s!\n
+MSG_DOWNLOADING_ARTICLES (//)
+Downloading Articles: %d to %d\n
+MSG_READING_MSGID_HISTORY (//)
+Reading in messageID history...\n
+MSG_DOWNLOADING_2 (//)
+Downloading (1/%d) %s\n
+MSG_DOWNLOADING_3 (//)
+Downloading (%d/%d) %s\n
+MSG_DOWNLOADING_4 (//)
+Downloading (%d/%d) %s\n%s - %s
+MSG_BODY_NOT_FOUND (//)
+BODY not found\n
+MSG_DOWNLOADNG_OF (//)
+Downloading %d of %d..\n
+MSG_DOWNLOADING_5 (//)
+Downloading...\n
+MSG_MESSAGE_IS_NO_LONGER_AVAILABLE (//)
+This message is no longer available!\n
+MSG_UNABLE_TO_OPEN_FILE (//)
+\033cUnable to open file:\n%s
+;---------------------------------------------------
+;Strings for indices.c:
+;
+MSG_INDEX_ERROR (//)
+Index Error
+MSG_INDEX_OUT_OF_DATE (//)
+Out of date index file format!\nPlease select 'Update Index' from the\nNewsgroups menu
+MSG_READING_INDEX (//)
+Reading Index
+MSG_INDEX_FORMAT_CHANGED (//)
+Index Format Changed - Please wait..
+MSG_WRITING_INDEX (//)
+Writing Index..
+MSG_NEW_INDEX_FORMAT (//)
+New Index Format - Updating..
+MSG_INVALID_INDEX (//)
+Error - Not a valid index file!\n
+MSG_CANNOT_OPEN_INDEX (//)
+Couldn't open index file!
+MSG_CANNOT_CREATE_INDEX (//)
+Couldn't create new index file!
+;---------------------------------------------------
+;Strings for main.c:
+;
+;WARNING!!! Do not change the order of following lines.
+;They are read in sequence in InitXXX() functions
+;
+MENU_PROJECT (//)
+Project
+MENU_FETCH_NEWS (//)
+Fetch News
+MENU_FETCH_THIS_GROUP (//)
+Fetch News for this Group
+MENU_SEND_NEWS (//)
+Send News
+MENU_FETCH_GROUP_LIST (//)
+Fetch Group List
+MENU_FETCH_NEW_GROUPS (//)
+Fetch New Groups
+MENU_DISCONNECT_FROM_SERVER (//)
+Disconnect From Newsserver
+;
+;WARNING!!! The following string was removed in version 1.61.
+;MENU_USER_INFO (//)
+;User Info...
+;
+MENU_ABOUT_NEWSCOASTER (//)
+About NewsCoaster...
+MENU_ABOUT_MUI (//)
+About MUI...
+MENU_SYSTEM_INFORMATION (//)
+System Information...
+MENU_ICONIFY (//)
+Iconify
+MENU_QUIT (//)
+Quit
+MENU_NEWSGROUPS (//)
+Newsgroups
+MENU_NEW_NEWSGROUP (//)
+New Newsgroup...
+MENU_EDIT_NEWSGROUP (//)
+Edit Newsgroup...
+MENU_ADVANCED_SETTINGS (//)
+Advanced Settings...
+MENU_DELETE_NEWSGROUP (//)
+Delete Newsgroup
+MENU_ARCHIVE_NEWSGROUP (//)
+Archive Newsgroup...
+MENU_GROUPS_MANAGER (//)
+Groups Manager...
+MENU_VIEW (//)
+View
+MENU_LIST (//)
+List
+MENU_TREE (//)
+Tree
+MENU_SORT_GROUPS (//)
+Sort Groups
+MENU_SEARCH_GROUPS (//)
+Search Groups...
+MENU_GROUP_STATISTICS (//)
+Group Statistics...
+MENU_RESET_GROUP (//)
+Reset Group Article Pointer 
+MENU_RESET_ALL_GROUPS (//)
+Reset All Groups' Pointers 
+MENU_UPDATE_GROUPS (//)
+Update Groups
+MENU_UPDATE_INDEX (//)
+Update Index
+MENU_UPDATE_ALL_INDICES (//)
+Update All Indices
+MENU_IMPORT_MESSAGES (//)
+Import Messages...
+MENU_MESSAGES (//)
+Messages
+MENU_VIEW_2 (//)
+View
+MENU_FLAT (//)
+Flat
+MENU_THREADED (//)
+Threaded
+MENU_READ_MESSAGE (//)
+Read Message
+MENU_EDIT_MESSAGE (//)
+Edit Message...
+MENU_SUPERSEDE_MESSAGE (//)
+Supersede Message...
+MENU_CANCEL_MESSAGE (//)
+Cancel Message
+MENU_DELETE_MESSAGE (//)
+Delete Message
+MENU_UNDELETE_MESSAGE (//)
+Undelete Message
+MENU_EXPORT_MESSAGE (//)
+Export Message
+MENU_VIEW_HEADER (//)
+View Header
+MENU_MOVE_MESSAGE (//)
+Move Message...
+MENU_COPY_MESSAGE (//)
+Copy Message...
+MENU_ADD_TO_KILLFILE (//)
+Add to Killfile...
+MENU_EXPORT_ADDRESS (//)
+Export Address to YAM
+MENU_POST_NEW_MESSAGE (//)
+Post New Message
+MENU_FOLLOWUP_MESSAGE (//)
+Followup Message...
+MENU_REPLY_VIA_MAIL (//)
+Reply via Email...
+MENU_FOLLOWUP_AND_REPLY (//)
+Followup and Reply...
+MENU_PERMANENTLY_DELETE (//)
+Permanently Delete
+MENU_SELECTED_MESSAGES (//)
+Selected Messages
+MENU_ALL_READ (//)
+All Read Messages
+MENU_ALL_ONLINE (//)
+All Online Headers
+MENU_ALL_DUPLICATES (//)
+All Duplicates
+MENU_ALL_IN_GROUP (//)
+All in this Group
+MENU_ALL_MESSAGES (//)
+ALL Messages
+MENU_SELECT (//)
+Select
+MENU_ALL (//)
+All
+MENU_NONE (//)
+None
+MENU_TOGGLE (//)
+Toggle
+MENU_FROM_POSTER (//)
+All from this poster
+MENU_THIS_SUBJECT (//)
+All with this subject
+MENU_ALL_READ_2 (//)
+All Read Messages
+MENU_ALL_UNREAD (//)
+All Unread Messages
+MENU_MARK_AS (//)
+Mark as
+MENU_UNREAD (//)
+Unread
+MENU_READ (//)
+Read
+MENU_HELD (//)
+Held
+MENU_QUEUED (//)
+Queued
+MENU_NORMAL (//)
+Normal
+MENU_IMPORTANT (//)
+Important
+MENU_CHANGE_DATE__TO_CURRENT (//)
+Change Date To Current
+MENU_DOWNLOAD_BODY (//)
+Download Body
+MENU_JOIN_MESSAGES (//)
+Join Messages...
+MENU_PREFERENCES (//)
+Preferences
+MENU_PROGRAM_SETTINGS (//)
+Program Settings...
+MENU_KILLFILE (//)
+KillFile...
+MENU_USERS (//)
+Users...
+MENU_CHANGE_PASSWORD (//)
+Change Password...
+MENU_MUI_SETTINGS (//)
+MUI Settings...
+;
+; Toolbar
+;
+TBAR_READ (//)
+_Read
+TBAR_READ_HELP (//)
+Read the selected message
+TBAR_EXPORT (//)
+E_xport
+TBAR_EXPORT_HELP (//)
+View or Save parts of the\nselected message\n(attachments)
+TBAR_MOVE (//)
+_Move
+TBAR_MOVE_HELP (//)
+Move the selected message(s)\nto another folder
+TBAR_COPY (//)
+_Copy
+TBAR_COPY_HELP (//)
+Copy the selected message(s)\nto another folder
+TBAR_DELETE (//)
+_Delete
+TBAR_DELETE_HELP (//)
+Delete the selected\nmessage(s)
+TBAR_KILL (//)
+_Kill
+TBAR_KILL_HELP (//)
+Add a new killfile based on\nthe selected message
+TBAR_POST (//)
+_Post
+TBAR_POST_HELP (//)
+Post a new message
+TBAR_FOLLOWUP (//)
+_Followup
+TBAR_FOLLOWUP_HELP (//)
+Followup the selected\nmessage (to the newsgroup)
+TBAR_EDIT (//)
+_Edit
+TBAR_EDIT_HELP (//)
+Edit the selected message
+TBAR_FETCH (//)
+Fetch
+TBAR_FETCH_HELP (//)
+Fetch news
+TBAR_SEND (//)
+Send
+TBAR_SEND_HELP (//)
+Send news
+TBAR_SEARCH (//)
+Search
+TBAR_SEARCH_HELP (//)
+Search for a message
+TBAR_SETTINGS (//)
+Settings
+TBAR_SETTINGS_HELP (//)
+Program settings
+TBAR_KILLFILE (//)
+Killfile
+TBAR_KILLFILE_HELP (//)
+View and edit the killfile
+;
+; String arrays
+;
+MSG_ACCOUNTS (//)
+Accounts
+MSG_SERVERS (//)
+Servers
+MSG_WRITE (//)
+Write
+MSG_READ (//)
+Read
+MSG_LISTS (//)
+Lists
+MSG_MIME (//)
+MIME
+MSG_DATEFORMAT_1 (//)
+DD-MMM-YY
+MSG_DATEFORMAT_2 (//)
+DD-MM-YY
+MSG_NONE (//)
+None
+MSG_SIGNATURE_1 (//)
+Signature 1
+MSG_SIGNATURE_2 (//)
+Signature 2
+MSG_SIGNATURE_3 (//)
+Signature 3
+MSG_SIGNATURE_4 (//)
+Signature 4
+MSG_SIGNATURE_5 (//)
+Signature 5
+MSG_SIGNATURE_6 (//)
+Signature 6
+MSG_SIGNATURE_7 (//)
+Signature 7
+MSG_SIGNATURE_8 (//)
+Signature 8
+MSG_NONE_2 (//)
+None
+MSG_SELECTED (//)
+Selected
+MSG_FULL (//)
+Full
+MSG_DONT_DISCARD_MESSAGES (//)
+Don't Discard Messages
+MSG_DISCARD_AFTER_X_DAYS (//)
+Discard After x Days:
+MSG_OFFLINE_READING (//)
+Offline Reading
+MSG_ONLINE_READING (//)
+Online Reading
+MSG_NEWSSERVER_1 (//)
+Newsserver 1
+MSG_NEWSSERVER_2 (//)
+Newsserver 2
+MSG_NEWSSERVER_3 (//)
+Newsserver 3
+MSG_NEWSSERVER_4 (//)
+Newsserver 4
+MSG_NEWSSERVER_5 (//)
+Newsserver 5
+MSG_NEWSSERVER_6 (//)
+Newsserver 6
+MSG_NEWSSERVER_7 (//)
+Newsserver 7
+MSG_NEWSSERVER_8 (//)
+Newsserver 8
+MSG_GMT_M12 (//)
+GMT-12
+MSG_GMT_M11 (//)
+GMT-11
+MSG_GMT_M10 (//)
+GMT-10
+MSG_GMT_M9 (//)
+GMT-9
+MSG_GMT_M8 (//)
+GMT-8 (PDT)
+MSG_GMT_M7 (//)
+GMT-7 (MDT)
+MSG_GMT_M6 (//)
+GMT-6 (CMT)
+MSG_GMT_M5 (//)
+GMT-5 (EST)
+MSG_GMT_M4 (//)
+GMT-4 (ADT)
+MSG_GMT_M3 (//)
+GMT-3
+MSG_GMT_M2 (//)
+GMT-2
+MSG_GMT_M1 (//)
+GMT-1
+MSG_GMT (//)
+GMT (GMT)
+MSG_GMT_P1 (//)
+GMT+1 (MET)
+MSG_GMT_P2 (//)
+GMT+2 (EET)
+MSG_GMT_P3 (//)
+GMT+3
+MSG_GMT_P4 (//)
+GMT+4
+MSG_GMT_P5 (//)
+GMT+5
+MSG_GMT_P6 (//)
+GMT+6
+MSG_GMT_P7 (//)
+GMT+7
+MSG_GMT_P8 (//)
+GMT+8 (PST)
+MSG_GMT_P9 (//)
+GMT+9
+MSG_GMT_P10 (//)
+GMT+10
+MSG_GMT_P11 (//)
+GMT+11
+MSG_GMT_P12 (//)
+GMT+12
+MSG_NEVER (//)
+Never
+MSG_ALWAYS (//)
+Always
+MSG_ONLY_FOLLOWED_UP (//)
+Only if in followed up to post
+MSG_NEVER_EXPIRE (//)
+Never Expire
+MSG_EXPIRE_X_DAYS_FROM_CREATION (//)
+Expire x days from creation:
+MSG_EXPIRE_X_DAYS_FROM_USAGE (//)
+Expire x days from last usage:
+MSG_CONTAINS (//)
+Contains
+MSG_DOES_NOT_CONTAIN (//)
+Does Not Contain
+MSG_KILL (//)
+Kill
+MSG_MARK_AS_IMPORTANT (//)
+Mark As Important
+MSG_UNLIMITED_MESSAGES_PER_DOWNLOAD (//)
+Unlimited Messages per Download
+MSG_MAXIMUM_N_TO_DOWNLOAD (//)
+Maximum # of Messages to Download:
+MSG_DOWNLOAD_MESSAGES_OF_ANY_LENGTH (//)
+Download messages of any length
+MSG_SKIP_LONGER_THAN_N_LINES (//)
+Skip messages longer than this # of lines:
+MSG_FROM (//)
+From
+MSG_NEWSGROUPS (//)
+Newsgroups
+MSG_SUBJECT (//)
+Subject
+MSG_MESSAGEID (//)
+MessageID
+MSG_HEADER (//)
+Header
+MSG_MESSAGE_BODY (//)
+Message Body
+MSG_ENTIRE_MESSAGE (//)
+Entire Message
+MSG_BY_PERSON (//)
+By Person
+MSG_BY_SUBJECT (//)
+By Subject
+MSG_BY_X_NEWSREADER (//)
+By X-Newsreader
+;
+; End of InitXXX() section
+;
+MSG_MESSAGE_HELP (//)
+From: %s\nSubject: %s\nDate: %s %s\nNewsgroups: %s\nSize: %d\n# of Lines: %d\nFilename: %s%s%s%s%s\n
+MSG_UNREAD_MESSAGE (//)
+\nUnread message
+MSG_HELD_MESSAGE (//)
+\nMessage is Held
+MSG_REPLIED_MESSAGE (//)
+\nYou have replied to this message
+MSG_BODY_NOT_DOWNLOADED (//)
+\nBody not yet downloaded
+MSG_NO_MESSAGE_SELECTED (//)
+No message selected
+MSG_LAST_DOWNLOADED (//)
+\nLast Downloaded: 
+MSG_GROUP_HELP (//)
+%s\n# of Messages: %d\n# of Unread Messages: %d%s%s%s%s%s\nFolder Location: %s
+MSG_ONLINE_READING_2 (//)
+\nOnline Reading
+MSG_OFFLINE_READING_2 (//)
+\nOffline Reading
+MSG_USING (//)
+\nUsing 
+MSG_GROUP_SUBSCRIBED (//)
+\nYou are Subscribed to this group.
+MSG_NO_GROUP_SELECTED (//)
+No group selected
+MSG_ARCHIVING (//)
+Archiving..
+MSG_ARCHIVING_2 (//)
+Archiving.. (%d/%d)
+MSG_CANNOT_OPEN_FILE_TO_WRITE (//)
+Couldn't open file %s to write to.\n
+MSG_READING_TITLE (//)
+%s - Reading %s [%d messages - %d unread]
+MSG_MIME_ATTACHMENT (//)
+MIME Attachment
+MSG_UNKNOWN_ATTACHMENT (//)
+NewsCoaster is unable to determine\nthe file format of this attachment.\nPlease set it manually
+MSG_FOLDERS (//)
+Folders
+MSG_UNKNOWN_GROUP (//)
+Unknown (%d)
+MSG_FOLDER_OUTGOING (//)
+.outgoing
+MSG_FOLDER_SENT (//)
+.sent
+MSG_FOLDER_DELETED (//)
+.deleted
+MSG_SCANNING_2 (//)
+Scanning..
+MSG_SCANNING_FOUND (//)
+Scanning: %s (found: 
+MSG_SEVERE_ERROR (//)
+Severe Error!
+MSG_NOT_ENOUGH_RAM (//)
+Not enough RAM!
+MSG_SCANNING_3 (//)
+Scanning... %s\n
+MSG_DIRECTORY_TO_SCAN (//)
+Directory to Scan...
+LABEL_NEWSSERVER (//)
+Newsserver:
+LABEL_DEFAULT (//)
+Default?:
+LABEL_POST_WITH_THIS_SERVER (//)
+Post with this server?:
+MSG_LOGIN (//)
+Login
+MSG_LOGIN_FAILED (//)
+\033cLogin Failed!\nPlease try again with a correct login.
+MSG_STARTUP (//)
+Startup
+MSG_CONTINUE_OR_QUIT (//)
+_Continue|Quit
+MSG_NEWS_DIRECTORY_DOES_NOT_EXIST (//)
+\033cLogin Error!\nThe news directory for this login does not exist!\nYou may either quit and log in with a different username,\nor continue with the news directory set to 'PROGDIR:'
+MSG_PROGDIR_CANNOT_BE_ACCESSED (//)
+\033cLogin Fatal Error!\nThe news directory 'PROGDIR:' could not be accessed!
+MSG_NEWS_DIRECTORY_CANNOT_BE_ACCESSED (//)
+\033cLogin Error!\nThe news directory for this login could not be accessed!\nYou may either quit and log in with a different username,\nor continue with the news directory set to 'PROGDIR:'
+MSG_DEFAULT_FOLLOWUP (//)
+On %d, %n wrote:
+MSG_DEFAULT_FROM (//)
+Lazy Person
+MSG_CHARSET_ERROR (//)
+Charset error!
+MSG_CONTINUE (//)
+_Continue
+MSG_CHARSET_CANNOT_BE_ACCESSED (//)
+\033cThe charset specified in your configuration\n(%s) could not be accessed!\nCurrent charset is set to iso-8859-1.\nYou should check charset setting in \"Write\" page of\nprogram settings window.
+MSG_SHUTTING_DOWN (//)
+Shutting Down..
+MSG_CLOSING_SOCKETS (//)
+closing sockets..
+MSG_SAVING_PREFS (//)
+saving preferences..
+MSG_SAVING_KILLFILE (//)
+saving killfile..
+MSG_SAVING_SERVERS (//)
+saving servers..
+MSG_FREEING_MEMORY (//)
+freeing memory..
+MSG_DELETING_FILES (//)
+deleting files..
+MSG_READING_GROUP_LIST (//)
+Reading group list..
+MSG_READ_GROUPS (//)
+Read %d Groups
+MSG_SORTING_LIST (//)
+Sorting List..
+MSG_FOUND_GROUPS_2 (//)
+\033cFound %d Groups\n
+MSG_GROUP_MANAGER (//)
+Group Manager
+MSG_GROUP_LIST_DOES_NOT_EXIST (//)
+\033cThe file %s.gl does not exist!\nPlease select 'Fetch Group List' from\nthe Project Menu.
+MSG_NEW_GROUP_FOR_SERVER (//)
+Group Manager : New Groups for %s
+MSG_GROUP_MANAGER_2 (//)
+Group Manager : %s
+MSG_CANCEL (//)
+Cancel
+MSG_MOVE_TO_WHICH_GROUP (//)
+Move to which group?
+MSG_MOVE (//)
+Move
+MSG_COPY_TO_WHICH_GROUP (//)
+Copy to which group?
+MSG_MOVING (//)
+Moving..
+MSG_COPYING (//)
+Copying..
+MSG_MOVE_MESSAGE (//)
+Move Message
+MSG_NO_MESSAGES_TO_MOVE (//)
+\033cNo messages to move!
+MSG_COPY_MESSAGE (//)
+Copy Message
+MSG_NO_MESSAGES_TO_COPY (//)
+\033cNo messages to copy!
+MSG_DELETE_MESSAGES (//)
+Delete Message(s)
+MSG_DELETE_OR_CANCEL (//)
+_Delete|_Cancel
+MSG_DELETE_NOT_SENT_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Delete the selected Message(s)?\nWARNING - These messages have not been sent yet!
+MSG_DELETE_MESSAGES_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Delete the selected Message(s)?
+MSG_DELETING (//)
+Deleting..
+MSG_DELETE_MESSAGE (//)
+Delete Message
+MSG_NO_MESSAGES_TO_DELETE (//)
+\033cNo messages to delete!
+MSG_UNDELETE_MESSAGES (//)
+Undelete Message(s)
+MSG_UNDELETE_OR_CANCEL (//)
+_Undelete|_Cancel
+MSG_UNDELETE_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Undelete the selected Message(s)?
+MSG_UNDELETING (//)
+Undeleting..
+MSG_UNDELETE_MESSAGE (//)
+Undelete Message
+MSG_NO_MESSAGES_TO_UNDELETE (//)
+\033cNo messages to Undelete!
+MSG_MESSAGES_FROM_THIS_AUTHOR (//)
+Messages from this Author
+MSG_RESPONSE_TO_MESSAGE (//)
+Messages in Response to Message
+MSG_ALL_WHITH_THE_SAME_SUBJECT (//)
+All Messages with the same Subject
+MSG_MESSAGES_FROM_SERVER (//)
+All Messages from server %s
+MSG_MESSAGES_FROM_POSTING_HOST (//)
+All Messages from NNTP posting host %s
+MSG_KILL_IN_ALL_GROUPS (//)
+Kill in all Newsgroups
+MSG_KILL_IN_THIS_GROUP (//)
+Kill in this Newsgroup
+MSG_EXPORT_ADDRESS_ARE_YOU_SURE (//)
+Enter the following into YAM's address book?:\nName : %s\nEmail : %s
+MSG_EXPORT_ADDRESS (//)
+Export Address
+MSG_YES_OR_CANCEL (//)
+_Yes|_Cancel
+MSG_CANNOT_ACCESS_YAM_ADDRESSBOOK (//)
+\033cCouldn't access file YAM:.addressbook
+MSG_ONLY_ONE_NEWSCOASTER_COPY_ALLOWED (//)
+\033cYou may not open more than one copy of\nNewsCoaster at a time!
+MSG_NOT_AVAILABLE (//)
+Not Available
+MSG_FUNCTION_NOT_AVAILABLE_WHEN_CONNECTED (//)
+\033cThis function not available whilst\nNewsCoaster is connected with a newsserver!
+MSG_PLEASE_SELECT_GROUP_FOLDER (//)
+\033cPlease select a newsgroup folder!
+MSG_DOWNLOAD_GROUP_LIST_ARE_YOU_SURE (//)
+\033cAre you sure you wish to download\nthe Groups list for %s?\n(It may take some time)
+MSG_GET_GROUP_LIST (//)
+Get Group List
+MSG_GROUP_LIST_DOWNLOADED (//)
+\033c%d Groups found!\nGroup list has been downloaded into file \n%s.gl\nSelect Groups Manager from Program Settings to view list\n
+MSG_GROUP_LIST (//)
+Group List
+;
+;WARNING!!! The following strings were removed in version 1.61.
+;MSG_NEWSCOASTER_REGISTERED_TO (//)
+;\033cThis copy of NewsCoaster is registered to:\033l\n%s.\n   ID:%d\nDate: %s\nThanks for registering :)
+;MSG_UNREGISTERED (//)
+;\033cUnregistered
+;
+MSG_SYSTEM_INFORMATION (//)
+System Information
+MSG_SYSTEM_INFORMATION_SAVED (//)
+\033cSystem Information saved to\nRAM:sysinfo.txt
+MSG_QUIT_PROGRAM (//)
+Quit Program
+MSG_QUIT_OR_CANCEL (//)
+_Quit|_Cancel
+MSG_QUIT_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Quit?
+MSG_SAVE_MESSAGE (//)
+Save Message
+MSG_SAVE_DISCARD_OR_CANCEL (//)
+_Save|_Discard|_Cancel
+MSG_SAVE_CHANGES_ARE_YOU_SURE (//)
+\033cDo you wish to save the changes\nto this message?
+MSG_EDIT_NEWSGROUP (//)
+Edit Newsgroup
+MSG_PLEASE_SELECT_GROUP_TO_EDIT (//)
+\033cPlease select a newsgroup to edit!
+MSG_PLEASE_FINISH_EDITING_GROUP (//)
+\033cPlease finish editing current group.
+MSG_GROUP_ADVANCED_SETTINGS (//)
+Newsgroup Advanced Settings
+MSG_PLEASE_SELECT_GROUP (//)
+\033cPlease select a newsgroup!
+MSG_DELETE_GROUP_ARE_YOU_SURE (//)
+\033cAre you *sure* you wish\nto Delete this Newsgroup?
+MSG_YOU_MAY_NOT_DELETE_FOLDER (//)
+\033cYou may not delete this folder!
+MSG_ARCHIVE_GROUP (//)
+Archive Newsgroup
+MSG_FILE_TO_SAVE_ARCHIVE_AS (//)
+File to save archive as...
+MSG_SORT_NEWSGROUP (//)
+Sort Newsgroup
+MSG_SORT_OR_CANCEL (//)
+_Sort|_Cancel
+MSG_SORT_GROUP_ARE_YOU_SURE (//)
+\033cAre you sure you wish to\nsort the newsgroups list alphabetically?\n(Current ordering will be lost!)
+MSG_RESET_ARTICLE_POINTER (//)
+Reset Article Pointer
+MSG_RESET_OR_CANCEL (//)
+_Reset|_Cancel
+MSG_RESET_ARTICLE_POINTER_ARE_YOU_SURE (//)
+\033cReset the article pointer for this newsgroup\n - as if you had just created this newsgroup folder\n(see documentation for details).
+MSG_RESET_ARTICLE_POINTERS (//)
+Reset Article Pointers
+MSG_RESET_ALL_POINTERS_ARE_YOU_SURE (//)
+\033cReset the article pointer for all newsgroups\n - as if you had just created the newsgroup folders\n(see documentation for details).
+MSG_OPEN_GROUP_MANAGER_ARE_YOU_SURE (//)
+\033cAre you sure you wish to open\nthe Group Manager window?\n(It takes a little time to read in\nall the groups)
+MSG_UPDATE_OR_CANCEL (//)
+_Update|_Cancel
+MSG_UPDATE_GROUP_LIST_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Update the Newsgroup List?\n(Settings may be lost)
+MSG_UPDATE_GROUP_INDEX_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Update the index for this Group?\n
+MSG_UPDATE_INDICES (//)
+Update Indices
+MSG_UPDATE_ALL_INDICES_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Update all the Group indices?\n(Will take a little time.)
+MSG_PLEASE_SELECT_MESSAGE (//)
+\033cPlease select a message!
+MSG_EDIT_MESSAGE (//)
+Edit Message
+MSG_MESSAGE_TO_EDIT_IS_SENT (//)
+\033cNote that this message you are about to edit\nhas already been sent.
+MSG_YOU_CAN_EDIT_ONLY_YOUR_MESSAGES (//)
+\033cYou can only edit your own messages!\n(Those in 'Outgoing' or 'Sent')
+MSG_YOU_MUST_SELECT_MESSAGE_TO_EDIT (//)
+\033cYou must first select a message to edit!
+MSG_SUPERSEDE_MESSAGE (//)
+Supersede Message
+MSG_YOU_CAN_SUPERSEDE_ONLY_SENT_MESSAGES (//)
+\033cYou can only supersede messages you have sent!
+MSG_YOU_MUST_SELECT_MESSAGE_TO_SUPERSEDE (//)
+\033cYou must first select a message to supersede!
+MSG_CANCEL_MESSAGE_OR_NOT (//)
+Cancel _Message|Don't Cancel
+MSG_CANCEL_MESSAGE_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto Cancel this message?\n
+MSG_CANCEL_MESSAGE_QUEUED (//)
+\033cCancel message placed in queue;\nSend News to cancel your message on the newsserver.\n
+MSG_IMMEDIATE_DELETE_ARE_YOU_SURE (//)
+\033cAre you *sure* you wish\nto Delete the selected Message(s)?\nWARNING - These messages will be deleted immediately, and not\ncopied to the 'deleted folder'!
+MSG_DELETE_READ_MESSAGES (//)
+Delete Read Messages
+MSG_IMMEDIATE_DELETE_READ_ARE_YOU_SURE (//)
+\033cThis option will remove all read messages\nin this newsgroup.\nWARNING - These messages will be deleted immediately, and not\ncopied to the 'deleted folder'!
+MSG_DELETE_HEADERS (//)
+Delete Headers
+MSG_REMOVE_HEADERS_ARE_YOU_SURE (//)
+\033cThis option will remove all headers\nthat have not been entirely downloaded. 
+MSG_DELETE_DUPLICATES (//)
+Delete Duplicates
+MSG_DELETE_DUPLICATES_ARE_YOU_SURE (//)
+\033cThis option will remove all duplicated messages\nin this folder. 
+MSG_IMMEDIATE_DELETE_ALL_ARE_YOU_SURE (//)
+\033cAre you *sure* you wish\nto Delete all the Messages in this folder?\nWARNING - These messages will be deleted immediately, and not\ncopied to the 'deleted folder'!
+MSG_IMMEDIATE_DELETE_ALL_GROUPS_ARE_YOU_SURE (//)
+\033cAre you *sure* you wish\nto Delete ALL the Messages in ALL newsgroups?\n(This does not include outgoing or sent)\nWARNING - These messages will be deleted immediately, and not\ncopied to the 'deleted folder'!
+MSG_SURE_OR_CANCEL (//)
+Yes I'm Sure|_Cancel
+MSG_DELETE_ALL_GROUPS_LAST_CHANCE (//)
+\033cAre you absolutely sure you wish\nto Delete ALL the Messages in ALL newsgroups?\n(Last chance)\n(This does not include outgoing or sent)
+MSG_NEWSCOASTER_COMPOSING_MESSAGE (//)
+NewsCoaster (composing message)
+MSG_VIEW_HEADERS (//)
+View Headers
+MSG_KILL_MESSAGE (//)
+Kill Message
+MSG_PLEASE_FINISH_DOWNLOADING_FIRST (//)
+\033cPlease wait for downloading to finish first.
+MSG_DOWNLOADING_MESSAGE (//)
+Downloading Message
+MSG_CANNOT_DOWNLOAD_WHILE_DOWNLOADING_OTHER_MESSAGES (//)
+\033cNewsCoaster cannot download articles whilst\nother messages are already being downloaded, sorry.
+MSG_DOWNLOADING_BODIES (//)
+Downloading bodies..
+MSG_DELETING_NOT_AVAILABLE_HEADERS (//)
+Deleting no longer available headers..\n
+MSG_MARK_MESSAGE (//)
+Mark Message
+MSG_ONLY_MESSAGES_IN_GROUPS_CAN_BE_MARKED_UNREAD (//)
+\033cOnly messages in newsgroups can be marked as unread!
+MSG_ONLY_MESSAGES_IN_GROUPS_CAN_BE_MARKED_READ (//)
+\033cOnly messages in newsgroups can be marked as read!
+MSG_ONLY_MESSAGES_IN_OUTGOING_CAN_BE_MARKED_HELD (//)
+\033cOnly messages in outgoing can be marked as held!
+MSG_ONLY_MESSAGES_IN_OUTGOING_CAN_BE_MARKED_QUEUED (//)
+\033cOnly messages in outgoing can be marked as queued!
+MSG_CHANGE_DATE (//)
+Change Date
+MSG_YOU_CAN_CHANGE_DATE_OF_NOT_SENT (//)
+\033cYou can only change the date of\nyour messages that have not been sent.
+MSG_IMPOSSIBLE_TO_CHANGE_SETTINGS_WHEN_EDITING_MESSAGE (//)
+\033cIt is not possible to change\nthe Program settings whilst editing a message.\nPlease finish editing current message
+MSG_DELETE_USER (//)
+Delete User
+MSG_UNABLE_TO_DELETE_CURRENT_USER (//)
+\033cYou may not delete the current login!\nIf you wish to delete yourself, please login under a new user, and\nthen delete this user.
+MSG_DELETE_USER_ARE_YOU_SURE (//)
+\033cAre you *sure* you wish\nto delete this User?\n
+MSG_YES_OR_NO (//)
+Yes|No
+MSG_USER_DELETED_DELETE_PREFS (//)
+The database entry for this user has been deleted.\nDo you now wish to delete all their prefs?
+MSG_NEW_USER (//)
+New User
+MSG_USER_NAME_TOO_SHORT (//)
+\033cUser name must be at least 3 characters.\nPlease enter a longer user name.
+MSG_USER_NAME_EXISTS (//)
+\033cThis user name already exists.\nPlease enter another one.
+MSG_NEWS_DIRECTORY_IN_USE (//)
+\033cThis news directory is being used by another user.\nPlease select somewhere else.
+MSG_PASSWORD_TOO_SHORT (//)
+\033cPassword must be at least 4 characters.\nPlease enter a longer password, or untick the password.
+MSG_CANNOT_CREATE_FOLDER (//)
+\033cError! Couldn't create folder:\n%s
+MSG_ENTER_NEW_PASSWORD (//)
+Please enter a new password,\nor press cancel to leave it unchanged.
+MSG_CHANGE_PASSWORD (//)
+Change Password
+MSG_ERROR_3 (//)
+Error
+MSG_CANNOT_CREATE_FOLDER_2 (//)
+\033cCannot create Folder!
+MSG_RESET_OR_NOT (//)
+_Reset|_Don't Reset
+MSG_SERVER_CHANGED_RESET_ARTICLE_POINTER (//)
+\033cYou have changed the NNTP server for this group, do you wish to reset the article pointer?\n(see documentation for details - if unsure, you should Reset).
+MSG_JOINED_MESSAGE (//)
+Joined Message
+MSG_YOU_MUST_ENTER_EMAIL_ADDRESS (//)
+\033cYou must enter an email\naddress in the form:\n  user@domain\n
+MSG_BAD_LINE_LENGTH (//)
+\033cA line length of %d is\nconsidered bad style;\nyou are advised to change to a value\nbetween 60 and 80!
+MSG_ADD_SERVER (//)
+Add Server
+MSG_PLEASE_FINISH_EDITING_SERVER_BEFORE_ADDING_NEW (//)
+Please finish adding/editing the current server\nbefore adding a new one.
+MSG_EDIT_SERVER (//)
+Edit Server
+MSG_PLEASE_FINISH_EDITING_SERVER_BEFORE_EDITING_NEW (//)
+Please finish adding/editing the current server\nbefore editing a new one.
+MSG_DEFAULT_SERVER_CHANGED_RESET_ALL_POINTERS (//)
+\033cYou have changed the default NNTP server, do you wish to reset the article pointer\nfor all groups using the default server?\n(see documentation for details - if unsure, you should Reset).
+MSG_DELETE_SERVER (//)
+Delete Server
+MSG_DELETE_SERVER_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto delete this server entry?
+MSG_SERVER_DELETED_RESET_ARTICLE_POINTERS (//)
+\033cDo you wish to reset article pointers for any groups\nthat were using this server?\n(see documentation for details - if unsure, you should Reset).
+MSG_CANNOT_DELETE_SERVER_BEING_EDITED (//)
+You cannot delete a server that is being edited!
+MSG_CANNOT_DELETE_LAST_SERVER (//)
+You cannot delete the last remaining server!
+MSG_SERVER_ADDRESS_CHANGED_RESET_POINTERS (//)
+\033cYou have changed this server's address.\nDo you wish to reset article pointers for any groups\nthat were using this server?\n(see documentation for details - if unsure, you should Reset).
+MSG_SELECT_FILE_TO_READ (//)
+Select File to Read in
+MSG_DELETE_KILL_ENTRY (//)
+Delete Killfile Entry
+MSG_DELETE_KILL_ENTRY_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto delete this killfile entry?
+MSG_SAVE_KILLFILE (//)
+Save Killfile
+MSG_GROUP_NOT_FOUND (//)
+\033cGroup not found!
+MSG_SEARCH_GROUPS (//)
+Search Groups
+MSG_PLEASE_SELECT_SOME_GROUPS (//)
+\033cPlease select some groups.
+MSG_SEARCHING (//)
+Searching..
+MSG_SEARCHING_2 (//)
+Searching: %s
+MSG_STATISTICS (//)
+Statistics
+MSG_UNKNOWN (//)
+Unknown
+MSG_CLIPBOARD_EMPTY (//)
+\033cThe clipboard is empty.
+MSG_NO_TEXT_IN_CLIP (//)
+\033cThe clipboard does not contain text.
+MSG_NO_AREA_MARKED (//)
+\033cNo area marked.
+MSG_NOTHING_TO_REDO (//)
+\033cNothing to redo.
+MSG_NOTHING_TO_UNDO (//)
+\033cNothing to undo.
+MSG_NO_MEMORY_FOR_UNDO (//)
+There is not enough memory\nto keep the undo buffer.\n\nThe undobuffer is lost.
+MSG_NO_BOOKMARK_INSTALLED (//)
+There is no bookmark installed!
+MSG_BOOKMARK_LOST (//)
+Your bookmark has unfortunately been lost.
+MSG_GROUP (//)
+\033bGroup
+MSG_MSGS (//)
+\033bMsgs
+MSG_SUB (//)
+\033bSub
+MSG_ONLINE (//)
+\033bOnline
+MSG_SUBJECT_BOLD (//)
+\033bSubject
+MSG_DATE (//)
+\033bDate
+MSG_NEWSGROUPS_BOLD (//)
+\033bNewsgroups
+MSG_FROM_BOLD (//)
+\033bFrom
+MSG_SIZE (//)
+\033bSize
+MSG_LINES (//)
+\033bLines
+MSG_VALUE (//)
+\033bValue
+MSG_FREQUENCY (//)
+\033bFrequency
+MSG_NAME (//)
+\033bName
+MSG_NEWS_DIRECTORY (//)
+\033bNews Directory
+MSG_PASSWORD_PROTECTED (//)
+\033bPassword Protected?
+MSG_SUPERVISOR (//)
+\033bSupervisor?
+MSG_FILENAME (//)
+\033bFilename
+MSG_MIME_TYPE (//)
+\033bMIME Type
+MSG_VIEWER (//)
+\033bViewer
+MSG_INDEFINATELY (//)
+Indefinately
+MSG_DAYS_SINCE_CREATION (//)
+%d days since Creation
+MSG_DAYS_SINCE_LAST_USED (//)
+%d days since Last Used
+MSG_DOES_NOT_CONTAIN_2 (//)
+Doesn't Contain
+MSG_UNKOWN_2 (//)
+Unknown???
+MSG_HEADER_BOLD (//)
+\033bHeader
+MSG_TEXT (//)
+\033bText
+MSG_GROUPS (//)
+\033bGroups
+MSG_MATCH (//)
+\033bMatch
+MSG_ACTION (//)
+\033bAction
+MSG_SKIP_REST (//)
+\033bSkip Rest?
+MSG_CREATION (//)
+\033bCreation
+MSG_LAST_USED (//)
+\033bLast Used
+MSG_TIME_LIMIT (//)
+\033bTime Limit
+MSG_Y (//)
+Y
+MSG_N (//)
+N
+MSG_SERVER_BOLD (//)
+\033bServer
+MSG_PORT (//)
+\033bPort
+MSG_USERNAME (//)
+\033bUsername
+MSG_AUTHENCICATION (//)
+\033bAuthentication
+MSG_DEFAULT (//)
+\033bDefault
+MSG_POSTING (//)
+\033bPosting
+MSG_IMPORTING_FOLDER (//)
+Importing Folder..
+MSG_SEE_GUIDE_FOR_MORE_INFO (//)
+Please see the AmigaGuide documentation for more information.
+;
+;WARNING!!! The following string was changed in version 1.61.
+;MSG_AUTHORS (//)
+;%s %s and %s
+;
+MSG_AUTHORS (//)
+%s %s
+MSG_FAILED_TO_CREATE_EDITOR_MCC (//)
+Failed to create Text Editor Custom Class.
+;
+;WARNING!!! The following string was changed in version 1.61.
+;MSG_ABOUTTEXT (//)
+;\033c\033bNewsCoaster\033n\n(v%s)\n%s and %s
+;
+MSG_ABOUTTEXT (//)
+\033c\033bNewsCoaster\033n\n(v%s)\n%s
+;
+;WARNING!!! The following string was removed in version 1.61.
+;MSG_COPYRIGHT (//)
+;%s and %s
+;
+MSG_NEWSREADER (//)
+Newsreader
+MSG_NEW_NEWSGROUP (//)
+New Newsgroup
+LABEL_NEWSGROUP_NAME (//)
+Newsgroup Name:
+LABEL_DESCRIPTION (//)
+Description:
+LABEL_DEFAULT_SIG (//)
+Default .sig:
+LABEL_SUBSCRIBE (//)
+Subscribe?
+MSG_CANCEL_2 (//)
+C_ancel
+MSG_LAST_DOWNLOAD_DATE (//)
+Last Download Date:
+MSG_FOLDER_LOCATION (//)
+Folder Location:
+MSG_APPROVED_HEADER (//)
+'Approved' Header?:
+MSG_ALTERNATIVE_NAME (//)
+Alternative Name?:
+MSG_ALTERNATIVE_EMAIL (//)
+Alternative Email?:
+MSG_JOIN_MESSAGES (//)
+Join Messages
+LABEL_SUBJECT (//)
+Subject:
+MSG_JOIN (//)
+_Join
+LABEL_YOUR_NAME (//)
+Your Name
+LABEL_EMAIL_FOR_POSTING (//)
+Email for Posting
+LABEL_REAL_EMAIL_FOR_POSTING (//)
+Real Email for Emailing
+LABEL_ORGANISATION (//)
+Organisation
+LABEL_TIME_ZONE (//)
+Time Zone:
+LABEL_DATE_DISPLAY_FORMAT (//)
+Date Display Format:
+LABEL_ADD_DST_ADJUSTMENT (//)
+Add Adjustment for DST?:
+LABEL_USE_LOCALE_PREFS (//)
+Use Locale Prefs?:
+LABEL_ALWAYS_CHECK_FOR_DUPES (//)
+Always Check for Duplicates?:
+LABEL_DELETE_HEADER_IF_NO_BODY (//)
+Delete Header if Body Not Avail.?:
+LABEL_DONT_SHOW_FROM_SUBJ_WHEN_DL (//)
+Don't Show From/Subject When d/l?:
+LABEL_SWITCH_GROUPS_WHEN_DL (//)
+Switch Groups When d/l?:
+LABEL_DONT_CONFIRM_WHEN_DELETING (//)
+Don't Confirm When Deleting?:
+LABEL_ALWAYS_CONFIRM_ON_QUIT (//)
+Always Confirm on Quit?:
+LABEL_LOGGING_ENABLED (//)
+Logging Enabled?:
+LABEL_DELETE_LOG_ON_STARTUP (//)
+Delete Log on Startup?:
+MSG_NEW_SERVER (//)
+_New Server
+MSG_EDIT_SERVER_2 (//)
+_Edit Server
+MSG_MAKE_DEFAULT (//)
+Make De_fault
+MSG_USE_FOR_POSTING (//)
+Use for _Posting
+MSG_DELETE_SERVER_2 (//)
+_Delete Server
+MSG_GET_GROUPS (//)
+Get Groups
+MSG_GROUPS_MANAGER (//)
+Groups Manager
+LABEL_SMTP_SERVER (//)
+SMTP (Mail) Server
+LABEL_FOLLOWUP_ATTRIBUTATION_LINE (//)
+Followup Attributation Line:
+LABEL_CHARSET (//)
+Charset:
+MSG_READ_FROM_FILE (//)
+_Read From File
+LABEL_LINE_LENGTH (//)
+Line Length:
+LABEL_AUTO_REWRAP (//)
+Auto. Rewrap
+LABEL_USE_X_NO_ARCHIVE (//)
+Use 'X-No-Archive' Header?
+LABEL_USE_SHORT_X_NEWSREADER (//)
+Use Shortened X-Newsreader Header:
+LABEL_SNIP_SIG (//)
+Snip .sig?
+LABEL_MULTIPLE_VIEW_WINDOWS (//)
+Multiple View Windows?
+LABEL_2ND_LEVEL_QUOTING (//)
+2nd Level Quoting
+MSG_2ND_LEVEL_QUOTE (//)
+2nd Level Quoted Text
+LABEL_COLOURED (//)
+Coloured
+MSG_COLOURED_TEXT (//)
+Coloured Text
+LABEL_FLAGS (//)
+Flags
+LABEL_DATE (//)
+Date
+LABEL_FROM_NEWSGROUP (//)
+From/Newsgroup
+LABEL_SIZE (//)
+Size
+LABEL_N_OF_LINES (//)
+# of Lines
+LABEL_MIME_TYPE (//)
+MIME _Type
+LABEL_VIEWER (//)
+_Viewer
+MSG_PLEASE_SELECT_VIEWER (//)
+Please Select a Viewer
+LABEL_DEFAULT_VIEWER (//)
+De_fault Viewer
+MSG_NEW (//)
+_New
+MSG_SERVER (//)
+Server
+LABEL_NNTP_SERVER (//)
+NNTP (News) Server
+LABEL_PORT (//)
+Port
+LABEL_USE_NNTP_AUTH (//)
+Use NNTP-Auth?
+LABEL_USER (//)
+User
+LABEL_PASSWORD (//)
+Password
+LABEL_KILLFILE_SETTINGS (//)
+KillFile Settings
+LABEL_IF_HEADER (//)
+If the Header:
+LABEL_IN_THE_GROUPS (//)
+in the Newsgroups:
+LABEL_THEN (//)
+then..
+LABEL_SKIP_REST (//)
+Skip Rest?
+MSG_ADD_REPLACE (//)
+_Add/Replace
+MSG_DUPLICATE (//)
+Du_plicate
+LABEL_ADVERT_KILLFILE (//)
+'Advert' KillFile?
+LABEL_FIND (//)
+Find:
+MSG_SUBSCRIBE (//)
+_Subscribe
+MSG_DOWLOAD_GROUP_LIST (//)
+_Download Group List
+LABEL_SEARCH_IN (//)
+Search in:
+LABEL_SEARCH_FOR (//)
+Search for:
+LABEL_CASE_SENSITIVE (//)
+Case-sensitive?:
+MSG_START_SEARCH (//)
+Start Search
+LABEL_TYPE (//)
+Type:
+MSG_START (//)
+Start
+MSG_SAVE (//)
+_Save
+MSG_DISPLAY (//)
+_Display
+MSG_CREATE_NEW_USER_DESCRIPTION (//)
+Create New User - see the 'Users'\nsection in the documentation for more\ndetails. If you are running NewsCoaster\nfor the first time, you must set up a\nuser for yourself. Please see the\n'Configuration' section in the\ndocumentation for more details.
+LABEL_USER_NAME (//)
+User Name:
+LABEL_PASSWORD_2 (//)
+Password:
+LABEL_NEWS_DIRECTORY (//)
+News Directory:
+MSG_SELECT_DIRECTORY_TO_STORE_NEWS (//)
+Please Select a Directory to Store News..
+LABEL_SUPERVISOR (//)
+Supervisor?
+LABEL_USE_PASSWORD (//)
+Use Password?
+MSG_COPY_PREFS (//)
+Copy Prefs?
+MSG_USERS (//)
+Users
+MSG_ADD_NEW_USER (//)
+_Add New User
+MSG_DELETE_USER_2 (//)
+_Delete User
+MSG_USER_LOGIN (//)
+User Login
+MSG_PLEASE_ENTER_NEW_PASSWORD (//)
+Please enter a new password,\nor press cancel to leave it unchanged.
+MSG_ABOUT (//)
+About...
+MSG_FAILED_TO_CREATE_APPLICATION (//)
+Failed to create Application.
+MSG_CREATE_GROUP_HELP (//)
+Create the new Newsgroup for\nyou to subscribe to
+MSG_CANCEL_CREATE_GROUP_HELP (//)
+Close this window and do not\ncreate a new Newsgroup
+MSG_GROUP_NAME_HELP (//)
+Usenet Name of the Newsgroup you\nwish to subscribe to (eg,\ncomp.sys.amiga.misc)
+MSG_GROUP_DESCRIPTION_HELP (//)
+Description of the Newsgroup\n(eg, Amiga Programming) -\nOptional
+MSG_DEFAULT_SIGNATURE_HELP (//)
+If you are using signatures,\nthen this one will be the\ndefault for postings to the\nnewsgroup (see menu\n'Preferences/Program Settings')
+MSG_MAXIMUM_MESSAGES_TO_DOWNLOAD_HELP (//)
+You can limit the maximum\nnumber of messages to\ndownload each time you fetch\nnew news. If Unlimited, all\nnews since the last download\ndate will be downloaded.
+MSG_MAXIMUM_LINES_TO_DOWNLOAD_HELP (//)
+You can choose not to\ndownload messages that are\nlonger than a certain number\nof lines. Alternatively, you\ncan choose to have no such\nlimit.
+MSG_OFFLINE_VIEWING_HELP (//)
+Offline viewing downloads\nentire messages for you to\nread when offline. Online\nviewing only downloads the\nheaders; the rest of the\nmessage is downloaded when\nyou go to read it (thus you\nmust be online for this).
+MSG_ONLY_SUBSCRIBED_GROUPS_WILL_BE_DOWNLOADED_HELP (//)
+Only news from currently\nsubscribed to Newsgroups\nwill be downloaded when\nfetching news.
+MSG_UPDATE_GROUP_HELP (//)
+Update the parameters for\nthis Newsgroup
+MSG_CANCEL_UPDATE_GROUP_HELP (//)
+Cancel these changes and\nrevert to the previous\nsettings for this Newsgroup
+MSG_GROUP_NAME_TO_SUBSCRIBE_HELP (//)
+Name of the Newsgroup you\nwish to subscribe to (eg,\ncomp.sys.amiga.misc)
+MSG_LAST_DOWNLOAD_HELP (//)
+The date and (local) time\nyou last downloaded for this\nnewsgroup (or the creation\ndate if you haven't yet\ndownloaded)
+MSG_KEEP_CHANGES_HELP (//)
+Keep these changes
+MSG_CANCEL_CHANGES_HELP (//)
+Cancel these changes and\nrevert to the previous\nsettings
+MSG_YOUR_NAME_HELP (//)
+Your name (which will appear\nin messages that you post)
+MSG_YOUR_EMAIL_HELP (//)
+Your email address, to be used\nwhen posting news - does not\nhave to be correct, see\ndocumentation for details
+MSG_YOUR_REAL_EMAIL_HELP (//)
+Your real email address, to be\nused when sending email. Must\nbe correct
+MSG_ORGANISATION_HELP (//)
+Your organisation (company,\nuniversity, whatever you\nwant). Can be left blank
+MSG_SERVER_ADDRESS_HELP (//)
+The address of your\nnewsserver (see\ndocumentation for a list of\npublic ones)
+MSG_PORT_HELP (//)
+The port to use to connect to\nthis newsserver (will usually\nbe 119)
+MSG_POSTING_SERVER_HELP (//)
+The address of your\nnewsserver that you wish to\nuse for posting. Leave blank\nif you wish to use the same\nserver that you read from\n(above)
+MSG_SMTP_SERVER_HELP (//)
+The address of your SMTP\nmail server (used to send\nemail)
+MSG_SMTP_DOMAIN_HELP (//)
+Your domain for your SMTP\nmail server
+MSG_FOLLOWUP_TEXT_HELP (//)
+The text to be displayed when\nyou follow-up a news item.\nCodes:\n  %n - Insert Recipient's Name\n  %d - Insert Date/Time\n  %g - Insert Newsgroup\n  %m - Insert MessageID
+MSG_SELECT_CHARSET_HELP (//)
+Select a charset convertor
+MSG_SET_TIME_ZONE_HELP (//)
+Set the Time-Zone that you\nlive in (so that your\nmessages appear in the right\norder in the newsgroups)
+MSG_USE_LOCALE_HELP (//)
+If this is ticked, then\nNewsCoaster will read the\ntimezone from your Locale\nPreferences
+MSG_DST_HELP (//)
+Tick this box for Daylight\nSaving Time - one hour ahead
+MSG_DATE_FORMAT_HELP (//)
+How you wish dates to be\ndisplayed in the messages\nlist. You MUST select\n'Update All Indices' from\nthe Newsgroups menu for this\nto take effect
+MSG_WRITE_LOG_HELP (//)
+Ticking this box means that\nNewsCoaster's activity will\nbe written to the text file\n'.log' in the NewsCoaster\nfolder
+MSG_DELETE_LOG_HELP (//)
+Delete the logfile everytime\nNewsCoaster starts (logfiles\ncan get rather large\notherwise)
+MSG_SWITCH_GROUP_HELP (//)
+Ticking this box means that\nwhen downloading news,\nNewsCoaster will switch the\ncurrent folder to the\nnewsgroup you are downloading\nfor
+MSG_MODE_HELP (//)
+When downloading in online\nmode, only the headers will be\ndownloaded when you fetch\nnews; the message body is\ndownloaded when you go to view\nthe message. Sometimes the\nmessage body may no longer be\navailable (especially if some\ntime has passed) - in such\ncases, the header will be\nautomatically\ndeleted if this option is\nticked.
+MSG_CONFIRM_QUIT_HELP (//)
+If this is unticked,\nNewsCoaster will quit\nimmediately when asked to\nclosed instead of asking you\nto confirm (unless you are\nwriting a message)
+MSG_SHOW_FROM_HELP (//)
+If this box is ticked,\nNewsCoaster won't show the\nFrom and Subject line of\nmessages as it downloads them
+MSG_CONFIRM_DELETE_HELP (//)
+When you delete files, you\nwon't be asked for\nconfirmation if this box is\nticked. This does not apply to\n'permenant' deleting.
+MSG_DUPE_CHECK_HELP (//)
+Normally NewsCoaster will only\ncheck for duplicates when it\nconsiders necessary, though\nsometimes duplicate messages\nmay repeatedly appear on a\nnewsserver's list. Checking\nthis option will ensure no\nduplicate messages are\ndownloaded, but it makes\ndownloading slower.
+MSG_X_NO_ARCHIVE_HELP (//)
+Inserting the X-No-Archive\nheader means your message\nwill not be stored in news\narchives such as\ngroups.google.com
+MSG_SHORT_X_NEWSREADER_HELP (//)
+Tick this box to have a\nshort X-Newsreader header
+MSG_SELECT_SIGNATURE_HELP (//)
+Select a signature to modify
+MSG_GET_SIGNATURE_FROM_FILE_HELP (//)
+Insert a signature from a\nfile
+MSG_TYPE_SIGNATURE_HERE_HELP (//)
+Type your signature here
+MSG_LINE_LENGTH_HELP (//)
+Set the linelength when\nwriting messages
+MSG_AUTO_REWRAP_HELP (//)
+Automatically rewrap the\ntext before quoting, on\nreplies·(avoids overspilling\nlines)
+MSG_STRIP_SIGNATURE_HELP (//)
+Automatically strip the\nsignature of messages before\nreplying
+MSG_DISPLAY_FLAGS_HELP (//)
+Display the Flags column in\nthe message list window
+MSG_DISPLAY_FROM_HELP (//)
+Display the From or Newsgroup\ncolumn in the message list\nwindow
+MSG_DISPLAY_DATE_HELP (//)
+Display the Date column in the\nmessage list window
+MSG_DISPLAY_SUBJECT_HELP (//)
+Display the Subject column in\nthe message list window
+MSG_DISPLAY_SIZE_HELP (//)
+Display the Size column in the\nmessage list window
+MSG_DISPLAY_LINES (//)
+Display the Number Of Lines\ncolumn in the message list\nwindow
+MSG_ADD_KILFILE_HELP (//)
+Add this killfile to the\nlist
+MSG_NEW_KILLFILE_HELP (//)
+Create a new killfile
+MSG_DELETE_KILLFILE_HELP (//)
+Delete the selected killfile
+MSG_DUPLICATE_KILLFILE_HELP (//)
+Duplicate the selected\nkillfile
+MSG_KILL_HEADER_HELP (//)
+The header you wish to kill\non (exact match, case\ninsensitive - includes the\ncolon). eg, 'From:'\nAlternatively, leave empty\nto kill on any header
+MSG_KILL_TEXT_HELP (//)
+If the header contains this\ntext, then the message will\nnot be downloaded (substring\nsearch, case insensitive).\neg, '@hotmail.com'
+MSG_KILL_GROUP_HELP (//)
+The newsgroups to apply this\nkillfile to (substring\nsearch, case insensitive -\nleave blank for all\nnewsgroups). eg. '',\n'comp.sys.amiga.',\n'alt.dreams.lucid'
+MSG_KILLFILE_EXPIRE_HELP (//)
+You may set the killfile to\neither never expire, to\nexpire so many days after it\nwas created, or to expire so\nmany days after the killfile\nwas last used
+MSG_DAYS_LAST_FOR_HELP (//)
+The number of days to last\nfor (either after creation,\nor since last used, as\nspecified by the cycle\ngadget)
+MSG_WHAT_TO_DO_IF_MATCHED_HELP (//)
+What to do if the text is\nmatched.
+MSG_SORT_OF_MATCH_HELP (//)
+What sort of match are we\nafter.
+MSG_WHAT_TO_DO_IF_KILLFILE_MATCHED_HELP (//)
+What to do if the killfile is\nmatched.
+MSG_CHECK_REST_HELP (//)
+If this killfile is matched,\nshould we carry on checking\nagainst the rest of the\nkillfiles?
+MSG_ADVERT_KILLFILE (//)
+If this killfile is enable,\nNewsCoaster will see if the\nlast word in the subject\nline is a number, since this\nusually indicates an advert\nor other spam - see docs for\nmore details
+MSG_OPEN_NEW_VIEW_WINDOW_HELP (//)
+When you read a new message,\ndo you want a new View window\nto open, or use an existing\none?
+MSG_SELECT_MIME_TYPE_HELP (//)
+Select the MIME Type that\nyou wish to set a viewer\nprogram for
+MSG_SELECT_VIEWER_HELP (//)
+Select the external program\nyou wish you use to view\nthis MIME Type, along with\nthe arguments - enter %s for\nthe filename
+MSG_SELECT_DEFAULT_VIEWER_HELP (//)
+Select the external program\nyou wish you use for files\nthat don't match any of the\nabove listed MIME Types, along\nwith the arguments - enter %s\nfor the filename
+MSG_CREATE_NEW_MIME_TYPE_HELP (//)
+Create a new MIME Type
+MSG_DELETE_MIME_TYPE_HELP (//)
+Delete the entry for the\ncurrently selected MIME Type
+MSG_NEW_FOLDER_HELP (//)
+Set up a new folder so that\nyou can subscribe to this\nnewsgroup
+MSG_DOWNLOAD_GROUP_LIST_HELP (//)
+Download the newsgroup list\nfrom your newsserver
+MSG_SEARCH_GROUP_HELP (//)
+Enter in some text and press\nenter, and the next\nnewsgroup containing that\ntext will be found
+MSG_SEARCH_HEADER_HELP (//)
+The header you wish to\nsearch in
+MSG_SEARCH_STRING_HELP (//)
+The string you wish to\nsearch for (substring\nsearch)
+MSG_CASE_SENSITIVE_SEARCH_HELP (//)
+Whether the search is to be\ncase-sensitive or not
+MSG_STATISTICS_CRITERIA_HELP (//)
+What you wish to categorise\nthe frequency count by\n(Note: 'X-Newsreader' is\nslower than the others)
+MSG_ADD_THIS_USER_HELP (//)
+Add this new user
+MSG_DO_NOT_ADD_USER (//)
+Do not add this new user
+MSG_USERNAME_HELP (//)
+Username - must be between 3\nand 8 characters, and unique
+MSG_PASSWORD_HELP (//)
+Password - must be between 4\nand 8 characters. The user\ncan change it later if he\nwishes. Don't forget your\npassword!
+MSG_PASSWORD_PROTECTION_HELP (//)
+Whether you want password\nprotection enabled or not
+MSG_NEWS_DIRECTORY_HELP (//)
+Where on your hard disk you\nwish to store the news\nmessages for this user. Must\nbe unique. If the drawer\ndoes not exist, it will be\ncreated.
+MSG_SUPERVISOR_HELP (//)
+Whether this user is to be a\nsupervisor. Only supervisors\ncan delete users, and add\nnew users.
+MSG_COPY_PREFS_HELP (//)
+If this is ticked, the\npreferences (but NOT\nnewsgroup list, .sigs or\nkillfiles) of the current\nuser will be copied to the\nnew user
+MSG_ADD_USER_HELP (//)
+Add a new user
+MSG_DELETE_USER_HELP (//)
+Delete this user!
+MSG_ENTER_USERNAME_HELP (//)
+Please enter your username
+MSG_ENTER_PASSWORD_HELP (//)
+Please enter your password,\nif required. If your login\nis not password protected,\nthen you can leave this\nblank.
+MSG_NEW_PASSWORD_HELP (//)
+Your new password - must be\nbetween 4 and 8 characters.\nDon't forget your new\npassword!
+MSG_CHANGE_PASSWORD_HELP (//)
+Change your password settings
+MSG_CANCEL_CHANGES_2_HELP (//)
+Cancel these changes
+MSG_COUNT_DIFFERS_FROM_ENTRIES (//)
+count %d differs from entries %d !
+MSG_CANNOT_ALLOCATE_FIB (//)
+Cannot allocate fib - exfile()
+MSG_WARNING (//)
+Warning
+MSG_OLD_PREFS_FILE (//)
+Your current '.prefs' file appears to be from a previous version!\nIf you encounter problems, reset your Account settings ('Preferences/Program Settings') and select 'Newsgroups/Update Groups'
+;---------------------------------------------------
+;Strings for statuswindow.c:
+;
+MSG_ABORT (//)
+_Abort
+;---------------------------------------------------
+;Strings for viewwindow.c:
+;WARNING!!! Do not change the order of following lines.
+;They are read in sequence in InitArray() function
+;
+MSG_EMAIL_FORMAT (//)
+EMail Format
+MSG_PLAIN_TEXT (//)
+Plain Text
+;
+;End of InitArray() section
+;
+MSG_ATACHMENT_CORRUPTED (//)
+\033cThe attachment \"%s\" is corrupted!
+MSG_YDECODED_ATTACH (//)
+Ydecoded Attachment
+MSG_FOLLOWUP_REPLY (//)
+Followup/Reply
+MSG_FOLLOWUP_REPLY_OR_CANCEL (//)
+_Followup|_Reply via Email|_Cancel
+MSG_FOLLOWUP_OR_REPLY (//)
+\033cDo you wish to followup to the message on the newsgroup,\nor reply to the author via email?
+MSG_FIND (//)
+Find
+MSG_NO_MORE_OCCURANCES (//)
+No More Occurances Found
+MSG_NO_OCCURANCES_FOUND (//)
+No Occurances Found
+MSG_HEADERS (//)
+Headers
+MSG_PLAIN_TEXT_SECTION (//)
+Plain text section
+MSG_HTML_SECTION (//)
+HTML section
+MSG_SAVE_NEWS_ITEM_AS (//)
+Save News Item As...
+MSG_ENCODING (//)
+\033bEncoding
+MSG_LENGTH (//)
+\033bLength
+;
+;WARNING!!! Do not change the order of following lines.
+;They are read in sequence in InitMenu() function
+;
+MENU_MESSAGE (//)
+Message
+MENU_FOLLOWUP_REPLY (//)
+Followup/Reply...
+MENU_EXPORT (//)
+Export...
+MENU_ADD_TO_KILLFILE_2 (//)
+Add to Killfile...
+MENU_EXPORT_ADDRESS_2 (//)
+Export Address to YAM
+MENU_MARK_AS_2 (//)
+Mark as
+MENU_NORMAL_2 (//)
+Normal
+MENU_IMPORTANT_2 (//)
+Important
+MENU_TOGGLE_HEADERS (//)
+Toggle All/Standard Headers
+MENU_PREVIOUS_IN_THREAD (//)
+Previous in Thread
+MENU_PREVIOUS (//)
+Previous
+MENU_NEXT (//)
+Next
+MENU_DELETE_THEN_NEXT (//)
+Delete then Next
+MENU_CLOSE_WINDOS (//)
+Close Window
+MENU_EDIT (//)
+Edit
+MENU_FIND_IN_MESSAGE (//)
+Find in Message...
+MENU_FIND_NEXT (//)
+Find Next
+MSG_COPY (//)
+Copy
+MENU_ROT13_DECODE (//)
+Rot13 Decode
+MENU_ATTACHMENTS (//)
+Attachments
+MENU_VIEW_ATTACHMENT (//)
+View Attachment
+MENU_SAVE_ATTACHMENT (//)
+Save Attachment...
+MSG_VIEW (//)
+View
+;
+;End of InitMenu() section
+;
+MSG_ATTACHMENTS_LIST_HELP (//)
+Attachments list
+MSG_VIEW_ATTACHMENT_HELP (//)
+View the selected message part\nor attachment.
+MSG_SAVE_ATTACHMENT_HELP (//)
+Save the selected message part\nor attachment.
+MSG_FOLLOWUP_REPLY_2 (//)
+_Followup/Reply
+MSG_ADD_TO_KILLFILE (//)
+Add to _Killfile
+MSG_PREVIOUS_MESSAGE (//)
+_Previous Message
+MSG_PREVIOUS_IN_THREAD (//)
+Previous in _Thread
+MSG_DELETE_NEXT (//)
+_Delete/Next
+MSG_NEXT_MESSAGE (//)
+_Next Message
+MSG_FIND_TEXT (//)
+Find Text
+LABEL_FIND_2 (//)
+Find..
+LABEL_CASE_SENSITIVE_2 (//)
+Case Sensitive?
+MSG_FIND_2 (//)
+_Find
+MSG_ADD_TO_KILLFILE_HELP (//)
+Make a new killfile entry,\nrelated to this message (you\ncan choose from various\noptions)
+MSG_PREVIOUS_HELP (//)
+View the previous message in\nthis Newsgroup
+MSG_PREVIOUS_IN_THREAD_HELP (//)
+View the message previous in\nthis thread, ie, the message\nwhich this message is replying\nto. If this button disables\nwhen you click it, it means\nthis is a new message, or the\nprevious message was either\nnot downloaded, deleted or\ndownloaded with a version\nprevious to v1.24
+MSG_DELETE_NEXT_HELP (//)
+Delete this message, and\nthen view the next message\nin this Newsgroup
+MSG_NEXT_HELP (//)
+View the next message in\nthis Newsgroup
+MSG_FOLLOWUP_REPLY_HELP (//)
+Followup or reply to this\nmessage
+MSG_EXPORT_HELP (//)
+Save or Display parts or all\nof this message
+MSG_EMAIL_STYLE_HELP (//)
+EMail means colours will be\nused for quoted\ntext ('>') and '*','/','-'\nwill be converted to bold,\nitalics and underlined\nrespectively. Plain text\njust displays without\nconversion
+MSG_TEXT_TO_SEARCH_HELP (//)
+Enter the text you wish to\nsearch for in this message.
+MSG_FIND_NEXT_HELP (//)
+Find the next occurance of the\ntext in this message.
+MSG_EXPORT (//)
+Export
+MSG_VIEW_PART (//)
+_View Part
+MSG_SAVE_PART (//)
+_Save Part
+MSG_VIEW_UUE (//)
+View UUEncoded
+MSG_SAVE_UUE (//)
+Save UUEncoded
+;---------------------------------------------------
+;Strings for writewindow.c:
+;WARNING!!! Do not change the order of following lines.
+;They are read in sequence in InitArray() function
+;
+MSG_MESSAGE (//)
+Message
+MSG_ATTACHMENTS (//)
+Attachments
+MSG_OPTIONS (//)
+Options
+;
+;End of InitArray() function
+;
+MSG_PLEASE_SELECT_NEWSGROUP (//)
+Please Select a Newsgroup
+MSG_ADD_REMOVE_GROUP (//)
+Add/Remove Newsgroup
+MSG_DISCARD_OR_CANCEL (//)
+_Discard|_Cancel
+MSG_DISCARD_CHANGES_ARE_YOU_SURE (//)
+\033cAre you sure you wish\nto discard all changes to this message\n(since last saved)?
+MSG_SELECT_FILE_TO_ATTACH (//)
+Please Select File to Attach
+LABEL_NEWSGROUPS (//)
+Newsgroups:
+LABEL_TO (//)
+To:
+MSG_ADD_ATTACHMENT (//)
+_Add Attachment
+MSG_DELETE_ATTACHMENT (//)
+_Delete Attachment
+LABEL_FROM (//)
+From:
+LABEL_FOLLOWUP_TO (//)
+Followup-To:
+MSG_SEND_TO_QUEUE (//)
+Send to _Queue
+MSG_POSTPONE (//)
+P_ostpone
+MSG_ROT13 (//)
+_Rot13
+MSG_READ_FROM_FILE_2 (//)
+Read From _File
+MSG_SEND_HELP (//)
+Send your message\nimmediately (you must be\nonline) and copy the message\nto the Sent folder
+MSG_ADD_OR_REMOVE_GROUP_TO_POST_HELP (//)
+Add or remove a newsgroup to\npost to by selecting from\nthe list
+MSG_ADD_OR_REMOVE_GROUP_TO_FOLLOWUP_TO_HELP (//)
+Add or remove a newsgroup to\nfollowup-to to by selecting\nfrom the list
+MSG_QUEUE_HELP (//)
+Copy the message to the\nOutgoing folder, to be\nposted later when you are\nonline by selecting the menu\noption 'Project/Send News'
+MSG_HOLD_HELP (//)
+Copy the message to the\nOutgoing folder, but do not\nsend at all (you must\nre-edit it first)
+MSG_CANCEL_MESSAGE_HELP (//)
+Cancel this message (or\ncancel the changes to it if\nthis is an edited\nmessage)
+MSG_INSERT_TEXT_FROM_FILE_HELP (//)
+Insert text read in from a\nfile
+MSG_SELECT_SIGNATURE_FOR_MESSAGE_HELP (//)
+Select the .sig you wish to\nuse for this message
+MSG_TO_HELP (//)
+If you wish to email the\nmessage to anyone, place\ntheir email address here.\nMultiple emails must be\nseparated with a comma
+MSG_NEWSGROUP_HELP (//)
+The Newsgroup you wish to\npost to. Multiple Newsgroups\nmust be separated with a\ncomma
+MSG_SUBJECT_HELP (//)
+The subject of your message
+MSG_FROM_HELP (//)
+What you wish to appear in\nthe 'From:' header
+MSG_FOLLOWUP_TO_HELP (//)
+Followups to your message\nwill only go to the\nnewsgroups specified here,\nor they will go to the same\nnewsgroups listed in the\nNewsgroups field, if this\nfield is left blank
+MSG_WRITE_MESSAGE (//)
+Write Message
+MSG_EDIT_OR_CONTINUE (//)
+_Edit|_Continue
+MSG_NO_SUBJECT (//)
+You have not specifed a subject for your message.\nDo you wish to edit the message?
+MSG_EMPTY_MESSAGE (//)
+The message body is empty.\nDo you wish to edit the message?
+MSG_ALL_QUOTED (//)
+The message seems to consists entirely of quoted text.\nDo you wish to edit the message?
+MSG_NO_RAM_FOR_ATTACHMENTS (//)
+Not enough RAM for attachments!
+MSG_CANNOT_FIND_FILE_TO_ATTACH (//)
+\033cCannot find file to attach:\n%s
+MSG_NEWSCOASTER_EDITING_MESSAGE (//)
+NewsCoaster (editing message)
+MSG_NO_RAM_TO_READ_MESSAGE (//)
+Not enough RAM to read message!\n
+MSG_OLD_MESSAGE (//)
+Old Message!
+MSG_REPLYING_TO_AN_OLD_POST (//)
+\033cI am just warning you that you are replying\nto a rather old post!
+MSG_FOLLOWUP_OR_REPLY_2 (//)
+_Followup to Newsgroup|_Reply via email
+MSG_EMAIL_REPLY_REQUESTED (//)
+\033cThe author requested that he be replied to via email.\nIt may be better to do so.
+MSG_YOU_MUST_SELECT_MESSAGE_TO_REPLY (//)
+\033cYou must first select a message to followup/reply to!
+;
+;WARNING!!! Do not change the order of following lines.
+;They are read in sequence in InitMenu() function
+;
+MENU_MESSAGE_2 (//)
+Message
+MSG_SAVE_2 (//)
+Save
+;
+;End of InitMenu() section
+;
+;---------------------------------------------------
+;Strings added in version 1.59:
+;
+MSG_RECV_FAILED_EBADF (//)
+Failed to receive any data ( EBADF )
+MSG_RECV_FAILED_ENOTCONN (//)
+Failed to receive any data ( ENOTCONN )
+MSG_RECV_FAILED_EWOULDBLOCK (//)
+Failed to receive any data ( EWOULDBLOCK )
+MSG_RECV_FAILED_EINTR (//)
+Failed to receive any data ( EINTR )
+MSG_RECV_FAILED_UNKNOWN (//)
+Failed to receive any data ( %d )
+MSG_POSTER (//)
+poster
+;---------------------------------------------------
+;Strings added in version 1.61:
+;
+LABEL_SUBJECT_2 (//)
+Subject
+;---------------------------------------------------
+;Strings added in version 1.62:
+MSG_DUPLICATING_FILE (//)
+Duplicating File
+MSG_RENAME_OVERWRITE_OR_CANCEL (//)
+*_Rename|_Overwrite|Cancel
+MSG_FILE_ALREADY_EXISTS (//)
+File already exists

@@ -1,0 +1,48 @@
+Short:    NewsCoaster Full Version (v1.65) (MUI)
+Uploader: Andrea Palmatè (andrea@amigasoft.net)
+Author:   Andrea Palmatè (andrea@amigasoft.net) 
+Type:     comm/news
+
+NewsCoaster is an open source MUI-based newsreader, for both online and offline
+reading. The source code will available in our CVS repository for the latest version
+very soon.
+
+NewsCoaster homepage (contains the documentation in HTML form):
+http://newscoaster.sourceforge.net/ 
+
+Mark Harman's (original author's) personal homepage at
+http://homepage.ntlworld.com/mark.harman/
+
+New for version 1.65:
+FIXED:	Now runs correctly on AmigaOS4.1
+FIXED:  Removed old deprecated OS4.x functions (Seek,Examine..)
+FIXED:	Remove almost all warnings (not those when you use -Wall)
+FIXED:	Correct output to >NIL: for many commands
+FIXED:	Now headers are showed correctly in the ViewWindow
+FIXED:	When a message fail, now the return code (and message) is displayed instead of a generic message
+FIXED:	Strip one \r or a \n when adding Headers to the header texteditor
+FIXED:	Now, reply message contain a valid subject and get the newsgroups automatically
+FIXED:	Update index function
+FIXED:	Reply-To now should be re-enabled.
+
+New for version 1.64:
+FIXED:	Crash at program exit
+ADDED:	Icons for messages and folders
+
+New for version 1.63:
+FIXED:   Removed almost all warning when compiling with AmigaOS4 and gcc 4.2
+UPDATED: Switched from Toolbar MCC to the new TheBar MCC and using 32bit png 
+         Toolbar icons made by Martin Mertz
+ADDED:	 UTF-8 support
+FIXED:	 Setting up the min and the max of the windows
+
+
+Previous README can be found on the original Aminet Package
+
+
+         __
+        / /
+  __   / /   Only Amiga makes it possible...
+  \ \ / /
+   \ __/
+

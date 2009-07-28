@@ -1,0 +1,47 @@
+1. What compilers has this source been tested on?
+
+NewsCoaster has been compiled with StormC v3.0 and GCC. A StormC 3 project file
+and GCC makefile are included in the archive.
+
+SAS/C compiler is unable to compile NewsCoaster because it is very old and does
+not support many features of standard C++. I tried only version 6.59 and did
+not try experimental version 7.01.
+
+When using a Storm C to compile the newscoaster.cd (catalog description) file
+please use a supplied version of catcomp.srx instead of standard one. I've
+modified it slightly to change file name of generated .h (header) file and to
+remove many not needed sections (code, array, etc) from it.
+
+To be able to succesfully compile NewsCoaster with GCC, you'll need to upgrade
+your system in the following way:
+a) Update your GeekDadgets includes. New versions can be found in gg-include
+   directory of this distribution.
+b) Install includes from AmiTCP or Miami. All includes MUST NOT be installed
+   because they will conflict. You need to take only proto, clib and inline
+   directories and copy them to gg:os-include directory. All other networking
+   stuff is already present in GeekGadgets includes. Note that depending on
+   your GCC version you may need to regenerate inlines with fd2pragma tool
+   (GCC v3 doesn't like old-style inlines).
+c) Take libmuimaster.a from lib directory and place it into your
+   gg:m68k-amigaos/lib directory.
+NewsCoaster was succesfully compiled with GCC v2.95.3 and v3.3.3.
+
+Also this source code can be compiled under MorphOS. Unfortunately NC contains
+some hidden bugs, which do not discover themselves under AmigaOS but make it
+crashing under MorphOS. So MorphOS version is still not released. Sallin
+Nicolas <henes@users.sourceforge.net> is working on it.
+
+2. I've found a bug / written in a new feature; how can I help?
+
+If you send me to someone of us the changed source files (or portions that have
+been changed) we can integrate them into the official release. But there is
+much better way: you can use our CVS repository at
+http://sourceforge.net/projects/newscoaster. Just register yourself on
+SourceForge and send a E-Mail to Mark asking to make you a member of the
+project. You are welcome!
+
+3. I want to port/optimise NewsCoaster for MorphOS/Amithlon/whatever.
+
+Please do. You are welcome to our CVS repository.
+
+Newscoaster development team.
